@@ -1,0 +1,363 @@
+Tue 08 Apr 2025 10:11:53 INFO  
+General Hyper Parameters:
+gpu_id = 0
+use_gpu = True
+seed = 2020
+state = INFO
+reproducibility = True
+data_path = dataset/mind
+checkpoint_dir = ./saved/mind/
+show_progress = True
+save_dataset = True
+dataset_save_path = None
+save_dataloaders = True
+dataloaders_save_path = None
+log_wandb = False
+
+Training Hyper Parameters:
+epochs = 50
+train_batch_size = 2048
+learner = adam
+learning_rate = 0.001
+train_neg_sample_args = {'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}
+eval_step = 1
+stopping_step = 50
+clip_grad_norm = None
+weight_decay = 0.0
+loss_decimal_place = 4
+
+Evaluation Hyper Parameters:
+eval_args = {'split': {'RS': [0.8, 0.1, 0.1]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}
+repeatable = False
+metrics = ['Recall', 'MRR', 'NDCG', 'Hit', 'MAP', 'Precision', 'GAUC', 'ItemCoverage', 'AveragePopularity', 'GiniIndex', 'ShannonEntropy', 'TailPercentage']
+topk = [10]
+valid_metric = MRR@10
+valid_metric_bigger = True
+eval_batch_size = 4096
+metric_decimal_place = 4
+
+Dataset Hyper Parameters:
+field_separator = 	
+seq_separator =  
+USER_ID_FIELD = user_id
+ITEM_ID_FIELD = item_id
+RATING_FIELD = rating
+TIME_FIELD = timestamp
+seq_len = None
+LABEL_FIELD = label
+threshold = None
+NEG_PREFIX = neg_
+load_col = {'inter': ['user_id', 'item_id']}
+unload_col = None
+unused_col = None
+additional_feat_suffix = None
+rm_dup_inter = None
+val_interval = None
+filter_inter_by_user_or_item = True
+user_inter_num_interval = [0,inf)
+item_inter_num_interval = [0,inf)
+alias_of_user_id = None
+alias_of_item_id = None
+alias_of_entity_id = None
+alias_of_relation_id = None
+preload_weight = None
+normalize_field = None
+normalize_all = None
+ITEM_LIST_LENGTH_FIELD = item_length
+LIST_SUFFIX = _list
+MAX_ITEM_LIST_LENGTH = 50
+POSITION_FIELD = position_id
+HEAD_ENTITY_ID_FIELD = head_id
+TAIL_ENTITY_ID_FIELD = tail_id
+RELATION_ID_FIELD = relation_id
+ENTITY_ID_FIELD = entity_id
+benchmark_filename = None
+
+Other Hyper Parameters: 
+worker = 0
+wandb_project = recbole
+shuffle = True
+require_pow = False
+enable_amp = False
+enable_scaler = False
+transform = None
+type = ED
+n_layers = 3
+ssl_tau = 0.5
+reg_weight = 1e-05
+ssl_weight = 0.05
+drop_ratio = 0.1
+embedding_size = 64
+numerical_features = []
+discretization = None
+kg_reverse_r = False
+entity_kg_num_interval = [0,inf)
+relation_kg_num_interval = [0,inf)
+MODEL_TYPE = ModelType.GENERAL
+MODEL_INPUT_TYPE = InputType.PAIRWISE
+eval_type = EvaluatorType.RANKING
+single_spec = True
+local_rank = 0
+device = cuda
+eval_neg_sample_args = {'distribution': 'uniform', 'sample_num': 'none'}
+
+
+Tue 08 Apr 2025 10:11:53 INFO  Load filtered dataset from: [./saved/mind/mind-Dataset.pth]
+Tue 08 Apr 2025 10:11:53 INFO  mind
+The number of users: 23680
+Average actions of users: 44.282908906626126
+The number of items: 4415
+Average actions of items: 237.55663797009515
+The number of inters: 1048575
+The sparsity of the dataset: 98.9970319625968%
+Remain Fields: ['user_id', 'item_id']
+Tue 08 Apr 2025 10:11:56 INFO  Saving split dataloaders into: [./saved/mind/mind-for-SGL-dataloader.pth]
+Tue 08 Apr 2025 10:12:04 INFO  [Training]: train_batch_size = [2048] train_neg_sample_args: [{'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}]
+Tue 08 Apr 2025 10:12:04 INFO  [Evaluation]: eval_batch_size = [4096] eval_args: [{'split': {'RS': [0.8, 0.1, 0.1]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}]
+Tue 08 Apr 2025 10:12:05 INFO  SGL(
+  (user_embedding): Embedding(23680, 64)
+  (item_embedding): Embedding(4415, 64)
+  (reg_loss): EmbLoss()
+)
+Trainable parameters: 1798080
+Tue 08 Apr 2025 10:16:10 INFO  epoch 0 training [time: 240.69s, train loss: 1183089.9670]
+Tue 08 Apr 2025 10:17:08 INFO  epoch 0 evaluating [time: 58.19s, valid_score: 0.142600]
+Tue 08 Apr 2025 10:17:08 INFO  valid result: 
+recall@10 : 0.2561    mrr@10 : 0.1426    ndcg@10 : 0.1507    hit@10 : 0.3524    map@10 : 0.1031    precision@10 : 0.0415    gauc : 0.4813    itemcoverage@10 : 0.1133    averagepopularity@10 : 4671.2705    giniindex@10 : 0.984    shannonentropy@10 : 0.009    tailpercentage@10 : 0.0584
+Tue 08 Apr 2025 10:17:08 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 10:21:09 INFO  epoch 1 training [time: 240.84s, train loss: 1179774.7791]
+Tue 08 Apr 2025 10:22:08 INFO  epoch 1 evaluating [time: 58.50s, valid_score: 0.167100]
+Tue 08 Apr 2025 10:22:08 INFO  valid result: 
+recall@10 : 0.2773    mrr@10 : 0.1671    ndcg@10 : 0.1692    hit@10 : 0.3927    map@10 : 0.1156    precision@10 : 0.0503    gauc : 0.4866    itemcoverage@10 : 0.0913    averagepopularity@10 : 4922.9608    giniindex@10 : 0.9876    shannonentropy@10 : 0.0106    tailpercentage@10 : 0.1271
+Tue 08 Apr 2025 10:22:08 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 10:26:08 INFO  epoch 2 training [time: 240.57s, train loss: 1179048.3931]
+Tue 08 Apr 2025 10:27:07 INFO  epoch 2 evaluating [time: 58.41s, valid_score: 0.233500]
+Tue 08 Apr 2025 10:27:07 INFO  valid result: 
+recall@10 : 0.3331    mrr@10 : 0.2335    ndcg@10 : 0.223    hit@10 : 0.4559    map@10 : 0.1627    precision@10 : 0.0615    gauc : 0.4614    itemcoverage@10 : 0.072    averagepopularity@10 : 5393.2116    giniindex@10 : 0.9896    shannonentropy@10 : 0.0129    tailpercentage@10 : 0.1797
+Tue 08 Apr 2025 10:27:07 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 10:31:07 INFO  epoch 3 training [time: 240.51s, train loss: 1149689.2332]
+Tue 08 Apr 2025 10:32:05 INFO  epoch 3 evaluating [time: 57.45s, valid_score: 0.370700]
+Tue 08 Apr 2025 10:32:05 INFO  valid result: 
+recall@10 : 0.3906    mrr@10 : 0.3707    ndcg@10 : 0.3049    hit@10 : 0.6    map@10 : 0.2297    precision@10 : 0.09    gauc : 0.6391    itemcoverage@10 : 0.0684    averagepopularity@10 : 6243.3537    giniindex@10 : 0.9911    shannonentropy@10 : 0.0132    tailpercentage@10 : 0.1328
+Tue 08 Apr 2025 10:32:05 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 10:36:06 INFO  epoch 4 training [time: 240.73s, train loss: 973527.7146]
+Tue 08 Apr 2025 10:37:05 INFO  epoch 4 evaluating [time: 59.59s, valid_score: 0.469600]
+Tue 08 Apr 2025 10:37:05 INFO  valid result: 
+recall@10 : 0.4531    mrr@10 : 0.4696    ndcg@10 : 0.3715    hit@10 : 0.732    map@10 : 0.2806    precision@10 : 0.1181    gauc : 0.9588    itemcoverage@10 : 0.0609    averagepopularity@10 : 7295.7356    giniindex@10 : 0.9925    shannonentropy@10 : 0.014    tailpercentage@10 : 0.0112
+Tue 08 Apr 2025 10:37:05 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 10:41:06 INFO  epoch 5 training [time: 240.33s, train loss: 788338.9423]
+Tue 08 Apr 2025 10:42:03 INFO  epoch 5 evaluating [time: 57.81s, valid_score: 0.505900]
+Tue 08 Apr 2025 10:42:03 INFO  valid result: 
+recall@10 : 0.5122    mrr@10 : 0.5059    ndcg@10 : 0.4146    hit@10 : 0.7937    map@10 : 0.3143    precision@10 : 0.1353    gauc : 0.9713    itemcoverage@10 : 0.0535    averagepopularity@10 : 6507.9053    giniindex@10 : 0.9902    shannonentropy@10 : 0.017    tailpercentage@10 : 0.0028
+Tue 08 Apr 2025 10:42:03 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 10:46:04 INFO  epoch 6 training [time: 240.22s, train loss: 736517.1469]
+Tue 08 Apr 2025 10:47:03 INFO  epoch 6 evaluating [time: 59.66s, valid_score: 0.522100]
+Tue 08 Apr 2025 10:47:03 INFO  valid result: 
+recall@10 : 0.5416    mrr@10 : 0.5221    ndcg@10 : 0.4359    hit@10 : 0.8271    map@10 : 0.3304    precision@10 : 0.1461    gauc : 0.973    itemcoverage@10 : 0.0555    averagepopularity@10 : 5831.743    giniindex@10 : 0.9875    shannonentropy@10 : 0.0175    tailpercentage@10 : 0.0016
+Tue 08 Apr 2025 10:47:03 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 10:51:04 INFO  epoch 7 training [time: 240.26s, train loss: 717401.5916]
+Tue 08 Apr 2025 10:52:04 INFO  epoch 7 evaluating [time: 60.59s, valid_score: 0.531300]
+Tue 08 Apr 2025 10:52:04 INFO  valid result: 
+recall@10 : 0.5578    mrr@10 : 0.5313    ndcg@10 : 0.4482    hit@10 : 0.8439    map@10 : 0.3404    precision@10 : 0.1513    gauc : 0.9742    itemcoverage@10 : 0.0609    averagepopularity@10 : 5521.7126    giniindex@10 : 0.9852    shannonentropy@10 : 0.0166    tailpercentage@10 : 0.0011
+Tue 08 Apr 2025 10:52:04 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 10:56:04 INFO  epoch 8 training [time: 240.03s, train loss: 706325.2190]
+Tue 08 Apr 2025 10:57:04 INFO  epoch 8 evaluating [time: 60.15s, valid_score: 0.536300]
+Tue 08 Apr 2025 10:57:04 INFO  valid result: 
+recall@10 : 0.5683    mrr@10 : 0.5363    ndcg@10 : 0.4557    hit@10 : 0.8523    map@10 : 0.3465    precision@10 : 0.1547    gauc : 0.975    itemcoverage@10 : 0.0661    averagepopularity@10 : 5344.2504    giniindex@10 : 0.9836    shannonentropy@10 : 0.0156    tailpercentage@10 : 0.0008
+Tue 08 Apr 2025 10:57:04 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 11:01:05 INFO  epoch 9 training [time: 240.14s, train loss: 699099.2369]
+Tue 08 Apr 2025 11:02:03 INFO  epoch 9 evaluating [time: 58.91s, valid_score: 0.539200]
+Tue 08 Apr 2025 11:02:03 INFO  valid result: 
+recall@10 : 0.572    mrr@10 : 0.5392    ndcg@10 : 0.4592    hit@10 : 0.8558    map@10 : 0.3494    precision@10 : 0.1569    gauc : 0.9758    itemcoverage@10 : 0.0709    averagepopularity@10 : 5192.2682    giniindex@10 : 0.9823    shannonentropy@10 : 0.0149    tailpercentage@10 : 0.0006
+Tue 08 Apr 2025 11:02:03 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 11:06:04 INFO  epoch 10 training [time: 240.04s, train loss: 693542.1433]
+Tue 08 Apr 2025 11:07:03 INFO  epoch 10 evaluating [time: 59.41s, valid_score: 0.540200]
+Tue 08 Apr 2025 11:07:03 INFO  valid result: 
+recall@10 : 0.5757    mrr@10 : 0.5402    ndcg@10 : 0.4624    hit@10 : 0.8581    map@10 : 0.3523    precision@10 : 0.1588    gauc : 0.9764    itemcoverage@10 : 0.0779    averagepopularity@10 : 5069.4601    giniindex@10 : 0.9811    shannonentropy@10 : 0.0137    tailpercentage@10 : 0.0005
+Tue 08 Apr 2025 11:07:03 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 11:11:03 INFO  epoch 11 training [time: 240.30s, train loss: 687904.5719]
+Tue 08 Apr 2025 11:12:01 INFO  epoch 11 evaluating [time: 58.09s, valid_score: 0.542700]
+Tue 08 Apr 2025 11:12:01 INFO  valid result: 
+recall@10 : 0.5795    mrr@10 : 0.5427    ndcg@10 : 0.466    hit@10 : 0.8616    map@10 : 0.3556    precision@10 : 0.1606    gauc : 0.977    itemcoverage@10 : 0.0797    averagepopularity@10 : 4972.236    giniindex@10 : 0.9802    shannonentropy@10 : 0.0135    tailpercentage@10 : 0.0005
+Tue 08 Apr 2025 11:12:01 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 11:16:02 INFO  epoch 12 training [time: 240.37s, train loss: 683083.9287]
+Tue 08 Apr 2025 11:16:59 INFO  epoch 12 evaluating [time: 57.70s, valid_score: 0.544800]
+Tue 08 Apr 2025 11:16:59 INFO  valid result: 
+recall@10 : 0.5843    mrr@10 : 0.5448    ndcg@10 : 0.4697    hit@10 : 0.8647    map@10 : 0.3588    precision@10 : 0.1628    gauc : 0.9774    itemcoverage@10 : 0.0813    averagepopularity@10 : 4888.0841    giniindex@10 : 0.9792    shannonentropy@10 : 0.0134    tailpercentage@10 : 0.0005
+Tue 08 Apr 2025 11:16:59 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 11:21:00 INFO  epoch 13 training [time: 240.62s, train loss: 679069.4543]
+Tue 08 Apr 2025 11:21:57 INFO  epoch 13 evaluating [time: 57.22s, valid_score: 0.546600]
+Tue 08 Apr 2025 11:21:57 INFO  valid result: 
+recall@10 : 0.5882    mrr@10 : 0.5466    ndcg@10 : 0.4727    hit@10 : 0.8683    map@10 : 0.3613    precision@10 : 0.1645    gauc : 0.9779    itemcoverage@10 : 0.0852    averagepopularity@10 : 4818.7356    giniindex@10 : 0.9782    shannonentropy@10 : 0.0129    tailpercentage@10 : 0.0006
+Tue 08 Apr 2025 11:21:57 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 11:25:58 INFO  epoch 14 training [time: 240.30s, train loss: 676085.0430]
+Tue 08 Apr 2025 11:26:55 INFO  epoch 14 evaluating [time: 57.12s, valid_score: 0.547900]
+Tue 08 Apr 2025 11:26:55 INFO  valid result: 
+recall@10 : 0.5908    mrr@10 : 0.5479    ndcg@10 : 0.4751    hit@10 : 0.8692    map@10 : 0.3635    precision@10 : 0.1658    gauc : 0.9782    itemcoverage@10 : 0.089    averagepopularity@10 : 4747.1596    giniindex@10 : 0.9773    shannonentropy@10 : 0.0125    tailpercentage@10 : 0.0005
+Tue 08 Apr 2025 11:26:55 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 11:30:55 INFO  epoch 15 training [time: 240.48s, train loss: 673013.4913]
+Tue 08 Apr 2025 11:31:55 INFO  epoch 15 evaluating [time: 59.53s, valid_score: 0.548700]
+Tue 08 Apr 2025 11:31:55 INFO  valid result: 
+recall@10 : 0.593    mrr@10 : 0.5487    ndcg@10 : 0.477    hit@10 : 0.8706    map@10 : 0.3652    precision@10 : 0.1666    gauc : 0.9786    itemcoverage@10 : 0.0935    averagepopularity@10 : 4696.0018    giniindex@10 : 0.9764    shannonentropy@10 : 0.012    tailpercentage@10 : 0.0006
+Tue 08 Apr 2025 11:31:55 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 11:35:55 INFO  epoch 16 training [time: 240.57s, train loss: 669705.7819]
+Tue 08 Apr 2025 11:36:55 INFO  epoch 16 evaluating [time: 59.30s, valid_score: 0.552100]
+Tue 08 Apr 2025 11:36:55 INFO  valid result: 
+recall@10 : 0.5972    mrr@10 : 0.5521    ndcg@10 : 0.4806    hit@10 : 0.8737    map@10 : 0.3682    precision@10 : 0.1682    gauc : 0.9789    itemcoverage@10 : 0.0981    averagepopularity@10 : 4670.1156    giniindex@10 : 0.9757    shannonentropy@10 : 0.0115    tailpercentage@10 : 0.0007
+Tue 08 Apr 2025 11:36:55 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 11:40:55 INFO  epoch 17 training [time: 240.39s, train loss: 666995.1008]
+Tue 08 Apr 2025 11:41:55 INFO  epoch 17 evaluating [time: 59.50s, valid_score: 0.554000]
+Tue 08 Apr 2025 11:41:55 INFO  valid result: 
+recall@10 : 0.6002    mrr@10 : 0.554    ndcg@10 : 0.4832    hit@10 : 0.8769    map@10 : 0.3704    precision@10 : 0.1695    gauc : 0.9791    itemcoverage@10 : 0.1017    averagepopularity@10 : 4623.9779    giniindex@10 : 0.975    shannonentropy@10 : 0.0112    tailpercentage@10 : 0.0007
+Tue 08 Apr 2025 11:41:55 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 11:45:55 INFO  epoch 18 training [time: 240.10s, train loss: 664503.4537]
+Tue 08 Apr 2025 11:46:55 INFO  epoch 18 evaluating [time: 59.76s, valid_score: 0.556700]
+Tue 08 Apr 2025 11:46:55 INFO  valid result: 
+recall@10 : 0.603    mrr@10 : 0.5567    ndcg@10 : 0.4862    hit@10 : 0.8793    map@10 : 0.3733    precision@10 : 0.1707    gauc : 0.9794    itemcoverage@10 : 0.1049    averagepopularity@10 : 4586.2997    giniindex@10 : 0.9744    shannonentropy@10 : 0.0109    tailpercentage@10 : 0.0006
+Tue 08 Apr 2025 11:46:55 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 11:50:55 INFO  epoch 19 training [time: 240.26s, train loss: 662192.9869]
+Tue 08 Apr 2025 11:51:53 INFO  epoch 19 evaluating [time: 58.50s, valid_score: 0.557600]
+Tue 08 Apr 2025 11:51:53 INFO  valid result: 
+recall@10 : 0.6042    mrr@10 : 0.5576    ndcg@10 : 0.4876    hit@10 : 0.8802    map@10 : 0.3748    precision@10 : 0.1712    gauc : 0.9795    itemcoverage@10 : 0.1085    averagepopularity@10 : 4519.7682    giniindex@10 : 0.9734    shannonentropy@10 : 0.0106    tailpercentage@10 : 0.0007
+Tue 08 Apr 2025 11:51:53 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 11:55:54 INFO  epoch 20 training [time: 240.24s, train loss: 660755.8207]
+Tue 08 Apr 2025 11:56:52 INFO  epoch 20 evaluating [time: 58.60s, valid_score: 0.558700]
+Tue 08 Apr 2025 11:56:52 INFO  valid result: 
+recall@10 : 0.6056    mrr@10 : 0.5587    ndcg@10 : 0.4892    hit@10 : 0.8814    map@10 : 0.3764    precision@10 : 0.1718    gauc : 0.9797    itemcoverage@10 : 0.1114    averagepopularity@10 : 4474.6561    giniindex@10 : 0.9728    shannonentropy@10 : 0.0103    tailpercentage@10 : 0.0008
+Tue 08 Apr 2025 11:56:52 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 12:00:53 INFO  epoch 21 training [time: 240.76s, train loss: 658176.8367]
+Tue 08 Apr 2025 12:01:52 INFO  epoch 21 evaluating [time: 58.47s, valid_score: 0.560600]
+Tue 08 Apr 2025 12:01:52 INFO  valid result: 
+recall@10 : 0.6079    mrr@10 : 0.5606    ndcg@10 : 0.4913    hit@10 : 0.8834    map@10 : 0.3782    precision@10 : 0.1728    gauc : 0.9799    itemcoverage@10 : 0.1187    averagepopularity@10 : 4442.1151    giniindex@10 : 0.9722    shannonentropy@10 : 0.0098    tailpercentage@10 : 0.0009
+Tue 08 Apr 2025 12:01:52 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 12:05:52 INFO  epoch 22 training [time: 240.73s, train loss: 656205.9386]
+Tue 08 Apr 2025 12:06:51 INFO  epoch 22 evaluating [time: 58.79s, valid_score: 0.561300]
+Tue 08 Apr 2025 12:06:51 INFO  valid result: 
+recall@10 : 0.6091    mrr@10 : 0.5613    ndcg@10 : 0.4923    hit@10 : 0.884    map@10 : 0.379    precision@10 : 0.1735    gauc : 0.9801    itemcoverage@10 : 0.1216    averagepopularity@10 : 4400.0531    giniindex@10 : 0.9716    shannonentropy@10 : 0.0096    tailpercentage@10 : 0.0012
+Tue 08 Apr 2025 12:06:51 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 12:10:52 INFO  epoch 23 training [time: 240.67s, train loss: 654911.5345]
+Tue 08 Apr 2025 12:11:50 INFO  epoch 23 evaluating [time: 58.71s, valid_score: 0.562200]
+Tue 08 Apr 2025 12:11:50 INFO  valid result: 
+recall@10 : 0.6093    mrr@10 : 0.5622    ndcg@10 : 0.4932    hit@10 : 0.8843    map@10 : 0.3799    precision@10 : 0.1739    gauc : 0.9803    itemcoverage@10 : 0.1259    averagepopularity@10 : 4355.6079    giniindex@10 : 0.9709    shannonentropy@10 : 0.0093    tailpercentage@10 : 0.0013
+Tue 08 Apr 2025 12:11:51 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 12:15:51 INFO  epoch 24 training [time: 240.72s, train loss: 653283.0659]
+Tue 08 Apr 2025 12:16:49 INFO  epoch 24 evaluating [time: 57.42s, valid_score: 0.564300]
+Tue 08 Apr 2025 12:16:49 INFO  valid result: 
+recall@10 : 0.6115    mrr@10 : 0.5643    ndcg@10 : 0.4956    hit@10 : 0.8854    map@10 : 0.3821    precision@10 : 0.1752    gauc : 0.9805    itemcoverage@10 : 0.1293    averagepopularity@10 : 4353.2159    giniindex@10 : 0.9706    shannonentropy@10 : 0.0091    tailpercentage@10 : 0.0014
+Tue 08 Apr 2025 12:16:49 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 12:20:49 INFO  epoch 25 training [time: 240.44s, train loss: 651625.5625]
+Tue 08 Apr 2025 12:21:49 INFO  epoch 25 evaluating [time: 59.75s, valid_score: 0.564500]
+Tue 08 Apr 2025 12:21:49 INFO  valid result: 
+recall@10 : 0.6124    mrr@10 : 0.5645    ndcg@10 : 0.4961    hit@10 : 0.8858    map@10 : 0.3826    precision@10 : 0.1752    gauc : 0.9806    itemcoverage@10 : 0.135    averagepopularity@10 : 4302.975    giniindex@10 : 0.9698    shannonentropy@10 : 0.0087    tailpercentage@10 : 0.0019
+Tue 08 Apr 2025 12:21:49 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 12:25:50 INFO  epoch 26 training [time: 240.60s, train loss: 650556.5345]
+Tue 08 Apr 2025 12:26:47 INFO  epoch 26 evaluating [time: 57.81s, valid_score: 0.565400]
+Tue 08 Apr 2025 12:26:47 INFO  valid result: 
+recall@10 : 0.6139    mrr@10 : 0.5654    ndcg@10 : 0.497    hit@10 : 0.8885    map@10 : 0.383    precision@10 : 0.176    gauc : 0.9807    itemcoverage@10 : 0.1366    averagepopularity@10 : 4285.0407    giniindex@10 : 0.9693    shannonentropy@10 : 0.0086    tailpercentage@10 : 0.0021
+Tue 08 Apr 2025 12:26:47 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 12:30:48 INFO  epoch 27 training [time: 240.25s, train loss: 648925.8134]
+Tue 08 Apr 2025 12:31:47 INFO  epoch 27 evaluating [time: 59.47s, valid_score: 0.565800]
+Tue 08 Apr 2025 12:31:47 INFO  valid result: 
+recall@10 : 0.6141    mrr@10 : 0.5658    ndcg@10 : 0.4972    hit@10 : 0.8885    map@10 : 0.3831    precision@10 : 0.1764    gauc : 0.9808    itemcoverage@10 : 0.1402    averagepopularity@10 : 4250.3409    giniindex@10 : 0.9688    shannonentropy@10 : 0.0084    tailpercentage@10 : 0.0023
+Tue 08 Apr 2025 12:31:47 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 12:35:47 INFO  epoch 28 training [time: 240.11s, train loss: 647929.4570]
+Tue 08 Apr 2025 12:36:46 INFO  epoch 28 evaluating [time: 58.42s, valid_score: 0.566100]
+Tue 08 Apr 2025 12:36:46 INFO  valid result: 
+recall@10 : 0.6147    mrr@10 : 0.5661    ndcg@10 : 0.4975    hit@10 : 0.8886    map@10 : 0.3833    precision@10 : 0.1767    gauc : 0.9809    itemcoverage@10 : 0.1443    averagepopularity@10 : 4207.2135    giniindex@10 : 0.9679    shannonentropy@10 : 0.0083    tailpercentage@10 : 0.0021
+Tue 08 Apr 2025 12:36:46 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 12:40:46 INFO  epoch 29 training [time: 240.35s, train loss: 646678.8043]
+Tue 08 Apr 2025 12:41:44 INFO  epoch 29 evaluating [time: 57.68s, valid_score: 0.567000]
+Tue 08 Apr 2025 12:41:44 INFO  valid result: 
+recall@10 : 0.6163    mrr@10 : 0.567    ndcg@10 : 0.4987    hit@10 : 0.8901    map@10 : 0.3842    precision@10 : 0.1772    gauc : 0.981    itemcoverage@10 : 0.1468    averagepopularity@10 : 4204.7105    giniindex@10 : 0.9676    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0022
+Tue 08 Apr 2025 12:41:44 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 12:45:44 INFO  epoch 30 training [time: 240.32s, train loss: 645851.6105]
+Tue 08 Apr 2025 12:46:41 INFO  epoch 30 evaluating [time: 57.15s, valid_score: 0.568200]
+Tue 08 Apr 2025 12:46:41 INFO  valid result: 
+recall@10 : 0.6168    mrr@10 : 0.5682    ndcg@10 : 0.4994    hit@10 : 0.8905    map@10 : 0.3847    precision@10 : 0.1777    gauc : 0.9811    itemcoverage@10 : 0.1524    averagepopularity@10 : 4190.2574    giniindex@10 : 0.967    shannonentropy@10 : 0.0079    tailpercentage@10 : 0.003
+Tue 08 Apr 2025 12:46:41 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 12:50:42 INFO  epoch 31 training [time: 240.39s, train loss: 645034.2300]
+Tue 08 Apr 2025 12:51:39 INFO  epoch 31 evaluating [time: 57.51s, valid_score: 0.567500]
+Tue 08 Apr 2025 12:51:39 INFO  valid result: 
+recall@10 : 0.6174    mrr@10 : 0.5675    ndcg@10 : 0.4993    hit@10 : 0.8905    map@10 : 0.3844    precision@10 : 0.1782    gauc : 0.9812    itemcoverage@10 : 0.1552    averagepopularity@10 : 4167.3709    giniindex@10 : 0.9664    shannonentropy@10 : 0.0077    tailpercentage@10 : 0.0028
+Tue 08 Apr 2025 12:55:39 INFO  epoch 32 training [time: 240.30s, train loss: 643811.5530]
+Tue 08 Apr 2025 12:56:38 INFO  epoch 32 evaluating [time: 58.85s, valid_score: 0.568600]
+Tue 08 Apr 2025 12:56:38 INFO  valid result: 
+recall@10 : 0.6199    mrr@10 : 0.5686    ndcg@10 : 0.5009    hit@10 : 0.8924    map@10 : 0.3855    precision@10 : 0.1792    gauc : 0.9813    itemcoverage@10 : 0.1579    averagepopularity@10 : 4179.3796    giniindex@10 : 0.9662    shannonentropy@10 : 0.0076    tailpercentage@10 : 0.0023
+Tue 08 Apr 2025 12:56:38 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 13:00:39 INFO  epoch 33 training [time: 240.24s, train loss: 642410.4553]
+Tue 08 Apr 2025 13:01:37 INFO  epoch 33 evaluating [time: 58.19s, valid_score: 0.568400]
+Tue 08 Apr 2025 13:01:37 INFO  valid result: 
+recall@10 : 0.6206    mrr@10 : 0.5684    ndcg@10 : 0.501    hit@10 : 0.8933    map@10 : 0.3855    precision@10 : 0.1793    gauc : 0.9814    itemcoverage@10 : 0.1595    averagepopularity@10 : 4152.5878    giniindex@10 : 0.9655    shannonentropy@10 : 0.0076    tailpercentage@10 : 0.002
+Tue 08 Apr 2025 13:05:37 INFO  epoch 34 training [time: 240.18s, train loss: 641986.4084]
+Tue 08 Apr 2025 13:06:36 INFO  epoch 34 evaluating [time: 59.10s, valid_score: 0.568800]
+Tue 08 Apr 2025 13:06:36 INFO  valid result: 
+recall@10 : 0.6209    mrr@10 : 0.5688    ndcg@10 : 0.5012    hit@10 : 0.8939    map@10 : 0.3855    precision@10 : 0.1794    gauc : 0.9814    itemcoverage@10 : 0.164    averagepopularity@10 : 4129.6929    giniindex@10 : 0.9651    shannonentropy@10 : 0.0074    tailpercentage@10 : 0.0011
+Tue 08 Apr 2025 13:06:36 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 13:10:37 INFO  epoch 35 training [time: 240.72s, train loss: 640925.2163]
+Tue 08 Apr 2025 13:11:35 INFO  epoch 35 evaluating [time: 57.93s, valid_score: 0.569400]
+Tue 08 Apr 2025 13:11:35 INFO  valid result: 
+recall@10 : 0.6219    mrr@10 : 0.5694    ndcg@10 : 0.5021    hit@10 : 0.8951    map@10 : 0.3863    precision@10 : 0.1799    gauc : 0.9816    itemcoverage@10 : 0.1651    averagepopularity@10 : 4122.193    giniindex@10 : 0.9647    shannonentropy@10 : 0.0073    tailpercentage@10 : 0.0007
+Tue 08 Apr 2025 13:11:35 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 13:15:35 INFO  epoch 36 training [time: 240.32s, train loss: 640617.5447]
+Tue 08 Apr 2025 13:16:36 INFO  epoch 36 evaluating [time: 60.75s, valid_score: 0.570000]
+Tue 08 Apr 2025 13:16:36 INFO  valid result: 
+recall@10 : 0.6229    mrr@10 : 0.57    ndcg@10 : 0.5029    hit@10 : 0.8958    map@10 : 0.387    precision@10 : 0.1802    gauc : 0.9816    itemcoverage@10 : 0.1638    averagepopularity@10 : 4123.9122    giniindex@10 : 0.9645    shannonentropy@10 : 0.0074    tailpercentage@10 : 0.0004
+Tue 08 Apr 2025 13:16:36 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 13:20:36 INFO  epoch 37 training [time: 240.53s, train loss: 639439.8943]
+Tue 08 Apr 2025 13:21:34 INFO  epoch 37 evaluating [time: 57.16s, valid_score: 0.570200]
+Tue 08 Apr 2025 13:21:34 INFO  valid result: 
+recall@10 : 0.6231    mrr@10 : 0.5702    ndcg@10 : 0.5032    hit@10 : 0.8957    map@10 : 0.3873    precision@10 : 0.1803    gauc : 0.9817    itemcoverage@10 : 0.1669    averagepopularity@10 : 4101.9979    giniindex@10 : 0.9639    shannonentropy@10 : 0.0073    tailpercentage@10 : 0.0003
+Tue 08 Apr 2025 13:21:34 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 13:25:34 INFO  epoch 38 training [time: 240.54s, train loss: 638946.9910]
+Tue 08 Apr 2025 13:26:33 INFO  epoch 38 evaluating [time: 58.94s, valid_score: 0.569800]
+Tue 08 Apr 2025 13:26:33 INFO  valid result: 
+recall@10 : 0.6236    mrr@10 : 0.5698    ndcg@10 : 0.5029    hit@10 : 0.8963    map@10 : 0.3867    precision@10 : 0.1804    gauc : 0.9817    itemcoverage@10 : 0.1687    averagepopularity@10 : 4068.1446    giniindex@10 : 0.9632    shannonentropy@10 : 0.0072    tailpercentage@10 : 0.0003
+Tue 08 Apr 2025 13:30:34 INFO  epoch 39 training [time: 240.91s, train loss: 637988.1654]
+Tue 08 Apr 2025 13:31:33 INFO  epoch 39 evaluating [time: 59.35s, valid_score: 0.572400]
+Tue 08 Apr 2025 13:31:33 INFO  valid result: 
+recall@10 : 0.6258    mrr@10 : 0.5724    ndcg@10 : 0.5052    hit@10 : 0.8982    map@10 : 0.3889    precision@10 : 0.1813    gauc : 0.9818    itemcoverage@10 : 0.1694    averagepopularity@10 : 4104.4921    giniindex@10 : 0.9634    shannonentropy@10 : 0.0072    tailpercentage@10 : 0.0003
+Tue 08 Apr 2025 13:31:33 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 13:35:34 INFO  epoch 40 training [time: 240.46s, train loss: 637464.1193]
+Tue 08 Apr 2025 13:36:31 INFO  epoch 40 evaluating [time: 57.13s, valid_score: 0.571800]
+Tue 08 Apr 2025 13:36:31 INFO  valid result: 
+recall@10 : 0.6246    mrr@10 : 0.5718    ndcg@10 : 0.5043    hit@10 : 0.898    map@10 : 0.388    precision@10 : 0.181    gauc : 0.9819    itemcoverage@10 : 0.1703    averagepopularity@10 : 4053.1739    giniindex@10 : 0.9627    shannonentropy@10 : 0.0072    tailpercentage@10 : 0.0002
+Tue 08 Apr 2025 13:40:31 INFO  epoch 41 training [time: 240.31s, train loss: 636983.3536]
+Tue 08 Apr 2025 13:41:30 INFO  epoch 41 evaluating [time: 58.57s, valid_score: 0.572200]
+Tue 08 Apr 2025 13:41:30 INFO  valid result: 
+recall@10 : 0.6251    mrr@10 : 0.5722    ndcg@10 : 0.5047    hit@10 : 0.8982    map@10 : 0.3883    precision@10 : 0.1813    gauc : 0.9819    itemcoverage@10 : 0.173    averagepopularity@10 : 4056.6987    giniindex@10 : 0.9625    shannonentropy@10 : 0.0071    tailpercentage@10 : 0.0003
+Tue 08 Apr 2025 13:45:30 INFO  epoch 42 training [time: 240.44s, train loss: 635818.0734]
+Tue 08 Apr 2025 13:46:29 INFO  epoch 42 evaluating [time: 58.33s, valid_score: 0.574200]
+Tue 08 Apr 2025 13:46:29 INFO  valid result: 
+recall@10 : 0.6273    mrr@10 : 0.5742    ndcg@10 : 0.5069    hit@10 : 0.9    map@10 : 0.3905    precision@10 : 0.1822    gauc : 0.9821    itemcoverage@10 : 0.1753    averagepopularity@10 : 4099.3652    giniindex@10 : 0.9626    shannonentropy@10 : 0.007    tailpercentage@10 : 0.0004
+Tue 08 Apr 2025 13:46:29 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 13:50:29 INFO  epoch 43 training [time: 240.76s, train loss: 635232.1549]
+Tue 08 Apr 2025 13:51:29 INFO  epoch 43 evaluating [time: 59.45s, valid_score: 0.573500]
+Tue 08 Apr 2025 13:51:29 INFO  valid result: 
+recall@10 : 0.627    mrr@10 : 0.5735    ndcg@10 : 0.5064    hit@10 : 0.8994    map@10 : 0.3899    precision@10 : 0.182    gauc : 0.9821    itemcoverage@10 : 0.1776    averagepopularity@10 : 4056.4725    giniindex@10 : 0.9619    shannonentropy@10 : 0.0069    tailpercentage@10 : 0.0003
+Tue 08 Apr 2025 13:55:29 INFO  epoch 44 training [time: 240.55s, train loss: 634630.3516]
+Tue 08 Apr 2025 13:56:28 INFO  epoch 44 evaluating [time: 58.93s, valid_score: 0.573800]
+Tue 08 Apr 2025 13:56:28 INFO  valid result: 
+recall@10 : 0.6266    mrr@10 : 0.5738    ndcg@10 : 0.5065    hit@10 : 0.8989    map@10 : 0.3902    precision@10 : 0.1819    gauc : 0.9822    itemcoverage@10 : 0.1778    averagepopularity@10 : 4049.1347    giniindex@10 : 0.9615    shannonentropy@10 : 0.0069    tailpercentage@10 : 0.0004
+Tue 08 Apr 2025 14:00:29 INFO  epoch 45 training [time: 240.47s, train loss: 634083.4240]
+Tue 08 Apr 2025 14:01:28 INFO  epoch 45 evaluating [time: 59.27s, valid_score: 0.574800]
+Tue 08 Apr 2025 14:01:28 INFO  valid result: 
+recall@10 : 0.628    mrr@10 : 0.5748    ndcg@10 : 0.5077    hit@10 : 0.8998    map@10 : 0.3913    precision@10 : 0.1823    gauc : 0.9822    itemcoverage@10 : 0.1778    averagepopularity@10 : 4062.3206    giniindex@10 : 0.9613    shannonentropy@10 : 0.0069    tailpercentage@10 : 0.0003
+Tue 08 Apr 2025 14:01:28 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 14:05:29 INFO  epoch 46 training [time: 240.41s, train loss: 633530.7219]
+Tue 08 Apr 2025 14:06:26 INFO  epoch 46 evaluating [time: 57.55s, valid_score: 0.573800]
+Tue 08 Apr 2025 14:06:26 INFO  valid result: 
+recall@10 : 0.628    mrr@10 : 0.5738    ndcg@10 : 0.507    hit@10 : 0.9002    map@10 : 0.3904    precision@10 : 0.1824    gauc : 0.9822    itemcoverage@10 : 0.1792    averagepopularity@10 : 4027.1049    giniindex@10 : 0.9606    shannonentropy@10 : 0.0069    tailpercentage@10 : 0.0003
+Tue 08 Apr 2025 14:10:27 INFO  epoch 47 training [time: 240.67s, train loss: 633146.4840]
+Tue 08 Apr 2025 14:11:26 INFO  epoch 47 evaluating [time: 58.90s, valid_score: 0.573500]
+Tue 08 Apr 2025 14:11:26 INFO  valid result: 
+recall@10 : 0.6277    mrr@10 : 0.5735    ndcg@10 : 0.5065    hit@10 : 0.9003    map@10 : 0.3899    precision@10 : 0.1823    gauc : 0.9823    itemcoverage@10 : 0.1807    averagepopularity@10 : 4010.9626    giniindex@10 : 0.9602    shannonentropy@10 : 0.0068    tailpercentage@10 : 0.0003
+Tue 08 Apr 2025 14:15:26 INFO  epoch 48 training [time: 240.60s, train loss: 632593.1011]
+Tue 08 Apr 2025 14:16:24 INFO  epoch 48 evaluating [time: 57.56s, valid_score: 0.575800]
+Tue 08 Apr 2025 14:16:24 INFO  valid result: 
+recall@10 : 0.6291    mrr@10 : 0.5758    ndcg@10 : 0.5084    hit@10 : 0.9014    map@10 : 0.3917    precision@10 : 0.1831    gauc : 0.9824    itemcoverage@10 : 0.1823    averagepopularity@10 : 4041.9787    giniindex@10 : 0.9604    shannonentropy@10 : 0.0068    tailpercentage@10 : 0.0004
+Tue 08 Apr 2025 14:16:24 INFO  Saving current: ./saved/mind/SGL-Apr-08-2025_10-12-05.pth
+Tue 08 Apr 2025 14:20:24 INFO  epoch 49 training [time: 240.44s, train loss: 632180.0261]
+Tue 08 Apr 2025 14:21:22 INFO  epoch 49 evaluating [time: 57.30s, valid_score: 0.575000]
+Tue 08 Apr 2025 14:21:22 INFO  valid result: 
+recall@10 : 0.6288    mrr@10 : 0.575    ndcg@10 : 0.5082    hit@10 : 0.901    map@10 : 0.3916    precision@10 : 0.1832    gauc : 0.9825    itemcoverage@10 : 0.1841    averagepopularity@10 : 4017.5835    giniindex@10 : 0.9599    shannonentropy@10 : 0.0067    tailpercentage@10 : 0.0004
+Tue 08 Apr 2025 14:21:22 INFO  Loading model structure and parameters from ./saved/mind/SGL-Apr-08-2025_10-12-05.pth

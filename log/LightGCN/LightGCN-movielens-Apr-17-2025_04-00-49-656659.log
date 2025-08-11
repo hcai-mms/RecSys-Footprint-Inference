@@ -1,0 +1,358 @@
+Thu 17 Apr 2025 04:00:49 INFO  
+General Hyper Parameters:
+gpu_id = 0
+use_gpu = True
+seed = 2020
+state = INFO
+reproducibility = True
+data_path = dataset/movielens
+checkpoint_dir = ./saved/movielens/
+show_progress = True
+save_dataset = True
+dataset_save_path = None
+save_dataloaders = True
+dataloaders_save_path = None
+log_wandb = False
+
+Training Hyper Parameters:
+epochs = 50
+train_batch_size = 2048
+learner = adam
+learning_rate = 0.001
+train_neg_sample_args = {'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}
+eval_step = 1
+stopping_step = 50
+clip_grad_norm = None
+weight_decay = 0.0
+loss_decimal_place = 4
+
+Evaluation Hyper Parameters:
+eval_args = {'split': {'RS': [0.8, 0.1, 0.1]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}
+repeatable = False
+metrics = ['MRR']
+topk = [10]
+valid_metric = MRR@10
+valid_metric_bigger = True
+eval_batch_size = 4096
+metric_decimal_place = 4
+
+Dataset Hyper Parameters:
+field_separator = 	
+seq_separator =  
+USER_ID_FIELD = user_id
+ITEM_ID_FIELD = item_id
+RATING_FIELD = rating
+TIME_FIELD = timestamp
+seq_len = None
+LABEL_FIELD = label
+threshold = None
+NEG_PREFIX = neg_
+load_col = {'inter': ['user_id', 'item_id']}
+unload_col = None
+unused_col = None
+additional_feat_suffix = None
+rm_dup_inter = None
+val_interval = None
+filter_inter_by_user_or_item = True
+user_inter_num_interval = [0,inf)
+item_inter_num_interval = [0,inf)
+alias_of_user_id = None
+alias_of_item_id = None
+alias_of_entity_id = None
+alias_of_relation_id = None
+preload_weight = None
+normalize_field = None
+normalize_all = None
+ITEM_LIST_LENGTH_FIELD = item_length
+LIST_SUFFIX = _list
+MAX_ITEM_LIST_LENGTH = 50
+POSITION_FIELD = position_id
+HEAD_ENTITY_ID_FIELD = head_id
+TAIL_ENTITY_ID_FIELD = tail_id
+RELATION_ID_FIELD = relation_id
+ENTITY_ID_FIELD = entity_id
+benchmark_filename = None
+
+Other Hyper Parameters: 
+worker = 0
+wandb_project = recbole
+shuffle = True
+require_pow = False
+enable_amp = False
+enable_scaler = False
+transform = None
+embedding_size = 64
+n_layers = 2
+reg_weight = 1e-05
+numerical_features = []
+discretization = None
+kg_reverse_r = False
+entity_kg_num_interval = [0,inf)
+relation_kg_num_interval = [0,inf)
+MODEL_TYPE = ModelType.GENERAL
+MODEL_INPUT_TYPE = InputType.PAIRWISE
+eval_type = EvaluatorType.RANKING
+single_spec = True
+local_rank = 0
+device = cuda
+eval_neg_sample_args = {'distribution': 'uniform', 'sample_num': 'none'}
+
+
+Thu 17 Apr 2025 04:00:49 INFO  Load filtered dataset from: [./saved/movielens/movielens-Dataset.pth]
+Thu 17 Apr 2025 04:00:49 INFO  movielens
+The number of users: 6037
+Average actions of users: 125.48889993373095
+The number of items: 3193
+Average actions of items: 237.296679197995
+The number of inters: 757451
+The sparsity of the dataset: 96.07052573437805%
+Remain Fields: ['user_id', 'item_id']
+Thu 17 Apr 2025 04:00:51 INFO  Load split dataloaders from: [./saved/movielens/movielens-for-LightGCN-dataloader.pth]
+Thu 17 Apr 2025 04:00:51 INFO  [Training]: train_batch_size = [2048] train_neg_sample_args: [{'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}]
+Thu 17 Apr 2025 04:00:51 INFO  [Evaluation]: eval_batch_size = [4096] eval_args: [{'split': {'RS': [0.8, 0.1, 0.1]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}]
+Thu 17 Apr 2025 04:00:52 INFO  LightGCN(
+  (user_embedding): Embedding(6037, 64)
+  (item_embedding): Embedding(3193, 64)
+  (mf_loss): BPRLoss()
+  (reg_loss): EmbLoss()
+)
+Trainable parameters: 590720
+Thu 17 Apr 2025 04:01:18 INFO  epoch 0 training [time: 19.86s, train loss: 151.7182]
+Thu 17 Apr 2025 04:01:23 INFO  epoch 0 evaluating [time: 5.08s, valid_score: 0.148600]
+Thu 17 Apr 2025 04:01:23 INFO  valid result: 
+mrr@10 : 0.1486
+Thu 17 Apr 2025 04:01:23 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:01:43 INFO  epoch 1 training [time: 19.95s, train loss: 117.8752]
+Thu 17 Apr 2025 04:01:48 INFO  epoch 1 evaluating [time: 5.17s, valid_score: 0.148600]
+Thu 17 Apr 2025 04:01:48 INFO  valid result: 
+mrr@10 : 0.1486
+Thu 17 Apr 2025 04:01:48 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:02:08 INFO  epoch 2 training [time: 19.91s, train loss: 115.7980]
+Thu 17 Apr 2025 04:02:13 INFO  epoch 2 evaluating [time: 5.25s, valid_score: 0.148400]
+Thu 17 Apr 2025 04:02:13 INFO  valid result: 
+mrr@10 : 0.1484
+Thu 17 Apr 2025 04:02:33 INFO  epoch 3 training [time: 19.97s, train loss: 114.6958]
+Thu 17 Apr 2025 04:02:38 INFO  epoch 3 evaluating [time: 5.45s, valid_score: 0.148300]
+Thu 17 Apr 2025 04:02:38 INFO  valid result: 
+mrr@10 : 0.1483
+Thu 17 Apr 2025 04:02:58 INFO  epoch 4 training [time: 19.85s, train loss: 113.1747]
+Thu 17 Apr 2025 04:03:04 INFO  epoch 4 evaluating [time: 5.52s, valid_score: 0.149300]
+Thu 17 Apr 2025 04:03:04 INFO  valid result: 
+mrr@10 : 0.1493
+Thu 17 Apr 2025 04:03:04 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:03:24 INFO  epoch 5 training [time: 19.91s, train loss: 110.9241]
+Thu 17 Apr 2025 04:03:29 INFO  epoch 5 evaluating [time: 5.13s, valid_score: 0.152400]
+Thu 17 Apr 2025 04:03:29 INFO  valid result: 
+mrr@10 : 0.1524
+Thu 17 Apr 2025 04:03:29 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:03:49 INFO  epoch 6 training [time: 19.97s, train loss: 107.6358]
+Thu 17 Apr 2025 04:03:54 INFO  epoch 6 evaluating [time: 5.05s, valid_score: 0.158400]
+Thu 17 Apr 2025 04:03:54 INFO  valid result: 
+mrr@10 : 0.1584
+Thu 17 Apr 2025 04:03:54 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:04:14 INFO  epoch 7 training [time: 19.84s, train loss: 103.2685]
+Thu 17 Apr 2025 04:04:19 INFO  epoch 7 evaluating [time: 5.03s, valid_score: 0.166800]
+Thu 17 Apr 2025 04:04:19 INFO  valid result: 
+mrr@10 : 0.1668
+Thu 17 Apr 2025 04:04:19 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:04:39 INFO  epoch 8 training [time: 19.91s, train loss: 99.3034]
+Thu 17 Apr 2025 04:04:44 INFO  epoch 8 evaluating [time: 5.42s, valid_score: 0.181500]
+Thu 17 Apr 2025 04:04:44 INFO  valid result: 
+mrr@10 : 0.1815
+Thu 17 Apr 2025 04:04:44 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:05:04 INFO  epoch 9 training [time: 19.96s, train loss: 96.6197]
+Thu 17 Apr 2025 04:05:09 INFO  epoch 9 evaluating [time: 4.96s, valid_score: 0.188200]
+Thu 17 Apr 2025 04:05:09 INFO  valid result: 
+mrr@10 : 0.1882
+Thu 17 Apr 2025 04:05:09 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:05:29 INFO  epoch 10 training [time: 19.92s, train loss: 94.0865]
+Thu 17 Apr 2025 04:05:34 INFO  epoch 10 evaluating [time: 5.24s, valid_score: 0.192200]
+Thu 17 Apr 2025 04:05:34 INFO  valid result: 
+mrr@10 : 0.1922
+Thu 17 Apr 2025 04:05:34 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:05:54 INFO  epoch 11 training [time: 19.98s, train loss: 92.1180]
+Thu 17 Apr 2025 04:06:00 INFO  epoch 11 evaluating [time: 6.05s, valid_score: 0.196400]
+Thu 17 Apr 2025 04:06:00 INFO  valid result: 
+mrr@10 : 0.1964
+Thu 17 Apr 2025 04:06:00 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:06:20 INFO  epoch 12 training [time: 19.88s, train loss: 89.9977]
+Thu 17 Apr 2025 04:06:25 INFO  epoch 12 evaluating [time: 5.09s, valid_score: 0.199200]
+Thu 17 Apr 2025 04:06:25 INFO  valid result: 
+mrr@10 : 0.1992
+Thu 17 Apr 2025 04:06:25 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:06:45 INFO  epoch 13 training [time: 19.95s, train loss: 88.8478]
+Thu 17 Apr 2025 04:06:50 INFO  epoch 13 evaluating [time: 5.06s, valid_score: 0.201500]
+Thu 17 Apr 2025 04:06:50 INFO  valid result: 
+mrr@10 : 0.2015
+Thu 17 Apr 2025 04:06:50 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:07:10 INFO  epoch 14 training [time: 19.96s, train loss: 87.1036]
+Thu 17 Apr 2025 04:07:15 INFO  epoch 14 evaluating [time: 5.31s, valid_score: 0.202600]
+Thu 17 Apr 2025 04:07:15 INFO  valid result: 
+mrr@10 : 0.2026
+Thu 17 Apr 2025 04:07:15 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:07:35 INFO  epoch 15 training [time: 19.96s, train loss: 85.8965]
+Thu 17 Apr 2025 04:07:41 INFO  epoch 15 evaluating [time: 5.47s, valid_score: 0.206800]
+Thu 17 Apr 2025 04:07:41 INFO  valid result: 
+mrr@10 : 0.2068
+Thu 17 Apr 2025 04:07:41 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:08:01 INFO  epoch 16 training [time: 19.86s, train loss: 84.4811]
+Thu 17 Apr 2025 04:08:06 INFO  epoch 16 evaluating [time: 5.09s, valid_score: 0.208900]
+Thu 17 Apr 2025 04:08:06 INFO  valid result: 
+mrr@10 : 0.2089
+Thu 17 Apr 2025 04:08:06 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:08:26 INFO  epoch 17 training [time: 19.96s, train loss: 83.0776]
+Thu 17 Apr 2025 04:08:31 INFO  epoch 17 evaluating [time: 5.09s, valid_score: 0.210500]
+Thu 17 Apr 2025 04:08:31 INFO  valid result: 
+mrr@10 : 0.2105
+Thu 17 Apr 2025 04:08:31 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:08:51 INFO  epoch 18 training [time: 19.96s, train loss: 81.6512]
+Thu 17 Apr 2025 04:08:56 INFO  epoch 18 evaluating [time: 5.31s, valid_score: 0.211800]
+Thu 17 Apr 2025 04:08:56 INFO  valid result: 
+mrr@10 : 0.2118
+Thu 17 Apr 2025 04:08:56 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:09:16 INFO  epoch 19 training [time: 19.97s, train loss: 80.7337]
+Thu 17 Apr 2025 04:09:21 INFO  epoch 19 evaluating [time: 5.16s, valid_score: 0.214500]
+Thu 17 Apr 2025 04:09:21 INFO  valid result: 
+mrr@10 : 0.2145
+Thu 17 Apr 2025 04:09:21 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:09:41 INFO  epoch 20 training [time: 19.90s, train loss: 79.5369]
+Thu 17 Apr 2025 04:09:47 INFO  epoch 20 evaluating [time: 5.75s, valid_score: 0.216700]
+Thu 17 Apr 2025 04:09:47 INFO  valid result: 
+mrr@10 : 0.2167
+Thu 17 Apr 2025 04:09:47 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:10:07 INFO  epoch 21 training [time: 19.91s, train loss: 78.6583]
+Thu 17 Apr 2025 04:10:12 INFO  epoch 21 evaluating [time: 5.23s, valid_score: 0.218200]
+Thu 17 Apr 2025 04:10:12 INFO  valid result: 
+mrr@10 : 0.2182
+Thu 17 Apr 2025 04:10:12 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:10:32 INFO  epoch 22 training [time: 19.84s, train loss: 77.2580]
+Thu 17 Apr 2025 04:10:37 INFO  epoch 22 evaluating [time: 5.03s, valid_score: 0.217700]
+Thu 17 Apr 2025 04:10:37 INFO  valid result: 
+mrr@10 : 0.2177
+Thu 17 Apr 2025 04:10:57 INFO  epoch 23 training [time: 19.87s, train loss: 76.8720]
+Thu 17 Apr 2025 04:11:02 INFO  epoch 23 evaluating [time: 5.29s, valid_score: 0.220100]
+Thu 17 Apr 2025 04:11:02 INFO  valid result: 
+mrr@10 : 0.2201
+Thu 17 Apr 2025 04:11:02 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:11:22 INFO  epoch 24 training [time: 19.93s, train loss: 76.3136]
+Thu 17 Apr 2025 04:11:28 INFO  epoch 24 evaluating [time: 5.88s, valid_score: 0.219100]
+Thu 17 Apr 2025 04:11:28 INFO  valid result: 
+mrr@10 : 0.2191
+Thu 17 Apr 2025 04:11:48 INFO  epoch 25 training [time: 19.98s, train loss: 75.6184]
+Thu 17 Apr 2025 04:11:53 INFO  epoch 25 evaluating [time: 5.06s, valid_score: 0.219500]
+Thu 17 Apr 2025 04:11:53 INFO  valid result: 
+mrr@10 : 0.2195
+Thu 17 Apr 2025 04:12:13 INFO  epoch 26 training [time: 19.84s, train loss: 74.5539]
+Thu 17 Apr 2025 04:12:18 INFO  epoch 26 evaluating [time: 5.16s, valid_score: 0.219900]
+Thu 17 Apr 2025 04:12:18 INFO  valid result: 
+mrr@10 : 0.2199
+Thu 17 Apr 2025 04:12:38 INFO  epoch 27 training [time: 19.92s, train loss: 73.9297]
+Thu 17 Apr 2025 04:12:43 INFO  epoch 27 evaluating [time: 5.21s, valid_score: 0.222200]
+Thu 17 Apr 2025 04:12:43 INFO  valid result: 
+mrr@10 : 0.2222
+Thu 17 Apr 2025 04:12:43 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:13:03 INFO  epoch 28 training [time: 19.95s, train loss: 73.5232]
+Thu 17 Apr 2025 04:13:08 INFO  epoch 28 evaluating [time: 5.15s, valid_score: 0.223000]
+Thu 17 Apr 2025 04:13:08 INFO  valid result: 
+mrr@10 : 0.223
+Thu 17 Apr 2025 04:13:08 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:13:28 INFO  epoch 29 training [time: 19.94s, train loss: 72.8251]
+Thu 17 Apr 2025 04:13:34 INFO  epoch 29 evaluating [time: 5.37s, valid_score: 0.223500]
+Thu 17 Apr 2025 04:13:34 INFO  valid result: 
+mrr@10 : 0.2235
+Thu 17 Apr 2025 04:13:34 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:13:54 INFO  epoch 30 training [time: 19.92s, train loss: 72.2875]
+Thu 17 Apr 2025 04:13:59 INFO  epoch 30 evaluating [time: 5.19s, valid_score: 0.223100]
+Thu 17 Apr 2025 04:13:59 INFO  valid result: 
+mrr@10 : 0.2231
+Thu 17 Apr 2025 04:14:19 INFO  epoch 31 training [time: 19.89s, train loss: 71.9458]
+Thu 17 Apr 2025 04:14:24 INFO  epoch 31 evaluating [time: 4.93s, valid_score: 0.223600]
+Thu 17 Apr 2025 04:14:24 INFO  valid result: 
+mrr@10 : 0.2236
+Thu 17 Apr 2025 04:14:24 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:14:44 INFO  epoch 32 training [time: 19.93s, train loss: 71.4269]
+Thu 17 Apr 2025 04:14:49 INFO  epoch 32 evaluating [time: 5.10s, valid_score: 0.223800]
+Thu 17 Apr 2025 04:14:49 INFO  valid result: 
+mrr@10 : 0.2238
+Thu 17 Apr 2025 04:14:49 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:15:09 INFO  epoch 33 training [time: 19.98s, train loss: 71.0537]
+Thu 17 Apr 2025 04:15:14 INFO  epoch 33 evaluating [time: 5.17s, valid_score: 0.224300]
+Thu 17 Apr 2025 04:15:14 INFO  valid result: 
+mrr@10 : 0.2243
+Thu 17 Apr 2025 04:15:14 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:15:34 INFO  epoch 34 training [time: 19.93s, train loss: 70.8805]
+Thu 17 Apr 2025 04:15:39 INFO  epoch 34 evaluating [time: 4.99s, valid_score: 0.226400]
+Thu 17 Apr 2025 04:15:39 INFO  valid result: 
+mrr@10 : 0.2264
+Thu 17 Apr 2025 04:15:39 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:15:59 INFO  epoch 35 training [time: 19.89s, train loss: 70.1287]
+Thu 17 Apr 2025 04:16:04 INFO  epoch 35 evaluating [time: 5.09s, valid_score: 0.227600]
+Thu 17 Apr 2025 04:16:04 INFO  valid result: 
+mrr@10 : 0.2276
+Thu 17 Apr 2025 04:16:04 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:16:24 INFO  epoch 36 training [time: 19.94s, train loss: 69.7991]
+Thu 17 Apr 2025 04:16:29 INFO  epoch 36 evaluating [time: 5.75s, valid_score: 0.227500]
+Thu 17 Apr 2025 04:16:29 INFO  valid result: 
+mrr@10 : 0.2275
+Thu 17 Apr 2025 04:16:49 INFO  epoch 37 training [time: 19.94s, train loss: 69.4747]
+Thu 17 Apr 2025 04:16:54 INFO  epoch 37 evaluating [time: 5.03s, valid_score: 0.227300]
+Thu 17 Apr 2025 04:16:54 INFO  valid result: 
+mrr@10 : 0.2273
+Thu 17 Apr 2025 04:17:14 INFO  epoch 38 training [time: 19.88s, train loss: 69.3326]
+Thu 17 Apr 2025 04:17:20 INFO  epoch 38 evaluating [time: 5.44s, valid_score: 0.228600]
+Thu 17 Apr 2025 04:17:20 INFO  valid result: 
+mrr@10 : 0.2286
+Thu 17 Apr 2025 04:17:20 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:17:40 INFO  epoch 39 training [time: 19.80s, train loss: 68.4798]
+Thu 17 Apr 2025 04:17:45 INFO  epoch 39 evaluating [time: 5.13s, valid_score: 0.229000]
+Thu 17 Apr 2025 04:17:45 INFO  valid result: 
+mrr@10 : 0.229
+Thu 17 Apr 2025 04:17:45 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:18:05 INFO  epoch 40 training [time: 19.95s, train loss: 67.7777]
+Thu 17 Apr 2025 04:18:10 INFO  epoch 40 evaluating [time: 5.09s, valid_score: 0.230600]
+Thu 17 Apr 2025 04:18:10 INFO  valid result: 
+mrr@10 : 0.2306
+Thu 17 Apr 2025 04:18:10 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:18:30 INFO  epoch 41 training [time: 19.91s, train loss: 67.8594]
+Thu 17 Apr 2025 04:18:35 INFO  epoch 41 evaluating [time: 5.25s, valid_score: 0.230500]
+Thu 17 Apr 2025 04:18:35 INFO  valid result: 
+mrr@10 : 0.2305
+Thu 17 Apr 2025 04:18:55 INFO  epoch 42 training [time: 19.89s, train loss: 67.3739]
+Thu 17 Apr 2025 04:19:00 INFO  epoch 42 evaluating [time: 5.14s, valid_score: 0.232000]
+Thu 17 Apr 2025 04:19:00 INFO  valid result: 
+mrr@10 : 0.232
+Thu 17 Apr 2025 04:19:00 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:19:20 INFO  epoch 43 training [time: 19.92s, train loss: 66.8839]
+Thu 17 Apr 2025 04:19:25 INFO  epoch 43 evaluating [time: 5.08s, valid_score: 0.233400]
+Thu 17 Apr 2025 04:19:25 INFO  valid result: 
+mrr@10 : 0.2334
+Thu 17 Apr 2025 04:19:25 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:19:45 INFO  epoch 44 training [time: 19.98s, train loss: 66.7889]
+Thu 17 Apr 2025 04:19:50 INFO  epoch 44 evaluating [time: 5.42s, valid_score: 0.234200]
+Thu 17 Apr 2025 04:19:50 INFO  valid result: 
+mrr@10 : 0.2342
+Thu 17 Apr 2025 04:19:50 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:20:10 INFO  epoch 45 training [time: 19.84s, train loss: 66.2233]
+Thu 17 Apr 2025 04:20:15 INFO  epoch 45 evaluating [time: 5.20s, valid_score: 0.233600]
+Thu 17 Apr 2025 04:20:15 INFO  valid result: 
+mrr@10 : 0.2336
+Thu 17 Apr 2025 04:20:35 INFO  epoch 46 training [time: 19.89s, train loss: 65.7981]
+Thu 17 Apr 2025 04:20:41 INFO  epoch 46 evaluating [time: 5.72s, valid_score: 0.235200]
+Thu 17 Apr 2025 04:20:41 INFO  valid result: 
+mrr@10 : 0.2352
+Thu 17 Apr 2025 04:20:41 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:21:01 INFO  epoch 47 training [time: 19.96s, train loss: 65.8778]
+Thu 17 Apr 2025 04:21:06 INFO  epoch 47 evaluating [time: 4.98s, valid_score: 0.236500]
+Thu 17 Apr 2025 04:21:06 INFO  valid result: 
+mrr@10 : 0.2365
+Thu 17 Apr 2025 04:21:06 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:21:26 INFO  epoch 48 training [time: 19.86s, train loss: 65.2712]
+Thu 17 Apr 2025 04:21:31 INFO  epoch 48 evaluating [time: 5.12s, valid_score: 0.236900]
+Thu 17 Apr 2025 04:21:31 INFO  valid result: 
+mrr@10 : 0.2369
+Thu 17 Apr 2025 04:21:31 INFO  Saving current: ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth
+Thu 17 Apr 2025 04:21:51 INFO  epoch 49 training [time: 19.93s, train loss: 65.0947]
+Thu 17 Apr 2025 04:21:56 INFO  epoch 49 evaluating [time: 5.09s, valid_score: 0.236300]
+Thu 17 Apr 2025 04:21:56 INFO  valid result: 
+mrr@10 : 0.2363
+Thu 17 Apr 2025 04:21:56 INFO  Loading model structure and parameters from ./saved/movielens/LightGCN-Apr-17-2025_04-00-52.pth

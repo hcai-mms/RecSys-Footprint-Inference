@@ -1,0 +1,220 @@
+Sat 19 Apr 2025 22:42:36 INFO  
+General Hyper Parameters:
+gpu_id = 0
+use_gpu = True
+seed = 2020
+state = INFO
+reproducibility = True
+data_path = dataset/amazon
+checkpoint_dir = ./saved/amazon/
+show_progress = True
+save_dataset = True
+dataset_save_path = None
+save_dataloaders = True
+dataloaders_save_path = None
+log_wandb = False
+
+Training Hyper Parameters:
+epochs = 20
+train_batch_size = 2048
+learner = adam
+learning_rate = 0.001
+train_neg_sample_args = {'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}
+eval_step = 1
+stopping_step = 50
+clip_grad_norm = None
+weight_decay = 0.0
+loss_decimal_place = 4
+
+Evaluation Hyper Parameters:
+eval_args = {'split': {'RS': [0.8, 0.1, 0.1]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}
+repeatable = False
+metrics = ['MRR']
+topk = [10]
+valid_metric = MRR@10
+valid_metric_bigger = True
+eval_batch_size = 4096
+metric_decimal_place = 4
+
+Dataset Hyper Parameters:
+field_separator = 	
+seq_separator =  
+USER_ID_FIELD = user_id
+ITEM_ID_FIELD = item_id
+RATING_FIELD = rating
+TIME_FIELD = timestamp
+seq_len = None
+LABEL_FIELD = label
+threshold = None
+NEG_PREFIX = neg_
+load_col = {'inter': ['user_id', 'item_id']}
+unload_col = None
+unused_col = None
+additional_feat_suffix = None
+rm_dup_inter = None
+val_interval = None
+filter_inter_by_user_or_item = True
+user_inter_num_interval = [0,inf)
+item_inter_num_interval = [0,inf)
+alias_of_user_id = None
+alias_of_item_id = None
+alias_of_entity_id = None
+alias_of_relation_id = None
+preload_weight = None
+normalize_field = None
+normalize_all = None
+ITEM_LIST_LENGTH_FIELD = item_length
+LIST_SUFFIX = _list
+MAX_ITEM_LIST_LENGTH = 50
+POSITION_FIELD = position_id
+HEAD_ENTITY_ID_FIELD = head_id
+TAIL_ENTITY_ID_FIELD = tail_id
+RELATION_ID_FIELD = relation_id
+ENTITY_ID_FIELD = entity_id
+benchmark_filename = None
+
+Other Hyper Parameters: 
+worker = 0
+wandb_project = recbole
+shuffle = True
+require_pow = False
+enable_amp = False
+enable_scaler = False
+transform = None
+embedding_size = 64
+n_layers = 2
+reg_weight = 1e-05
+numerical_features = []
+discretization = None
+kg_reverse_r = False
+entity_kg_num_interval = [0,inf)
+relation_kg_num_interval = [0,inf)
+MODEL_TYPE = ModelType.GENERAL
+MODEL_INPUT_TYPE = InputType.PAIRWISE
+eval_type = EvaluatorType.RANKING
+single_spec = True
+local_rank = 0
+device = cuda
+eval_neg_sample_args = {'distribution': 'uniform', 'sample_num': 'none'}
+
+
+Sat 19 Apr 2025 22:42:36 INFO  Load filtered dataset from: [./saved/amazon/amazon-Dataset.pth]
+Sat 19 Apr 2025 22:42:36 INFO  amazon
+The number of users: 22156
+Average actions of users: 66.16434213495825
+The number of items: 54459
+Average actions of items: 26.917459326453415
+The number of inters: 1465871
+The sparsity of the dataset: 99.87851162187994%
+Remain Fields: ['user_id', 'item_id']
+Sat 19 Apr 2025 22:42:44 INFO  Load split dataloaders from: [./saved/amazon/amazon-for-LightGCN-dataloader.pth]
+Sat 19 Apr 2025 22:42:44 INFO  [Training]: train_batch_size = [2048] train_neg_sample_args: [{'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}]
+Sat 19 Apr 2025 22:42:44 INFO  [Evaluation]: eval_batch_size = [4096] eval_args: [{'split': {'RS': [0.8, 0.1, 0.1]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}]
+Sat 19 Apr 2025 22:42:47 INFO  LightGCN(
+  (user_embedding): Embedding(22156, 64)
+  (item_embedding): Embedding(54459, 64)
+  (mf_loss): BPRLoss()
+  (reg_loss): EmbLoss()
+)
+Trainable parameters: 4903360
+Sat 19 Apr 2025 22:44:14 INFO  epoch 0 training [time: 82.11s, train loss: 253.2775]
+Sat 19 Apr 2025 22:44:39 INFO  epoch 0 evaluating [time: 25.59s, valid_score: 0.026200]
+Sat 19 Apr 2025 22:44:39 INFO  valid result: 
+mrr@10 : 0.0262
+Sat 19 Apr 2025 22:44:39 INFO  Saving current: ./saved/amazon/LightGCN-Apr-19-2025_22-42-47.pth
+Sat 19 Apr 2025 22:46:01 INFO  epoch 1 training [time: 81.98s, train loss: 151.1861]
+Sat 19 Apr 2025 22:46:26 INFO  epoch 1 evaluating [time: 24.79s, valid_score: 0.029800]
+Sat 19 Apr 2025 22:46:26 INFO  valid result: 
+mrr@10 : 0.0298
+Sat 19 Apr 2025 22:46:26 INFO  Saving current: ./saved/amazon/LightGCN-Apr-19-2025_22-42-47.pth
+Sat 19 Apr 2025 22:47:48 INFO  epoch 2 training [time: 81.98s, train loss: 126.4456]
+Sat 19 Apr 2025 22:48:14 INFO  epoch 2 evaluating [time: 25.73s, valid_score: 0.031700]
+Sat 19 Apr 2025 22:48:14 INFO  valid result: 
+mrr@10 : 0.0317
+Sat 19 Apr 2025 22:48:14 INFO  Saving current: ./saved/amazon/LightGCN-Apr-19-2025_22-42-47.pth
+Sat 19 Apr 2025 22:49:36 INFO  epoch 3 training [time: 82.01s, train loss: 112.7968]
+Sat 19 Apr 2025 22:50:01 INFO  epoch 3 evaluating [time: 25.16s, valid_score: 0.033900]
+Sat 19 Apr 2025 22:50:01 INFO  valid result: 
+mrr@10 : 0.0339
+Sat 19 Apr 2025 22:50:01 INFO  Saving current: ./saved/amazon/LightGCN-Apr-19-2025_22-42-47.pth
+Sat 19 Apr 2025 22:51:23 INFO  epoch 4 training [time: 82.05s, train loss: 103.5029]
+Sat 19 Apr 2025 22:51:48 INFO  epoch 4 evaluating [time: 25.04s, valid_score: 0.035300]
+Sat 19 Apr 2025 22:51:48 INFO  valid result: 
+mrr@10 : 0.0353
+Sat 19 Apr 2025 22:51:48 INFO  Saving current: ./saved/amazon/LightGCN-Apr-19-2025_22-42-47.pth
+Sat 19 Apr 2025 22:53:10 INFO  epoch 5 training [time: 82.01s, train loss: 96.2152]
+Sat 19 Apr 2025 22:53:36 INFO  epoch 5 evaluating [time: 25.85s, valid_score: 0.036300]
+Sat 19 Apr 2025 22:53:36 INFO  valid result: 
+mrr@10 : 0.0363
+Sat 19 Apr 2025 22:53:36 INFO  Saving current: ./saved/amazon/LightGCN-Apr-19-2025_22-42-47.pth
+Sat 19 Apr 2025 22:54:58 INFO  epoch 6 training [time: 82.07s, train loss: 90.4837]
+Sat 19 Apr 2025 22:55:24 INFO  epoch 6 evaluating [time: 25.80s, valid_score: 0.037500]
+Sat 19 Apr 2025 22:55:24 INFO  valid result: 
+mrr@10 : 0.0375
+Sat 19 Apr 2025 22:55:24 INFO  Saving current: ./saved/amazon/LightGCN-Apr-19-2025_22-42-47.pth
+Sat 19 Apr 2025 22:56:46 INFO  epoch 7 training [time: 82.06s, train loss: 84.7845]
+Sat 19 Apr 2025 22:57:11 INFO  epoch 7 evaluating [time: 24.54s, valid_score: 0.039300]
+Sat 19 Apr 2025 22:57:11 INFO  valid result: 
+mrr@10 : 0.0393
+Sat 19 Apr 2025 22:57:11 INFO  Saving current: ./saved/amazon/LightGCN-Apr-19-2025_22-42-47.pth
+Sat 19 Apr 2025 22:58:33 INFO  epoch 8 training [time: 81.98s, train loss: 80.7019]
+Sat 19 Apr 2025 22:58:58 INFO  epoch 8 evaluating [time: 25.14s, valid_score: 0.040900]
+Sat 19 Apr 2025 22:58:58 INFO  valid result: 
+mrr@10 : 0.0409
+Sat 19 Apr 2025 22:58:58 INFO  Saving current: ./saved/amazon/LightGCN-Apr-19-2025_22-42-47.pth
+Sat 19 Apr 2025 23:00:20 INFO  epoch 9 training [time: 81.99s, train loss: 77.3778]
+Sat 19 Apr 2025 23:00:45 INFO  epoch 9 evaluating [time: 24.86s, valid_score: 0.041700]
+Sat 19 Apr 2025 23:00:45 INFO  valid result: 
+mrr@10 : 0.0417
+Sat 19 Apr 2025 23:00:45 INFO  Saving current: ./saved/amazon/LightGCN-Apr-19-2025_22-42-47.pth
+Sat 19 Apr 2025 23:02:07 INFO  epoch 10 training [time: 82.08s, train loss: 73.9846]
+Sat 19 Apr 2025 23:02:32 INFO  epoch 10 evaluating [time: 25.06s, valid_score: 0.043000]
+Sat 19 Apr 2025 23:02:32 INFO  valid result: 
+mrr@10 : 0.043
+Sat 19 Apr 2025 23:02:32 INFO  Saving current: ./saved/amazon/LightGCN-Apr-19-2025_22-42-47.pth
+Sat 19 Apr 2025 23:03:54 INFO  epoch 11 training [time: 82.08s, train loss: 71.1529]
+Sat 19 Apr 2025 23:04:19 INFO  epoch 11 evaluating [time: 25.07s, valid_score: 0.044300]
+Sat 19 Apr 2025 23:04:19 INFO  valid result: 
+mrr@10 : 0.0443
+Sat 19 Apr 2025 23:04:19 INFO  Saving current: ./saved/amazon/LightGCN-Apr-19-2025_22-42-47.pth
+Sat 19 Apr 2025 23:05:41 INFO  epoch 12 training [time: 82.06s, train loss: 68.7817]
+Sat 19 Apr 2025 23:06:06 INFO  epoch 12 evaluating [time: 24.88s, valid_score: 0.045900]
+Sat 19 Apr 2025 23:06:06 INFO  valid result: 
+mrr@10 : 0.0459
+Sat 19 Apr 2025 23:06:06 INFO  Saving current: ./saved/amazon/LightGCN-Apr-19-2025_22-42-47.pth
+Sat 19 Apr 2025 23:07:28 INFO  epoch 13 training [time: 82.02s, train loss: 65.9299]
+Sat 19 Apr 2025 23:07:54 INFO  epoch 13 evaluating [time: 25.31s, valid_score: 0.046400]
+Sat 19 Apr 2025 23:07:54 INFO  valid result: 
+mrr@10 : 0.0464
+Sat 19 Apr 2025 23:07:54 INFO  Saving current: ./saved/amazon/LightGCN-Apr-19-2025_22-42-47.pth
+Sat 19 Apr 2025 23:09:16 INFO  epoch 14 training [time: 81.99s, train loss: 63.6449]
+Sat 19 Apr 2025 23:09:41 INFO  epoch 14 evaluating [time: 25.51s, valid_score: 0.047100]
+Sat 19 Apr 2025 23:09:41 INFO  valid result: 
+mrr@10 : 0.0471
+Sat 19 Apr 2025 23:09:41 INFO  Saving current: ./saved/amazon/LightGCN-Apr-19-2025_22-42-47.pth
+Sat 19 Apr 2025 23:11:03 INFO  epoch 15 training [time: 82.03s, train loss: 61.8369]
+Sat 19 Apr 2025 23:11:29 INFO  epoch 15 evaluating [time: 25.07s, valid_score: 0.048300]
+Sat 19 Apr 2025 23:11:29 INFO  valid result: 
+mrr@10 : 0.0483
+Sat 19 Apr 2025 23:11:29 INFO  Saving current: ./saved/amazon/LightGCN-Apr-19-2025_22-42-47.pth
+Sat 19 Apr 2025 23:12:51 INFO  epoch 16 training [time: 82.07s, train loss: 59.5516]
+Sat 19 Apr 2025 23:13:15 INFO  epoch 16 evaluating [time: 24.63s, valid_score: 0.049000]
+Sat 19 Apr 2025 23:13:15 INFO  valid result: 
+mrr@10 : 0.049
+Sat 19 Apr 2025 23:13:15 INFO  Saving current: ./saved/amazon/LightGCN-Apr-19-2025_22-42-47.pth
+Sat 19 Apr 2025 23:14:37 INFO  epoch 17 training [time: 82.04s, train loss: 58.0722]
+Sat 19 Apr 2025 23:15:02 INFO  epoch 17 evaluating [time: 24.92s, valid_score: 0.050000]
+Sat 19 Apr 2025 23:15:02 INFO  valid result: 
+mrr@10 : 0.05
+Sat 19 Apr 2025 23:15:02 INFO  Saving current: ./saved/amazon/LightGCN-Apr-19-2025_22-42-47.pth
+Sat 19 Apr 2025 23:16:24 INFO  epoch 18 training [time: 82.08s, train loss: 56.0300]
+Sat 19 Apr 2025 23:16:49 INFO  epoch 18 evaluating [time: 24.74s, valid_score: 0.050300]
+Sat 19 Apr 2025 23:16:49 INFO  valid result: 
+mrr@10 : 0.0503
+Sat 19 Apr 2025 23:16:49 INFO  Saving current: ./saved/amazon/LightGCN-Apr-19-2025_22-42-47.pth
+Sat 19 Apr 2025 23:18:11 INFO  epoch 19 training [time: 81.99s, train loss: 54.7405]
+Sat 19 Apr 2025 23:18:36 INFO  epoch 19 evaluating [time: 24.89s, valid_score: 0.051200]
+Sat 19 Apr 2025 23:18:36 INFO  valid result: 
+mrr@10 : 0.0512
+Sat 19 Apr 2025 23:18:36 INFO  Saving current: ./saved/amazon/LightGCN-Apr-19-2025_22-42-47.pth
+Sat 19 Apr 2025 23:18:36 INFO  Loading model structure and parameters from ./saved/amazon/LightGCN-Apr-19-2025_22-42-47.pth

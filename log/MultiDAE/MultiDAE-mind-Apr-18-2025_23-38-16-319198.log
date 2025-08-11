@@ -1,0 +1,370 @@
+Fri 18 Apr 2025 23:38:16 INFO  
+General Hyper Parameters:
+gpu_id = 0
+use_gpu = True
+seed = 2020
+state = INFO
+reproducibility = True
+data_path = dataset/mind
+checkpoint_dir = ./saved/mind/
+show_progress = True
+save_dataset = True
+dataset_save_path = None
+save_dataloaders = True
+dataloaders_save_path = None
+log_wandb = False
+
+Training Hyper Parameters:
+epochs = 50
+train_batch_size = 2048
+learner = adam
+learning_rate = 0.001
+train_neg_sample_args = {'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}
+eval_step = 1
+stopping_step = 50
+clip_grad_norm = None
+weight_decay = 0.0
+loss_decimal_place = 4
+
+Evaluation Hyper Parameters:
+eval_args = {'split': {'RS': [0.8, 0.1, 0.1]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}
+repeatable = False
+metrics = ['MRR']
+topk = [10]
+valid_metric = MRR@10
+valid_metric_bigger = True
+eval_batch_size = 4096
+metric_decimal_place = 4
+
+Dataset Hyper Parameters:
+field_separator = 	
+seq_separator =  
+USER_ID_FIELD = user_id
+ITEM_ID_FIELD = item_id
+RATING_FIELD = rating
+TIME_FIELD = timestamp
+seq_len = None
+LABEL_FIELD = label
+threshold = None
+NEG_PREFIX = neg_
+load_col = {'inter': ['user_id', 'item_id']}
+unload_col = None
+unused_col = None
+additional_feat_suffix = None
+rm_dup_inter = None
+val_interval = None
+filter_inter_by_user_or_item = True
+user_inter_num_interval = [0,inf)
+item_inter_num_interval = [0,inf)
+alias_of_user_id = None
+alias_of_item_id = None
+alias_of_entity_id = None
+alias_of_relation_id = None
+preload_weight = None
+normalize_field = None
+normalize_all = None
+ITEM_LIST_LENGTH_FIELD = item_length
+LIST_SUFFIX = _list
+MAX_ITEM_LIST_LENGTH = 50
+POSITION_FIELD = position_id
+HEAD_ENTITY_ID_FIELD = head_id
+TAIL_ENTITY_ID_FIELD = tail_id
+RELATION_ID_FIELD = relation_id
+ENTITY_ID_FIELD = entity_id
+benchmark_filename = None
+
+Other Hyper Parameters: 
+worker = 0
+wandb_project = recbole
+shuffle = True
+require_pow = False
+enable_amp = False
+enable_scaler = False
+transform = None
+mlp_hidden_size = [600]
+latent_dimension = 64
+dropout_prob = 0.5
+numerical_features = []
+discretization = None
+kg_reverse_r = False
+entity_kg_num_interval = [0,inf)
+relation_kg_num_interval = [0,inf)
+MODEL_TYPE = ModelType.GENERAL
+MODEL_INPUT_TYPE = InputType.PAIRWISE
+eval_type = EvaluatorType.RANKING
+single_spec = True
+local_rank = 0
+device = cuda
+eval_neg_sample_args = {'distribution': 'uniform', 'sample_num': 'none'}
+
+
+Fri 18 Apr 2025 23:38:16 INFO  Load filtered dataset from: [./saved/mind/mind-Dataset.pth]
+Fri 18 Apr 2025 23:38:16 INFO  mind
+The number of users: 23680
+Average actions of users: 44.282908906626126
+The number of items: 4415
+Average actions of items: 237.55663797009515
+The number of inters: 1048575
+The sparsity of the dataset: 98.9970319625968%
+Remain Fields: ['user_id', 'item_id']
+Fri 18 Apr 2025 23:38:23 INFO  Load split dataloaders from: [./saved/mind/mind-for-MultiDAE-dataloader.pth]
+Fri 18 Apr 2025 23:38:23 INFO  [Training]: train_batch_size = [2048] train_neg_sample_args: [{'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}]
+Fri 18 Apr 2025 23:38:23 INFO  [Evaluation]: eval_batch_size = [4096] eval_args: [{'split': {'RS': [0.8, 0.1, 0.1]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}]
+Fri 18 Apr 2025 23:38:25 INFO  MultiDAE(
+  (encoder): MLPLayers(
+    (mlp_layers): Sequential(
+      (0): Dropout(p=0.0, inplace=False)
+      (1): Linear(in_features=4415, out_features=600, bias=True)
+      (2): Tanh()
+      (3): Dropout(p=0.0, inplace=False)
+      (4): Linear(in_features=600, out_features=64, bias=True)
+      (5): Tanh()
+    )
+  )
+  (decoder): Sequential(
+    (0): Linear(in_features=64, out_features=600, bias=True)
+    (1): Tanh()
+    (2): Linear(in_features=600, out_features=4415, bias=True)
+  )
+)
+Trainable parameters: 5380479
+Fri 18 Apr 2025 23:38:30 INFO  epoch 0 training [time: 0.62s, train loss: 3201.3091]
+Fri 18 Apr 2025 23:39:10 INFO  epoch 0 evaluating [time: 39.46s, valid_score: 0.124800]
+Fri 18 Apr 2025 23:39:10 INFO  valid result: 
+mrr@10 : 0.1248
+Fri 18 Apr 2025 23:39:10 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Fri 18 Apr 2025 23:39:10 INFO  epoch 1 training [time: 0.54s, train loss: 2637.7713]
+Fri 18 Apr 2025 23:39:50 INFO  epoch 1 evaluating [time: 39.32s, valid_score: 0.310600]
+Fri 18 Apr 2025 23:39:50 INFO  valid result: 
+mrr@10 : 0.3106
+Fri 18 Apr 2025 23:39:50 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Fri 18 Apr 2025 23:39:50 INFO  epoch 2 training [time: 0.54s, train loss: 2578.6699]
+Fri 18 Apr 2025 23:40:29 INFO  epoch 2 evaluating [time: 39.06s, valid_score: 0.320700]
+Fri 18 Apr 2025 23:40:29 INFO  valid result: 
+mrr@10 : 0.3207
+Fri 18 Apr 2025 23:40:29 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Fri 18 Apr 2025 23:40:30 INFO  epoch 3 training [time: 0.58s, train loss: 2489.1613]
+Fri 18 Apr 2025 23:41:10 INFO  epoch 3 evaluating [time: 39.59s, valid_score: 0.447500]
+Fri 18 Apr 2025 23:41:10 INFO  valid result: 
+mrr@10 : 0.4475
+Fri 18 Apr 2025 23:41:10 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Fri 18 Apr 2025 23:41:10 INFO  epoch 4 training [time: 0.49s, train loss: 2407.3264]
+Fri 18 Apr 2025 23:41:50 INFO  epoch 4 evaluating [time: 40.33s, valid_score: 0.471800]
+Fri 18 Apr 2025 23:41:50 INFO  valid result: 
+mrr@10 : 0.4718
+Fri 18 Apr 2025 23:41:51 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Fri 18 Apr 2025 23:41:51 INFO  epoch 5 training [time: 0.51s, train loss: 2370.5845]
+Fri 18 Apr 2025 23:42:30 INFO  epoch 5 evaluating [time: 39.44s, valid_score: 0.501100]
+Fri 18 Apr 2025 23:42:30 INFO  valid result: 
+mrr@10 : 0.5011
+Fri 18 Apr 2025 23:42:31 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Fri 18 Apr 2025 23:42:31 INFO  epoch 6 training [time: 0.57s, train loss: 2333.3672]
+Fri 18 Apr 2025 23:43:11 INFO  epoch 6 evaluating [time: 39.97s, valid_score: 0.527000]
+Fri 18 Apr 2025 23:43:11 INFO  valid result: 
+mrr@10 : 0.527
+Fri 18 Apr 2025 23:43:11 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Fri 18 Apr 2025 23:43:12 INFO  epoch 7 training [time: 0.51s, train loss: 2293.3231]
+Fri 18 Apr 2025 23:43:51 INFO  epoch 7 evaluating [time: 39.80s, valid_score: 0.523300]
+Fri 18 Apr 2025 23:43:51 INFO  valid result: 
+mrr@10 : 0.5233
+Fri 18 Apr 2025 23:43:52 INFO  epoch 8 training [time: 0.51s, train loss: 2258.9908]
+Fri 18 Apr 2025 23:44:32 INFO  epoch 8 evaluating [time: 39.74s, valid_score: 0.536600]
+Fri 18 Apr 2025 23:44:32 INFO  valid result: 
+mrr@10 : 0.5366
+Fri 18 Apr 2025 23:44:32 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Fri 18 Apr 2025 23:44:32 INFO  epoch 9 training [time: 0.51s, train loss: 2248.6174]
+Fri 18 Apr 2025 23:45:11 INFO  epoch 9 evaluating [time: 39.07s, valid_score: 0.539500]
+Fri 18 Apr 2025 23:45:11 INFO  valid result: 
+mrr@10 : 0.5395
+Fri 18 Apr 2025 23:45:11 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Fri 18 Apr 2025 23:45:12 INFO  epoch 10 training [time: 0.56s, train loss: 2233.8053]
+Fri 18 Apr 2025 23:45:52 INFO  epoch 10 evaluating [time: 39.86s, valid_score: 0.555300]
+Fri 18 Apr 2025 23:45:52 INFO  valid result: 
+mrr@10 : 0.5553
+Fri 18 Apr 2025 23:45:52 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Fri 18 Apr 2025 23:45:52 INFO  epoch 11 training [time: 0.58s, train loss: 2224.2424]
+Fri 18 Apr 2025 23:46:32 INFO  epoch 11 evaluating [time: 39.66s, valid_score: 0.560000]
+Fri 18 Apr 2025 23:46:32 INFO  valid result: 
+mrr@10 : 0.56
+Fri 18 Apr 2025 23:46:32 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Fri 18 Apr 2025 23:46:33 INFO  epoch 12 training [time: 0.59s, train loss: 2207.7287]
+Fri 18 Apr 2025 23:47:12 INFO  epoch 12 evaluating [time: 38.73s, valid_score: 0.562200]
+Fri 18 Apr 2025 23:47:12 INFO  valid result: 
+mrr@10 : 0.5622
+Fri 18 Apr 2025 23:47:12 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Fri 18 Apr 2025 23:47:12 INFO  epoch 13 training [time: 0.56s, train loss: 2199.2543]
+Fri 18 Apr 2025 23:47:52 INFO  epoch 13 evaluating [time: 39.85s, valid_score: 0.567600]
+Fri 18 Apr 2025 23:47:52 INFO  valid result: 
+mrr@10 : 0.5676
+Fri 18 Apr 2025 23:47:52 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Fri 18 Apr 2025 23:47:53 INFO  epoch 14 training [time: 0.58s, train loss: 2190.1468]
+Fri 18 Apr 2025 23:48:33 INFO  epoch 14 evaluating [time: 39.97s, valid_score: 0.571200]
+Fri 18 Apr 2025 23:48:33 INFO  valid result: 
+mrr@10 : 0.5712
+Fri 18 Apr 2025 23:48:33 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Fri 18 Apr 2025 23:48:33 INFO  epoch 15 training [time: 0.54s, train loss: 2173.6606]
+Fri 18 Apr 2025 23:49:13 INFO  epoch 15 evaluating [time: 39.54s, valid_score: 0.575800]
+Fri 18 Apr 2025 23:49:13 INFO  valid result: 
+mrr@10 : 0.5758
+Fri 18 Apr 2025 23:49:13 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Fri 18 Apr 2025 23:49:13 INFO  epoch 16 training [time: 0.51s, train loss: 2164.6604]
+Fri 18 Apr 2025 23:49:52 INFO  epoch 16 evaluating [time: 38.49s, valid_score: 0.578100]
+Fri 18 Apr 2025 23:49:52 INFO  valid result: 
+mrr@10 : 0.5781
+Fri 18 Apr 2025 23:49:52 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Fri 18 Apr 2025 23:49:52 INFO  epoch 17 training [time: 0.54s, train loss: 2162.0436]
+Fri 18 Apr 2025 23:50:30 INFO  epoch 17 evaluating [time: 38.06s, valid_score: 0.585000]
+Fri 18 Apr 2025 23:50:30 INFO  valid result: 
+mrr@10 : 0.585
+Fri 18 Apr 2025 23:50:31 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Fri 18 Apr 2025 23:50:31 INFO  epoch 18 training [time: 0.57s, train loss: 2157.6038]
+Fri 18 Apr 2025 23:51:10 INFO  epoch 18 evaluating [time: 38.72s, valid_score: 0.586600]
+Fri 18 Apr 2025 23:51:10 INFO  valid result: 
+mrr@10 : 0.5866
+Fri 18 Apr 2025 23:51:10 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Fri 18 Apr 2025 23:51:10 INFO  epoch 19 training [time: 0.54s, train loss: 2147.4995]
+Fri 18 Apr 2025 23:51:50 INFO  epoch 19 evaluating [time: 39.45s, valid_score: 0.588300]
+Fri 18 Apr 2025 23:51:50 INFO  valid result: 
+mrr@10 : 0.5883
+Fri 18 Apr 2025 23:51:50 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Fri 18 Apr 2025 23:51:51 INFO  epoch 20 training [time: 0.58s, train loss: 2135.5328]
+Fri 18 Apr 2025 23:52:29 INFO  epoch 20 evaluating [time: 38.92s, valid_score: 0.594300]
+Fri 18 Apr 2025 23:52:29 INFO  valid result: 
+mrr@10 : 0.5943
+Fri 18 Apr 2025 23:52:30 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Fri 18 Apr 2025 23:52:30 INFO  epoch 21 training [time: 0.55s, train loss: 2137.1199]
+Fri 18 Apr 2025 23:53:09 INFO  epoch 21 evaluating [time: 38.97s, valid_score: 0.596900]
+Fri 18 Apr 2025 23:53:09 INFO  valid result: 
+mrr@10 : 0.5969
+Fri 18 Apr 2025 23:53:09 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Fri 18 Apr 2025 23:53:10 INFO  epoch 22 training [time: 0.50s, train loss: 2129.4838]
+Fri 18 Apr 2025 23:53:49 INFO  epoch 22 evaluating [time: 39.86s, valid_score: 0.599700]
+Fri 18 Apr 2025 23:53:49 INFO  valid result: 
+mrr@10 : 0.5997
+Fri 18 Apr 2025 23:53:50 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Fri 18 Apr 2025 23:53:50 INFO  epoch 23 training [time: 0.56s, train loss: 2118.8059]
+Fri 18 Apr 2025 23:54:29 INFO  epoch 23 evaluating [time: 39.14s, valid_score: 0.600500]
+Fri 18 Apr 2025 23:54:29 INFO  valid result: 
+mrr@10 : 0.6005
+Fri 18 Apr 2025 23:54:29 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Fri 18 Apr 2025 23:54:30 INFO  epoch 24 training [time: 0.53s, train loss: 2122.1280]
+Fri 18 Apr 2025 23:55:09 INFO  epoch 24 evaluating [time: 39.15s, valid_score: 0.602700]
+Fri 18 Apr 2025 23:55:09 INFO  valid result: 
+mrr@10 : 0.6027
+Fri 18 Apr 2025 23:55:09 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Fri 18 Apr 2025 23:55:10 INFO  epoch 25 training [time: 0.51s, train loss: 2113.8187]
+Fri 18 Apr 2025 23:55:49 INFO  epoch 25 evaluating [time: 39.48s, valid_score: 0.604600]
+Fri 18 Apr 2025 23:55:49 INFO  valid result: 
+mrr@10 : 0.6046
+Fri 18 Apr 2025 23:55:49 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Fri 18 Apr 2025 23:55:50 INFO  epoch 26 training [time: 0.55s, train loss: 2104.2847]
+Fri 18 Apr 2025 23:56:29 INFO  epoch 26 evaluating [time: 39.09s, valid_score: 0.605500]
+Fri 18 Apr 2025 23:56:29 INFO  valid result: 
+mrr@10 : 0.6055
+Fri 18 Apr 2025 23:56:29 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Fri 18 Apr 2025 23:56:29 INFO  epoch 27 training [time: 0.56s, train loss: 2102.5311]
+Fri 18 Apr 2025 23:57:09 INFO  epoch 27 evaluating [time: 39.99s, valid_score: 0.608800]
+Fri 18 Apr 2025 23:57:09 INFO  valid result: 
+mrr@10 : 0.6088
+Fri 18 Apr 2025 23:57:09 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Fri 18 Apr 2025 23:57:10 INFO  epoch 28 training [time: 0.50s, train loss: 2100.5262]
+Fri 18 Apr 2025 23:57:49 INFO  epoch 28 evaluating [time: 39.41s, valid_score: 0.607800]
+Fri 18 Apr 2025 23:57:49 INFO  valid result: 
+mrr@10 : 0.6078
+Fri 18 Apr 2025 23:57:50 INFO  epoch 29 training [time: 0.51s, train loss: 2098.8732]
+Fri 18 Apr 2025 23:58:29 INFO  epoch 29 evaluating [time: 39.41s, valid_score: 0.610400]
+Fri 18 Apr 2025 23:58:29 INFO  valid result: 
+mrr@10 : 0.6104
+Fri 18 Apr 2025 23:58:29 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Fri 18 Apr 2025 23:58:30 INFO  epoch 30 training [time: 0.58s, train loss: 2095.6049]
+Fri 18 Apr 2025 23:59:09 INFO  epoch 30 evaluating [time: 39.16s, valid_score: 0.608600]
+Fri 18 Apr 2025 23:59:09 INFO  valid result: 
+mrr@10 : 0.6086
+Fri 18 Apr 2025 23:59:10 INFO  epoch 31 training [time: 0.57s, train loss: 2089.7456]
+Fri 18 Apr 2025 23:59:49 INFO  epoch 31 evaluating [time: 39.62s, valid_score: 0.609800]
+Fri 18 Apr 2025 23:59:49 INFO  valid result: 
+mrr@10 : 0.6098
+Fri 18 Apr 2025 23:59:50 INFO  epoch 32 training [time: 0.55s, train loss: 2085.8559]
+Sat 19 Apr 2025 00:00:30 INFO  epoch 32 evaluating [time: 40.21s, valid_score: 0.613100]
+Sat 19 Apr 2025 00:00:30 INFO  valid result: 
+mrr@10 : 0.6131
+Sat 19 Apr 2025 00:00:30 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Sat 19 Apr 2025 00:00:31 INFO  epoch 33 training [time: 0.58s, train loss: 2081.9875]
+Sat 19 Apr 2025 00:01:10 INFO  epoch 33 evaluating [time: 39.40s, valid_score: 0.613900]
+Sat 19 Apr 2025 00:01:10 INFO  valid result: 
+mrr@10 : 0.6139
+Sat 19 Apr 2025 00:01:10 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Sat 19 Apr 2025 00:01:11 INFO  epoch 34 training [time: 0.53s, train loss: 2074.4278]
+Sat 19 Apr 2025 00:01:49 INFO  epoch 34 evaluating [time: 38.54s, valid_score: 0.614800]
+Sat 19 Apr 2025 00:01:49 INFO  valid result: 
+mrr@10 : 0.6148
+Sat 19 Apr 2025 00:01:49 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Sat 19 Apr 2025 00:01:50 INFO  epoch 35 training [time: 0.51s, train loss: 2081.8425]
+Sat 19 Apr 2025 00:02:30 INFO  epoch 35 evaluating [time: 39.86s, valid_score: 0.613500]
+Sat 19 Apr 2025 00:02:30 INFO  valid result: 
+mrr@10 : 0.6135
+Sat 19 Apr 2025 00:02:30 INFO  epoch 36 training [time: 0.57s, train loss: 2073.9394]
+Sat 19 Apr 2025 00:03:09 INFO  epoch 36 evaluating [time: 38.86s, valid_score: 0.616000]
+Sat 19 Apr 2025 00:03:09 INFO  valid result: 
+mrr@10 : 0.616
+Sat 19 Apr 2025 00:03:09 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Sat 19 Apr 2025 00:03:10 INFO  epoch 37 training [time: 0.49s, train loss: 2071.7105]
+Sat 19 Apr 2025 00:03:50 INFO  epoch 37 evaluating [time: 40.01s, valid_score: 0.616800]
+Sat 19 Apr 2025 00:03:50 INFO  valid result: 
+mrr@10 : 0.6168
+Sat 19 Apr 2025 00:03:50 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Sat 19 Apr 2025 00:03:50 INFO  epoch 38 training [time: 0.58s, train loss: 2067.7503]
+Sat 19 Apr 2025 00:04:30 INFO  epoch 38 evaluating [time: 39.51s, valid_score: 0.616100]
+Sat 19 Apr 2025 00:04:30 INFO  valid result: 
+mrr@10 : 0.6161
+Sat 19 Apr 2025 00:04:30 INFO  epoch 39 training [time: 0.58s, train loss: 2062.8831]
+Sat 19 Apr 2025 00:05:09 INFO  epoch 39 evaluating [time: 38.98s, valid_score: 0.618200]
+Sat 19 Apr 2025 00:05:09 INFO  valid result: 
+mrr@10 : 0.6182
+Sat 19 Apr 2025 00:05:09 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Sat 19 Apr 2025 00:05:10 INFO  epoch 40 training [time: 0.53s, train loss: 2067.2904]
+Sat 19 Apr 2025 00:05:49 INFO  epoch 40 evaluating [time: 39.20s, valid_score: 0.615500]
+Sat 19 Apr 2025 00:05:49 INFO  valid result: 
+mrr@10 : 0.6155
+Sat 19 Apr 2025 00:05:50 INFO  epoch 41 training [time: 0.52s, train loss: 2060.3195]
+Sat 19 Apr 2025 00:06:30 INFO  epoch 41 evaluating [time: 39.90s, valid_score: 0.618200]
+Sat 19 Apr 2025 00:06:30 INFO  valid result: 
+mrr@10 : 0.6182
+Sat 19 Apr 2025 00:06:30 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Sat 19 Apr 2025 00:06:30 INFO  epoch 42 training [time: 0.53s, train loss: 2062.3007]
+Sat 19 Apr 2025 00:07:10 INFO  epoch 42 evaluating [time: 39.90s, valid_score: 0.617900]
+Sat 19 Apr 2025 00:07:10 INFO  valid result: 
+mrr@10 : 0.6179
+Sat 19 Apr 2025 00:07:11 INFO  epoch 43 training [time: 0.57s, train loss: 2055.7548]
+Sat 19 Apr 2025 00:07:50 INFO  epoch 43 evaluating [time: 38.96s, valid_score: 0.618200]
+Sat 19 Apr 2025 00:07:50 INFO  valid result: 
+mrr@10 : 0.6182
+Sat 19 Apr 2025 00:07:50 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Sat 19 Apr 2025 00:07:50 INFO  epoch 44 training [time: 0.53s, train loss: 2057.6107]
+Sat 19 Apr 2025 00:08:29 INFO  epoch 44 evaluating [time: 38.40s, valid_score: 0.619100]
+Sat 19 Apr 2025 00:08:29 INFO  valid result: 
+mrr@10 : 0.6191
+Sat 19 Apr 2025 00:08:29 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Sat 19 Apr 2025 00:08:29 INFO  epoch 45 training [time: 0.59s, train loss: 2053.0936]
+Sat 19 Apr 2025 00:09:08 INFO  epoch 45 evaluating [time: 38.51s, valid_score: 0.619600]
+Sat 19 Apr 2025 00:09:08 INFO  valid result: 
+mrr@10 : 0.6196
+Sat 19 Apr 2025 00:09:08 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Sat 19 Apr 2025 00:09:08 INFO  epoch 46 training [time: 0.58s, train loss: 2053.4948]
+Sat 19 Apr 2025 00:09:48 INFO  epoch 46 evaluating [time: 39.97s, valid_score: 0.618900]
+Sat 19 Apr 2025 00:09:48 INFO  valid result: 
+mrr@10 : 0.6189
+Sat 19 Apr 2025 00:09:49 INFO  epoch 47 training [time: 0.57s, train loss: 2047.5821]
+Sat 19 Apr 2025 00:10:27 INFO  epoch 47 evaluating [time: 38.51s, valid_score: 0.623000]
+Sat 19 Apr 2025 00:10:27 INFO  valid result: 
+mrr@10 : 0.623
+Sat 19 Apr 2025 00:10:27 INFO  Saving current: ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth
+Sat 19 Apr 2025 00:10:28 INFO  epoch 48 training [time: 0.56s, train loss: 2051.0387]
+Sat 19 Apr 2025 00:11:07 INFO  epoch 48 evaluating [time: 39.34s, valid_score: 0.622700]
+Sat 19 Apr 2025 00:11:07 INFO  valid result: 
+mrr@10 : 0.6227
+Sat 19 Apr 2025 00:11:08 INFO  epoch 49 training [time: 0.57s, train loss: 2044.9407]
+Sat 19 Apr 2025 00:11:46 INFO  epoch 49 evaluating [time: 38.36s, valid_score: 0.622800]
+Sat 19 Apr 2025 00:11:46 INFO  valid result: 
+mrr@10 : 0.6228
+Sat 19 Apr 2025 00:11:46 INFO  Loading model structure and parameters from ./saved/mind/MultiDAE-Apr-18-2025_23-38-25.pth

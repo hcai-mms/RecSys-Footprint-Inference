@@ -1,0 +1,362 @@
+Mon 28 Apr 2025 09:04:55 INFO  
+General Hyper Parameters:
+gpu_id = 0
+use_gpu = True
+seed = 2020
+state = INFO
+reproducibility = True
+data_path = dataset/mind
+checkpoint_dir = ./saved/mind/
+show_progress = True
+save_dataset = True
+dataset_save_path = None
+save_dataloaders = True
+dataloaders_save_path = None
+log_wandb = False
+
+Training Hyper Parameters:
+epochs = 50
+train_batch_size = 2048
+learner = adam
+learning_rate = 0.001
+train_neg_sample_args = {'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}
+eval_step = 1
+stopping_step = 50
+clip_grad_norm = None
+weight_decay = 0.0
+loss_decimal_place = 4
+
+Evaluation Hyper Parameters:
+eval_args = {'split': {'RS': [0.8, 0.1, 0.1]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}
+repeatable = False
+metrics = ['MRR']
+topk = [10]
+valid_metric = MRR@10
+valid_metric_bigger = True
+eval_batch_size = 4096
+metric_decimal_place = 4
+
+Dataset Hyper Parameters:
+field_separator = 	
+seq_separator =  
+USER_ID_FIELD = user_id
+ITEM_ID_FIELD = item_id
+RATING_FIELD = rating
+TIME_FIELD = timestamp
+seq_len = None
+LABEL_FIELD = label
+threshold = None
+NEG_PREFIX = neg_
+load_col = {'inter': ['user_id', 'item_id']}
+unload_col = None
+unused_col = None
+additional_feat_suffix = None
+rm_dup_inter = None
+val_interval = None
+filter_inter_by_user_or_item = True
+user_inter_num_interval = [0,inf)
+item_inter_num_interval = [0,inf)
+alias_of_user_id = None
+alias_of_item_id = None
+alias_of_entity_id = None
+alias_of_relation_id = None
+preload_weight = None
+normalize_field = None
+normalize_all = None
+ITEM_LIST_LENGTH_FIELD = item_length
+LIST_SUFFIX = _list
+MAX_ITEM_LIST_LENGTH = 50
+POSITION_FIELD = position_id
+HEAD_ENTITY_ID_FIELD = head_id
+TAIL_ENTITY_ID_FIELD = tail_id
+RELATION_ID_FIELD = relation_id
+ENTITY_ID_FIELD = entity_id
+benchmark_filename = None
+
+Other Hyper Parameters: 
+worker = 0
+wandb_project = recbole
+shuffle = True
+require_pow = False
+enable_amp = False
+enable_scaler = False
+transform = None
+embedding_size = 64
+n_layers = 2
+reg_weight = 1e-05
+numerical_features = []
+discretization = None
+kg_reverse_r = False
+entity_kg_num_interval = [0,inf)
+relation_kg_num_interval = [0,inf)
+MODEL_TYPE = ModelType.GENERAL
+MODEL_INPUT_TYPE = InputType.PAIRWISE
+eval_type = EvaluatorType.RANKING
+single_spec = True
+local_rank = 0
+device = cuda
+eval_neg_sample_args = {'distribution': 'uniform', 'sample_num': 'none'}
+
+
+Mon 28 Apr 2025 09:04:55 INFO  Load filtered dataset from: [./saved/mind/mind-Dataset.pth]
+Mon 28 Apr 2025 09:04:55 INFO  mind
+The number of users: 23680
+Average actions of users: 44.282908906626126
+The number of items: 4415
+Average actions of items: 237.55663797009515
+The number of inters: 1048575
+The sparsity of the dataset: 98.9970319625968%
+Remain Fields: ['user_id', 'item_id']
+Mon 28 Apr 2025 09:05:03 INFO  Load split dataloaders from: [./saved/mind/mind-for-LightGCN-dataloader.pth]
+Mon 28 Apr 2025 09:05:03 INFO  [Training]: train_batch_size = [2048] train_neg_sample_args: [{'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}]
+Mon 28 Apr 2025 09:05:03 INFO  [Evaluation]: eval_batch_size = [4096] eval_args: [{'split': {'RS': [0.8, 0.1, 0.1]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}]
+Mon 28 Apr 2025 09:05:08 INFO  LightGCN(
+  (user_embedding): Embedding(23680, 64)
+  (item_embedding): Embedding(4415, 64)
+  (mf_loss): BPRLoss()
+  (reg_loss): EmbLoss()
+)
+Trainable parameters: 1798080
+Mon 28 Apr 2025 09:05:54 INFO  epoch 0 training [time: 38.85s, train loss: 98.2966]
+Mon 28 Apr 2025 09:06:18 INFO  epoch 0 evaluating [time: 24.04s, valid_score: 0.301700]
+Mon 28 Apr 2025 09:06:18 INFO  valid result: 
+mrr@10 : 0.3017
+Mon 28 Apr 2025 09:06:18 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:06:56 INFO  epoch 1 training [time: 38.31s, train loss: 44.8053]
+Mon 28 Apr 2025 09:07:20 INFO  epoch 1 evaluating [time: 23.58s, valid_score: 0.341600]
+Mon 28 Apr 2025 09:07:20 INFO  valid result: 
+mrr@10 : 0.3416
+Mon 28 Apr 2025 09:07:20 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:07:58 INFO  epoch 2 training [time: 38.33s, train loss: 40.5441]
+Mon 28 Apr 2025 09:08:21 INFO  epoch 2 evaluating [time: 22.27s, valid_score: 0.402900]
+Mon 28 Apr 2025 09:08:21 INFO  valid result: 
+mrr@10 : 0.4029
+Mon 28 Apr 2025 09:08:21 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:08:59 INFO  epoch 3 training [time: 38.24s, train loss: 36.7829]
+Mon 28 Apr 2025 09:09:21 INFO  epoch 3 evaluating [time: 22.29s, valid_score: 0.448800]
+Mon 28 Apr 2025 09:09:21 INFO  valid result: 
+mrr@10 : 0.4488
+Mon 28 Apr 2025 09:09:21 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:10:00 INFO  epoch 4 training [time: 38.27s, train loss: 33.8060]
+Mon 28 Apr 2025 09:10:21 INFO  epoch 4 evaluating [time: 21.92s, valid_score: 0.464300]
+Mon 28 Apr 2025 09:10:21 INFO  valid result: 
+mrr@10 : 0.4643
+Mon 28 Apr 2025 09:10:21 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:11:00 INFO  epoch 5 training [time: 38.35s, train loss: 31.7531]
+Mon 28 Apr 2025 09:11:23 INFO  epoch 5 evaluating [time: 23.04s, valid_score: 0.470500]
+Mon 28 Apr 2025 09:11:23 INFO  valid result: 
+mrr@10 : 0.4705
+Mon 28 Apr 2025 09:11:23 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:12:01 INFO  epoch 6 training [time: 38.41s, train loss: 30.4143]
+Mon 28 Apr 2025 09:12:24 INFO  epoch 6 evaluating [time: 22.38s, valid_score: 0.473300]
+Mon 28 Apr 2025 09:12:24 INFO  valid result: 
+mrr@10 : 0.4733
+Mon 28 Apr 2025 09:12:24 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:13:02 INFO  epoch 7 training [time: 38.30s, train loss: 29.7121]
+Mon 28 Apr 2025 09:13:24 INFO  epoch 7 evaluating [time: 21.54s, valid_score: 0.475800]
+Mon 28 Apr 2025 09:13:24 INFO  valid result: 
+mrr@10 : 0.4758
+Mon 28 Apr 2025 09:13:24 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:14:02 INFO  epoch 8 training [time: 38.29s, train loss: 28.6741]
+Mon 28 Apr 2025 09:14:23 INFO  epoch 8 evaluating [time: 21.32s, valid_score: 0.480000]
+Mon 28 Apr 2025 09:14:23 INFO  valid result: 
+mrr@10 : 0.48
+Mon 28 Apr 2025 09:14:23 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:15:02 INFO  epoch 9 training [time: 38.35s, train loss: 27.4771]
+Mon 28 Apr 2025 09:15:24 INFO  epoch 9 evaluating [time: 22.10s, valid_score: 0.487400]
+Mon 28 Apr 2025 09:15:24 INFO  valid result: 
+mrr@10 : 0.4874
+Mon 28 Apr 2025 09:15:24 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:16:02 INFO  epoch 10 training [time: 38.31s, train loss: 26.7265]
+Mon 28 Apr 2025 09:16:24 INFO  epoch 10 evaluating [time: 22.22s, valid_score: 0.500300]
+Mon 28 Apr 2025 09:16:24 INFO  valid result: 
+mrr@10 : 0.5003
+Mon 28 Apr 2025 09:16:24 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:17:03 INFO  epoch 11 training [time: 38.41s, train loss: 25.5985]
+Mon 28 Apr 2025 09:17:26 INFO  epoch 11 evaluating [time: 22.96s, valid_score: 0.515800]
+Mon 28 Apr 2025 09:17:26 INFO  valid result: 
+mrr@10 : 0.5158
+Mon 28 Apr 2025 09:17:26 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:18:04 INFO  epoch 12 training [time: 38.24s, train loss: 24.6633]
+Mon 28 Apr 2025 09:18:25 INFO  epoch 12 evaluating [time: 21.45s, valid_score: 0.527700]
+Mon 28 Apr 2025 09:18:25 INFO  valid result: 
+mrr@10 : 0.5277
+Mon 28 Apr 2025 09:18:25 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:19:04 INFO  epoch 13 training [time: 38.37s, train loss: 24.1190]
+Mon 28 Apr 2025 09:19:25 INFO  epoch 13 evaluating [time: 21.69s, valid_score: 0.535100]
+Mon 28 Apr 2025 09:19:25 INFO  valid result: 
+mrr@10 : 0.5351
+Mon 28 Apr 2025 09:19:26 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:20:04 INFO  epoch 14 training [time: 38.32s, train loss: 23.0894]
+Mon 28 Apr 2025 09:20:26 INFO  epoch 14 evaluating [time: 21.80s, valid_score: 0.538300]
+Mon 28 Apr 2025 09:20:26 INFO  valid result: 
+mrr@10 : 0.5383
+Mon 28 Apr 2025 09:20:26 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:21:04 INFO  epoch 15 training [time: 38.32s, train loss: 22.3478]
+Mon 28 Apr 2025 09:21:26 INFO  epoch 15 evaluating [time: 21.65s, valid_score: 0.539000]
+Mon 28 Apr 2025 09:21:26 INFO  valid result: 
+mrr@10 : 0.539
+Mon 28 Apr 2025 09:21:26 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:22:04 INFO  epoch 16 training [time: 38.24s, train loss: 21.5184]
+Mon 28 Apr 2025 09:22:26 INFO  epoch 16 evaluating [time: 21.91s, valid_score: 0.541200]
+Mon 28 Apr 2025 09:22:26 INFO  valid result: 
+mrr@10 : 0.5412
+Mon 28 Apr 2025 09:22:26 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:23:04 INFO  epoch 17 training [time: 38.28s, train loss: 20.9888]
+Mon 28 Apr 2025 09:23:26 INFO  epoch 17 evaluating [time: 21.51s, valid_score: 0.542900]
+Mon 28 Apr 2025 09:23:26 INFO  valid result: 
+mrr@10 : 0.5429
+Mon 28 Apr 2025 09:23:26 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:24:04 INFO  epoch 18 training [time: 38.29s, train loss: 20.4566]
+Mon 28 Apr 2025 09:24:25 INFO  epoch 18 evaluating [time: 21.47s, valid_score: 0.544600]
+Mon 28 Apr 2025 09:24:25 INFO  valid result: 
+mrr@10 : 0.5446
+Mon 28 Apr 2025 09:24:25 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:25:04 INFO  epoch 19 training [time: 38.28s, train loss: 19.9579]
+Mon 28 Apr 2025 09:25:25 INFO  epoch 19 evaluating [time: 21.08s, valid_score: 0.546500]
+Mon 28 Apr 2025 09:25:25 INFO  valid result: 
+mrr@10 : 0.5465
+Mon 28 Apr 2025 09:25:25 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:26:03 INFO  epoch 20 training [time: 38.30s, train loss: 19.4473]
+Mon 28 Apr 2025 09:26:25 INFO  epoch 20 evaluating [time: 21.56s, valid_score: 0.548400]
+Mon 28 Apr 2025 09:26:25 INFO  valid result: 
+mrr@10 : 0.5484
+Mon 28 Apr 2025 09:26:25 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:27:03 INFO  epoch 21 training [time: 38.33s, train loss: 19.0103]
+Mon 28 Apr 2025 09:27:25 INFO  epoch 21 evaluating [time: 21.77s, valid_score: 0.548700]
+Mon 28 Apr 2025 09:27:25 INFO  valid result: 
+mrr@10 : 0.5487
+Mon 28 Apr 2025 09:27:25 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:28:03 INFO  epoch 22 training [time: 38.22s, train loss: 18.7659]
+Mon 28 Apr 2025 09:28:25 INFO  epoch 22 evaluating [time: 21.46s, valid_score: 0.546600]
+Mon 28 Apr 2025 09:28:25 INFO  valid result: 
+mrr@10 : 0.5466
+Mon 28 Apr 2025 09:29:03 INFO  epoch 23 training [time: 38.32s, train loss: 18.3446]
+Mon 28 Apr 2025 09:29:25 INFO  epoch 23 evaluating [time: 22.04s, valid_score: 0.546800]
+Mon 28 Apr 2025 09:29:25 INFO  valid result: 
+mrr@10 : 0.5468
+Mon 28 Apr 2025 09:30:03 INFO  epoch 24 training [time: 38.38s, train loss: 17.7929]
+Mon 28 Apr 2025 09:30:24 INFO  epoch 24 evaluating [time: 21.12s, valid_score: 0.547100]
+Mon 28 Apr 2025 09:30:24 INFO  valid result: 
+mrr@10 : 0.5471
+Mon 28 Apr 2025 09:31:03 INFO  epoch 25 training [time: 38.30s, train loss: 17.6365]
+Mon 28 Apr 2025 09:31:24 INFO  epoch 25 evaluating [time: 21.52s, valid_score: 0.547800]
+Mon 28 Apr 2025 09:31:24 INFO  valid result: 
+mrr@10 : 0.5478
+Mon 28 Apr 2025 09:32:03 INFO  epoch 26 training [time: 38.33s, train loss: 17.4775]
+Mon 28 Apr 2025 09:32:24 INFO  epoch 26 evaluating [time: 21.35s, valid_score: 0.548200]
+Mon 28 Apr 2025 09:32:24 INFO  valid result: 
+mrr@10 : 0.5482
+Mon 28 Apr 2025 09:33:02 INFO  epoch 27 training [time: 38.25s, train loss: 16.8033]
+Mon 28 Apr 2025 09:33:23 INFO  epoch 27 evaluating [time: 20.94s, valid_score: 0.549400]
+Mon 28 Apr 2025 09:33:23 INFO  valid result: 
+mrr@10 : 0.5494
+Mon 28 Apr 2025 09:33:23 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:34:01 INFO  epoch 28 training [time: 38.28s, train loss: 16.8205]
+Mon 28 Apr 2025 09:34:23 INFO  epoch 28 evaluating [time: 21.95s, valid_score: 0.549200]
+Mon 28 Apr 2025 09:34:23 INFO  valid result: 
+mrr@10 : 0.5492
+Mon 28 Apr 2025 09:35:02 INFO  epoch 29 training [time: 38.19s, train loss: 16.6774]
+Mon 28 Apr 2025 09:35:23 INFO  epoch 29 evaluating [time: 21.41s, valid_score: 0.549600]
+Mon 28 Apr 2025 09:35:23 INFO  valid result: 
+mrr@10 : 0.5496
+Mon 28 Apr 2025 09:35:23 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:36:01 INFO  epoch 30 training [time: 38.28s, train loss: 16.2682]
+Mon 28 Apr 2025 09:36:23 INFO  epoch 30 evaluating [time: 21.29s, valid_score: 0.551900]
+Mon 28 Apr 2025 09:36:23 INFO  valid result: 
+mrr@10 : 0.5519
+Mon 28 Apr 2025 09:36:23 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:37:01 INFO  epoch 31 training [time: 38.28s, train loss: 15.9221]
+Mon 28 Apr 2025 09:37:22 INFO  epoch 31 evaluating [time: 21.23s, valid_score: 0.553000]
+Mon 28 Apr 2025 09:37:22 INFO  valid result: 
+mrr@10 : 0.553
+Mon 28 Apr 2025 09:37:22 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:38:01 INFO  epoch 32 training [time: 38.31s, train loss: 15.7554]
+Mon 28 Apr 2025 09:38:22 INFO  epoch 32 evaluating [time: 21.25s, valid_score: 0.555100]
+Mon 28 Apr 2025 09:38:22 INFO  valid result: 
+mrr@10 : 0.5551
+Mon 28 Apr 2025 09:38:22 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:39:00 INFO  epoch 33 training [time: 38.21s, train loss: 15.4754]
+Mon 28 Apr 2025 09:39:22 INFO  epoch 33 evaluating [time: 22.45s, valid_score: 0.556400]
+Mon 28 Apr 2025 09:39:22 INFO  valid result: 
+mrr@10 : 0.5564
+Mon 28 Apr 2025 09:39:23 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:40:01 INFO  epoch 34 training [time: 38.38s, train loss: 15.2208]
+Mon 28 Apr 2025 09:40:23 INFO  epoch 34 evaluating [time: 21.95s, valid_score: 0.558700]
+Mon 28 Apr 2025 09:40:23 INFO  valid result: 
+mrr@10 : 0.5587
+Mon 28 Apr 2025 09:40:23 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:41:01 INFO  epoch 35 training [time: 38.30s, train loss: 15.1364]
+Mon 28 Apr 2025 09:41:23 INFO  epoch 35 evaluating [time: 21.66s, valid_score: 0.560400]
+Mon 28 Apr 2025 09:41:23 INFO  valid result: 
+mrr@10 : 0.5604
+Mon 28 Apr 2025 09:41:23 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:42:01 INFO  epoch 36 training [time: 38.39s, train loss: 14.6741]
+Mon 28 Apr 2025 09:42:22 INFO  epoch 36 evaluating [time: 21.02s, valid_score: 0.562600]
+Mon 28 Apr 2025 09:42:22 INFO  valid result: 
+mrr@10 : 0.5626
+Mon 28 Apr 2025 09:42:22 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:43:00 INFO  epoch 37 training [time: 38.08s, train loss: 14.4886]
+Mon 28 Apr 2025 09:43:22 INFO  epoch 37 evaluating [time: 21.29s, valid_score: 0.563600]
+Mon 28 Apr 2025 09:43:22 INFO  valid result: 
+mrr@10 : 0.5636
+Mon 28 Apr 2025 09:43:22 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:44:00 INFO  epoch 38 training [time: 38.36s, train loss: 14.3852]
+Mon 28 Apr 2025 09:44:22 INFO  epoch 38 evaluating [time: 21.75s, valid_score: 0.564800]
+Mon 28 Apr 2025 09:44:22 INFO  valid result: 
+mrr@10 : 0.5648
+Mon 28 Apr 2025 09:44:22 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:45:00 INFO  epoch 39 training [time: 38.36s, train loss: 14.1343]
+Mon 28 Apr 2025 09:45:22 INFO  epoch 39 evaluating [time: 21.68s, valid_score: 0.564900]
+Mon 28 Apr 2025 09:45:22 INFO  valid result: 
+mrr@10 : 0.5649
+Mon 28 Apr 2025 09:45:22 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:46:00 INFO  epoch 40 training [time: 38.31s, train loss: 14.1236]
+Mon 28 Apr 2025 09:46:22 INFO  epoch 40 evaluating [time: 21.37s, valid_score: 0.564000]
+Mon 28 Apr 2025 09:46:22 INFO  valid result: 
+mrr@10 : 0.564
+Mon 28 Apr 2025 09:47:00 INFO  epoch 41 training [time: 38.21s, train loss: 13.7580]
+Mon 28 Apr 2025 09:47:21 INFO  epoch 41 evaluating [time: 21.30s, valid_score: 0.567600]
+Mon 28 Apr 2025 09:47:21 INFO  valid result: 
+mrr@10 : 0.5676
+Mon 28 Apr 2025 09:47:21 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:47:59 INFO  epoch 42 training [time: 38.23s, train loss: 13.4353]
+Mon 28 Apr 2025 09:48:20 INFO  epoch 42 evaluating [time: 21.06s, valid_score: 0.569100]
+Mon 28 Apr 2025 09:48:20 INFO  valid result: 
+mrr@10 : 0.5691
+Mon 28 Apr 2025 09:48:20 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:48:59 INFO  epoch 43 training [time: 38.19s, train loss: 13.2931]
+Mon 28 Apr 2025 09:49:20 INFO  epoch 43 evaluating [time: 21.18s, valid_score: 0.570500]
+Mon 28 Apr 2025 09:49:20 INFO  valid result: 
+mrr@10 : 0.5705
+Mon 28 Apr 2025 09:49:20 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:49:58 INFO  epoch 44 training [time: 38.14s, train loss: 13.2075]
+Mon 28 Apr 2025 09:50:20 INFO  epoch 44 evaluating [time: 21.67s, valid_score: 0.571400]
+Mon 28 Apr 2025 09:50:20 INFO  valid result: 
+mrr@10 : 0.5714
+Mon 28 Apr 2025 09:50:20 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:50:58 INFO  epoch 45 training [time: 38.25s, train loss: 13.1830]
+Mon 28 Apr 2025 09:51:19 INFO  epoch 45 evaluating [time: 21.43s, valid_score: 0.571800]
+Mon 28 Apr 2025 09:51:19 INFO  valid result: 
+mrr@10 : 0.5718
+Mon 28 Apr 2025 09:51:19 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:51:58 INFO  epoch 46 training [time: 38.18s, train loss: 12.8482]
+Mon 28 Apr 2025 09:52:19 INFO  epoch 46 evaluating [time: 21.52s, valid_score: 0.572400]
+Mon 28 Apr 2025 09:52:19 INFO  valid result: 
+mrr@10 : 0.5724
+Mon 28 Apr 2025 09:52:19 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:52:57 INFO  epoch 47 training [time: 38.14s, train loss: 12.6209]
+Mon 28 Apr 2025 09:53:19 INFO  epoch 47 evaluating [time: 21.16s, valid_score: 0.573400]
+Mon 28 Apr 2025 09:53:19 INFO  valid result: 
+mrr@10 : 0.5734
+Mon 28 Apr 2025 09:53:19 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:53:57 INFO  epoch 48 training [time: 38.40s, train loss: 12.5006]
+Mon 28 Apr 2025 09:54:18 INFO  epoch 48 evaluating [time: 21.35s, valid_score: 0.572400]
+Mon 28 Apr 2025 09:54:18 INFO  valid result: 
+mrr@10 : 0.5724
+Mon 28 Apr 2025 09:54:57 INFO  epoch 49 training [time: 38.33s, train loss: 12.4868]
+Mon 28 Apr 2025 09:55:18 INFO  epoch 49 evaluating [time: 21.34s, valid_score: 0.573900]
+Mon 28 Apr 2025 09:55:18 INFO  valid result: 
+mrr@10 : 0.5739
+Mon 28 Apr 2025 09:55:18 INFO  Saving current: ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth
+Mon 28 Apr 2025 09:55:18 INFO  Loading model structure and parameters from ./saved/mind/LightGCN-Apr-28-2025_09-05-08.pth

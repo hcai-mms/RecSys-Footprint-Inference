@@ -1,0 +1,231 @@
+Wed 09 Apr 2025 12:55:42 INFO  
+General Hyper Parameters:
+gpu_id = 0
+use_gpu = True
+seed = 2020
+state = INFO
+reproducibility = True
+data_path = dataset/amazon
+checkpoint_dir = ./saved/amazon/
+show_progress = True
+save_dataset = True
+dataset_save_path = None
+save_dataloaders = True
+dataloaders_save_path = None
+log_wandb = False
+
+Training Hyper Parameters:
+epochs = 20
+train_batch_size = 2048
+learner = adam
+learning_rate = 0.001
+train_neg_sample_args = {'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}
+eval_step = 1
+stopping_step = 50
+clip_grad_norm = None
+weight_decay = 0.0
+loss_decimal_place = 4
+
+Evaluation Hyper Parameters:
+eval_args = {'split': {'RS': [0.8, 0.1, 0.1]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}
+repeatable = False
+metrics = ['Recall', 'MRR', 'NDCG', 'Hit', 'MAP', 'Precision', 'GAUC', 'ItemCoverage', 'AveragePopularity', 'GiniIndex', 'ShannonEntropy', 'TailPercentage']
+topk = [10]
+valid_metric = MRR@10
+valid_metric_bigger = True
+eval_batch_size = 4096
+metric_decimal_place = 4
+
+Dataset Hyper Parameters:
+field_separator = 	
+seq_separator =  
+USER_ID_FIELD = user_id
+ITEM_ID_FIELD = item_id
+RATING_FIELD = rating
+TIME_FIELD = timestamp
+seq_len = None
+LABEL_FIELD = label
+threshold = None
+NEG_PREFIX = neg_
+load_col = {'inter': ['user_id', 'item_id']}
+unload_col = None
+unused_col = None
+additional_feat_suffix = None
+rm_dup_inter = None
+val_interval = None
+filter_inter_by_user_or_item = True
+user_inter_num_interval = [0,inf)
+item_inter_num_interval = [0,inf)
+alias_of_user_id = None
+alias_of_item_id = None
+alias_of_entity_id = None
+alias_of_relation_id = None
+preload_weight = None
+normalize_field = None
+normalize_all = None
+ITEM_LIST_LENGTH_FIELD = item_length
+LIST_SUFFIX = _list
+MAX_ITEM_LIST_LENGTH = 50
+POSITION_FIELD = position_id
+HEAD_ENTITY_ID_FIELD = head_id
+TAIL_ENTITY_ID_FIELD = tail_id
+RELATION_ID_FIELD = relation_id
+ENTITY_ID_FIELD = entity_id
+benchmark_filename = None
+
+Other Hyper Parameters: 
+worker = 0
+wandb_project = recbole
+shuffle = True
+require_pow = False
+enable_amp = False
+enable_scaler = False
+transform = None
+mlp_hidden_size = [600]
+latent_dimension = 64
+dropout_prob = 0.5
+numerical_features = []
+discretization = None
+kg_reverse_r = False
+entity_kg_num_interval = [0,inf)
+relation_kg_num_interval = [0,inf)
+MODEL_TYPE = ModelType.GENERAL
+MODEL_INPUT_TYPE = InputType.PAIRWISE
+eval_type = EvaluatorType.RANKING
+single_spec = True
+local_rank = 0
+device = cuda
+eval_neg_sample_args = {'distribution': 'uniform', 'sample_num': 'none'}
+
+
+Wed 09 Apr 2025 12:55:42 INFO  Load filtered dataset from: [./saved/amazon/amazon-Dataset.pth]
+Wed 09 Apr 2025 12:55:42 INFO  amazon
+The number of users: 22156
+Average actions of users: 66.16434213495825
+The number of items: 54459
+Average actions of items: 26.917459326453415
+The number of inters: 1465871
+The sparsity of the dataset: 99.87851162187994%
+Remain Fields: ['user_id', 'item_id']
+Wed 09 Apr 2025 12:55:46 INFO  Saving split dataloaders into: [./saved/amazon/amazon-for-MultiDAE-dataloader.pth]
+Wed 09 Apr 2025 12:55:56 INFO  [Training]: train_batch_size = [2048] train_neg_sample_args: [{'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}]
+Wed 09 Apr 2025 12:55:56 INFO  [Evaluation]: eval_batch_size = [4096] eval_args: [{'split': {'RS': [0.8, 0.1, 0.1]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}]
+Wed 09 Apr 2025 12:56:00 INFO  MultiDAE(
+  (encoder): MLPLayers(
+    (mlp_layers): Sequential(
+      (0): Dropout(p=0.0, inplace=False)
+      (1): Linear(in_features=54459, out_features=600, bias=True)
+      (2): Tanh()
+      (3): Dropout(p=0.0, inplace=False)
+      (4): Linear(in_features=600, out_features=64, bias=True)
+      (5): Tanh()
+    )
+  )
+  (decoder): Sequential(
+    (0): Linear(in_features=64, out_features=600, bias=True)
+    (1): Tanh()
+    (2): Linear(in_features=600, out_features=54459, bias=True)
+  )
+)
+Trainable parameters: 65483323
+Wed 09 Apr 2025 12:56:46 INFO  epoch 0 training [time: 41.53s, train loss: 6360.6862]
+Wed 09 Apr 2025 12:58:50 INFO  epoch 0 evaluating [time: 123.46s, valid_score: 0.011300]
+Wed 09 Apr 2025 12:58:50 INFO  valid result: 
+recall@10 : 0.0045    mrr@10 : 0.0113    ndcg@10 : 0.0047    hit@10 : 0.0331    map@10 : 0.0018    precision@10 : 0.0035    gauc : 0.7639    itemcoverage@10 : 0.0022    averagepopularity@10 : 348.4372    giniindex@10 : -0.0817    shannonentropy@10 : 0.0251    tailpercentage@10 : 0.0
+Wed 09 Apr 2025 12:58:51 INFO  Saving current: ./saved/amazon/MultiDAE-Apr-09-2025_12-56-00.pth
+Wed 09 Apr 2025 12:59:36 INFO  epoch 1 training [time: 44.46s, train loss: 6066.1151]
+Wed 09 Apr 2025 13:01:39 INFO  epoch 1 evaluating [time: 122.98s, valid_score: 0.021800]
+Wed 09 Apr 2025 13:01:39 INFO  valid result: 
+recall@10 : 0.0088    mrr@10 : 0.0218    ndcg@10 : 0.0092    hit@10 : 0.0552    map@10 : 0.0039    precision@10 : 0.0063    gauc : 0.841    itemcoverage@10 : 0.0101    averagepopularity@10 : 394.8729    giniindex@10 : -0.0823    shannonentropy@10 : 0.0073    tailpercentage@10 : 0.0009
+Wed 09 Apr 2025 13:01:40 INFO  Saving current: ./saved/amazon/MultiDAE-Apr-09-2025_12-56-00.pth
+Wed 09 Apr 2025 13:02:24 INFO  epoch 2 training [time: 44.13s, train loss: 5800.3849]
+Wed 09 Apr 2025 13:04:26 INFO  epoch 2 evaluating [time: 121.41s, valid_score: 0.027200]
+Wed 09 Apr 2025 13:04:26 INFO  valid result: 
+recall@10 : 0.0118    mrr@10 : 0.0272    ndcg@10 : 0.0118    hit@10 : 0.0728    map@10 : 0.0049    precision@10 : 0.0083    gauc : 0.8725    itemcoverage@10 : 0.0092    averagepopularity@10 : 313.0093    giniindex@10 : -0.0829    shannonentropy@10 : 0.0093    tailpercentage@10 : 0.0
+Wed 09 Apr 2025 13:04:27 INFO  Saving current: ./saved/amazon/MultiDAE-Apr-09-2025_12-56-00.pth
+Wed 09 Apr 2025 13:05:11 INFO  epoch 3 training [time: 44.31s, train loss: 5574.6242]
+Wed 09 Apr 2025 13:07:14 INFO  epoch 3 evaluating [time: 122.89s, valid_score: 0.031100]
+Wed 09 Apr 2025 13:07:14 INFO  valid result: 
+recall@10 : 0.0138    mrr@10 : 0.0311    ndcg@10 : 0.0138    hit@10 : 0.0816    map@10 : 0.0059    precision@10 : 0.0095    gauc : 0.8958    itemcoverage@10 : 0.0106    averagepopularity@10 : 233.0544    giniindex@10 : -0.0841    shannonentropy@10 : 0.0092    tailpercentage@10 : 0.0
+Wed 09 Apr 2025 13:07:16 INFO  Saving current: ./saved/amazon/MultiDAE-Apr-09-2025_12-56-00.pth
+Wed 09 Apr 2025 13:08:00 INFO  epoch 4 training [time: 44.29s, train loss: 5444.2516]
+Wed 09 Apr 2025 13:10:01 INFO  epoch 4 evaluating [time: 121.48s, valid_score: 0.037600]
+Wed 09 Apr 2025 13:10:01 INFO  valid result: 
+recall@10 : 0.0167    mrr@10 : 0.0376    ndcg@10 : 0.0167    hit@10 : 0.098    map@10 : 0.0071    precision@10 : 0.0114    gauc : 0.909    itemcoverage@10 : 0.0149    averagepopularity@10 : 241.8368    giniindex@10 : -0.0849    shannonentropy@10 : 0.0068    tailpercentage@10 : 0.0
+Wed 09 Apr 2025 13:10:03 INFO  Saving current: ./saved/amazon/MultiDAE-Apr-09-2025_12-56-00.pth
+Wed 09 Apr 2025 13:10:47 INFO  epoch 5 training [time: 44.43s, train loss: 5324.6915]
+Wed 09 Apr 2025 13:12:49 INFO  epoch 5 evaluating [time: 122.25s, valid_score: 0.043400]
+Wed 09 Apr 2025 13:12:49 INFO  valid result: 
+recall@10 : 0.0212    mrr@10 : 0.0434    ndcg@10 : 0.0202    hit@10 : 0.1162    map@10 : 0.0087    precision@10 : 0.0137    gauc : 0.9196    itemcoverage@10 : 0.0282    averagepopularity@10 : 204.623    giniindex@10 : -0.0882    shannonentropy@10 : 0.004    tailpercentage@10 : 0.0
+Wed 09 Apr 2025 13:12:51 INFO  Saving current: ./saved/amazon/MultiDAE-Apr-09-2025_12-56-00.pth
+Wed 09 Apr 2025 13:13:35 INFO  epoch 6 training [time: 44.18s, train loss: 5223.8473]
+Wed 09 Apr 2025 13:15:37 INFO  epoch 6 evaluating [time: 121.94s, valid_score: 0.048800]
+Wed 09 Apr 2025 13:15:37 INFO  valid result: 
+recall@10 : 0.0252    mrr@10 : 0.0488    ndcg@10 : 0.0234    hit@10 : 0.131    map@10 : 0.0103    precision@10 : 0.0155    gauc : 0.9266    itemcoverage@10 : 0.0421    averagepopularity@10 : 186.7871    giniindex@10 : -0.0917    shannonentropy@10 : 0.0029    tailpercentage@10 : 0.0
+Wed 09 Apr 2025 13:15:38 INFO  Saving current: ./saved/amazon/MultiDAE-Apr-09-2025_12-56-00.pth
+Wed 09 Apr 2025 13:16:23 INFO  epoch 7 training [time: 44.37s, train loss: 5146.6911]
+Wed 09 Apr 2025 13:18:24 INFO  epoch 7 evaluating [time: 121.39s, valid_score: 0.052900]
+Wed 09 Apr 2025 13:18:24 INFO  valid result: 
+recall@10 : 0.0281    mrr@10 : 0.0529    ndcg@10 : 0.0259    hit@10 : 0.1404    map@10 : 0.0116    precision@10 : 0.017    gauc : 0.9305    itemcoverage@10 : 0.0591    averagepopularity@10 : 171.8059    giniindex@10 : -0.0961    shannonentropy@10 : 0.0022    tailpercentage@10 : 0.0
+Wed 09 Apr 2025 13:18:26 INFO  Saving current: ./saved/amazon/MultiDAE-Apr-09-2025_12-56-00.pth
+Wed 09 Apr 2025 13:19:10 INFO  epoch 8 training [time: 44.26s, train loss: 5092.1258]
+Wed 09 Apr 2025 13:21:13 INFO  epoch 8 evaluating [time: 122.88s, valid_score: 0.059300]
+Wed 09 Apr 2025 13:21:13 INFO  valid result: 
+recall@10 : 0.0309    mrr@10 : 0.0593    ndcg@10 : 0.0286    hit@10 : 0.1541    map@10 : 0.0128    precision@10 : 0.0187    gauc : 0.9335    itemcoverage@10 : 0.0787    averagepopularity@10 : 161.2194    giniindex@10 : -0.1009    shannonentropy@10 : 0.0017    tailpercentage@10 : 0.0
+Wed 09 Apr 2025 13:21:14 INFO  Saving current: ./saved/amazon/MultiDAE-Apr-09-2025_12-56-00.pth
+Wed 09 Apr 2025 13:21:59 INFO  epoch 9 training [time: 44.59s, train loss: 5041.3067]
+Wed 09 Apr 2025 13:24:02 INFO  epoch 9 evaluating [time: 122.95s, valid_score: 0.062500]
+Wed 09 Apr 2025 13:24:02 INFO  valid result: 
+recall@10 : 0.0343    mrr@10 : 0.0625    ndcg@10 : 0.0311    hit@10 : 0.1649    map@10 : 0.0142    precision@10 : 0.0202    gauc : 0.9362    itemcoverage@10 : 0.1021    averagepopularity@10 : 144.6219    giniindex@10 : -0.1086    shannonentropy@10 : 0.0014    tailpercentage@10 : 0.0002
+Wed 09 Apr 2025 13:24:03 INFO  Saving current: ./saved/amazon/MultiDAE-Apr-09-2025_12-56-00.pth
+Wed 09 Apr 2025 13:24:48 INFO  epoch 10 training [time: 44.55s, train loss: 4990.8042]
+Wed 09 Apr 2025 13:26:51 INFO  epoch 10 evaluating [time: 123.11s, valid_score: 0.066300]
+Wed 09 Apr 2025 13:26:51 INFO  valid result: 
+recall@10 : 0.0363    mrr@10 : 0.0663    ndcg@10 : 0.0331    hit@10 : 0.1718    map@10 : 0.0152    precision@10 : 0.0212    gauc : 0.9383    itemcoverage@10 : 0.123    averagepopularity@10 : 137.3949    giniindex@10 : -0.115    shannonentropy@10 : 0.0012    tailpercentage@10 : 0.0002
+Wed 09 Apr 2025 13:26:52 INFO  Saving current: ./saved/amazon/MultiDAE-Apr-09-2025_12-56-00.pth
+Wed 09 Apr 2025 13:27:37 INFO  epoch 11 training [time: 44.42s, train loss: 4951.9697]
+Wed 09 Apr 2025 13:29:40 INFO  epoch 11 evaluating [time: 123.16s, valid_score: 0.069300]
+Wed 09 Apr 2025 13:29:40 INFO  valid result: 
+recall@10 : 0.0388    mrr@10 : 0.0693    ndcg@10 : 0.0351    hit@10 : 0.1798    map@10 : 0.0163    precision@10 : 0.0224    gauc : 0.9397    itemcoverage@10 : 0.1439    averagepopularity@10 : 132.3146    giniindex@10 : -0.1215    shannonentropy@10 : 0.001    tailpercentage@10 : 0.0004
+Wed 09 Apr 2025 13:29:41 INFO  Saving current: ./saved/amazon/MultiDAE-Apr-09-2025_12-56-00.pth
+Wed 09 Apr 2025 13:30:26 INFO  epoch 12 training [time: 44.41s, train loss: 4918.6491]
+Wed 09 Apr 2025 13:32:28 INFO  epoch 12 evaluating [time: 122.25s, valid_score: 0.072400]
+Wed 09 Apr 2025 13:32:28 INFO  valid result: 
+recall@10 : 0.0403    mrr@10 : 0.0724    ndcg@10 : 0.0365    hit@10 : 0.1848    map@10 : 0.017    precision@10 : 0.0231    gauc : 0.9408    itemcoverage@10 : 0.1633    averagepopularity@10 : 127.1516    giniindex@10 : -0.129    shannonentropy@10 : 0.0009    tailpercentage@10 : 0.0007
+Wed 09 Apr 2025 13:32:29 INFO  Saving current: ./saved/amazon/MultiDAE-Apr-09-2025_12-56-00.pth
+Wed 09 Apr 2025 13:33:14 INFO  epoch 13 training [time: 44.23s, train loss: 4891.4863]
+Wed 09 Apr 2025 13:35:18 INFO  epoch 13 evaluating [time: 123.90s, valid_score: 0.073800]
+Wed 09 Apr 2025 13:35:18 INFO  valid result: 
+recall@10 : 0.0422    mrr@10 : 0.0738    ndcg@10 : 0.0378    hit@10 : 0.1909    map@10 : 0.0176    precision@10 : 0.024    gauc : 0.9416    itemcoverage@10 : 0.1856    averagepopularity@10 : 123.3464    giniindex@10 : -0.1354    shannonentropy@10 : 0.0008    tailpercentage@10 : 0.0009
+Wed 09 Apr 2025 13:35:19 INFO  Saving current: ./saved/amazon/MultiDAE-Apr-09-2025_12-56-00.pth
+Wed 09 Apr 2025 13:36:03 INFO  epoch 14 training [time: 44.34s, train loss: 4859.6013]
+Wed 09 Apr 2025 13:38:06 INFO  epoch 14 evaluating [time: 122.54s, valid_score: 0.074900]
+Wed 09 Apr 2025 13:38:06 INFO  valid result: 
+recall@10 : 0.043    mrr@10 : 0.0749    ndcg@10 : 0.0385    hit@10 : 0.1934    map@10 : 0.018    precision@10 : 0.0243    gauc : 0.9424    itemcoverage@10 : 0.1996    averagepopularity@10 : 119.9635    giniindex@10 : -0.141    shannonentropy@10 : 0.0008    tailpercentage@10 : 0.0009
+Wed 09 Apr 2025 13:38:07 INFO  Saving current: ./saved/amazon/MultiDAE-Apr-09-2025_12-56-00.pth
+Wed 09 Apr 2025 13:38:52 INFO  epoch 15 training [time: 44.39s, train loss: 4839.4838]
+Wed 09 Apr 2025 13:40:55 INFO  epoch 15 evaluating [time: 123.84s, valid_score: 0.079300]
+Wed 09 Apr 2025 13:40:55 INFO  valid result: 
+recall@10 : 0.0451    mrr@10 : 0.0793    ndcg@10 : 0.0406    hit@10 : 0.1986    map@10 : 0.0193    precision@10 : 0.0252    gauc : 0.9432    itemcoverage@10 : 0.2188    averagepopularity@10 : 118.4821    giniindex@10 : -0.147    shannonentropy@10 : 0.0007    tailpercentage@10 : 0.001
+Wed 09 Apr 2025 13:40:57 INFO  Saving current: ./saved/amazon/MultiDAE-Apr-09-2025_12-56-00.pth
+Wed 09 Apr 2025 13:41:42 INFO  epoch 16 training [time: 44.74s, train loss: 4822.7002]
+Wed 09 Apr 2025 13:43:44 INFO  epoch 16 evaluating [time: 121.98s, valid_score: 0.079900]
+Wed 09 Apr 2025 13:43:44 INFO  valid result: 
+recall@10 : 0.047    mrr@10 : 0.0799    ndcg@10 : 0.0417    hit@10 : 0.2038    map@10 : 0.0199    precision@10 : 0.026    gauc : 0.9439    itemcoverage@10 : 0.234    averagepopularity@10 : 115.0462    giniindex@10 : -0.1527    shannonentropy@10 : 0.0007    tailpercentage@10 : 0.0011
+Wed 09 Apr 2025 13:43:45 INFO  Saving current: ./saved/amazon/MultiDAE-Apr-09-2025_12-56-00.pth
+Wed 09 Apr 2025 13:44:29 INFO  epoch 17 training [time: 44.39s, train loss: 4795.9966]
+Wed 09 Apr 2025 13:46:30 INFO  epoch 17 evaluating [time: 120.90s, valid_score: 0.081200]
+Wed 09 Apr 2025 13:46:30 INFO  valid result: 
+recall@10 : 0.0478    mrr@10 : 0.0812    ndcg@10 : 0.042    hit@10 : 0.2072    map@10 : 0.0198    precision@10 : 0.0263    gauc : 0.9446    itemcoverage@10 : 0.2507    averagepopularity@10 : 115.1405    giniindex@10 : -0.1578    shannonentropy@10 : 0.0006    tailpercentage@10 : 0.0012
+Wed 09 Apr 2025 13:46:32 INFO  Saving current: ./saved/amazon/MultiDAE-Apr-09-2025_12-56-00.pth
+Wed 09 Apr 2025 13:47:17 INFO  epoch 18 training [time: 45.16s, train loss: 4770.1709]
+Wed 09 Apr 2025 13:49:19 INFO  epoch 18 evaluating [time: 122.53s, valid_score: 0.082000]
+Wed 09 Apr 2025 13:49:19 INFO  valid result: 
+recall@10 : 0.0491    mrr@10 : 0.082    ndcg@10 : 0.0433    hit@10 : 0.2113    map@10 : 0.0207    precision@10 : 0.0269    gauc : 0.9452    itemcoverage@10 : 0.2663    averagepopularity@10 : 110.9765    giniindex@10 : -0.1644    shannonentropy@10 : 0.0006    tailpercentage@10 : 0.0012
+Wed 09 Apr 2025 13:49:21 INFO  Saving current: ./saved/amazon/MultiDAE-Apr-09-2025_12-56-00.pth
+Wed 09 Apr 2025 13:50:05 INFO  epoch 19 training [time: 44.23s, train loss: 4745.6210]
+Wed 09 Apr 2025 13:52:08 INFO  epoch 19 evaluating [time: 122.77s, valid_score: 0.082800]
+Wed 09 Apr 2025 13:52:08 INFO  valid result: 
+recall@10 : 0.0492    mrr@10 : 0.0828    ndcg@10 : 0.0435    hit@10 : 0.2115    map@10 : 0.0208    precision@10 : 0.027    gauc : 0.9457    itemcoverage@10 : 0.2836    averagepopularity@10 : 109.8319    giniindex@10 : -0.1713    shannonentropy@10 : 0.0006    tailpercentage@10 : 0.0015
+Wed 09 Apr 2025 13:52:09 INFO  Saving current: ./saved/amazon/MultiDAE-Apr-09-2025_12-56-00.pth
+Wed 09 Apr 2025 13:52:10 INFO  Loading model structure and parameters from ./saved/amazon/MultiDAE-Apr-09-2025_12-56-00.pth

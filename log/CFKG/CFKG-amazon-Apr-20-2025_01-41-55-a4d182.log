@@ -1,0 +1,219 @@
+Sun 20 Apr 2025 01:41:55 INFO  
+General Hyper Parameters:
+gpu_id = 0
+use_gpu = True
+seed = 2020
+state = INFO
+reproducibility = True
+data_path = dataset/amazon
+checkpoint_dir = ./saved/amazon/
+show_progress = True
+save_dataset = True
+dataset_save_path = None
+save_dataloaders = False
+dataloaders_save_path = None
+log_wandb = False
+
+Training Hyper Parameters:
+epochs = 20
+train_batch_size = 2048
+learner = adam
+learning_rate = 0.001
+train_neg_sample_args = {'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}
+eval_step = 1
+stopping_step = 50
+clip_grad_norm = None
+weight_decay = 0.0
+loss_decimal_place = 4
+
+Evaluation Hyper Parameters:
+eval_args = {'split': {'RS': [0.8, 0.1, 0.1]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}
+repeatable = False
+metrics = ['MRR']
+topk = [10]
+valid_metric = MRR@10
+valid_metric_bigger = True
+eval_batch_size = 4096
+metric_decimal_place = 4
+
+Dataset Hyper Parameters:
+field_separator = 	
+seq_separator =  
+USER_ID_FIELD = user_id
+ITEM_ID_FIELD = item_id
+RATING_FIELD = rating
+TIME_FIELD = timestamp
+seq_len = None
+LABEL_FIELD = label
+threshold = None
+NEG_PREFIX = neg_
+load_col = {'inter': ['user_id', 'item_id', 'rating', 'timestamp'], 'kg': ['head_id', 'relation_id', 'tail_id'], 'link': ['item_id', 'entity_id']}
+unload_col = None
+unused_col = None
+additional_feat_suffix = None
+rm_dup_inter = None
+val_interval = None
+filter_inter_by_user_or_item = True
+user_inter_num_interval = [0,inf)
+item_inter_num_interval = [0,inf)
+alias_of_user_id = None
+alias_of_item_id = None
+alias_of_entity_id = None
+alias_of_relation_id = None
+preload_weight = None
+normalize_field = None
+normalize_all = None
+ITEM_LIST_LENGTH_FIELD = item_length
+LIST_SUFFIX = _list
+MAX_ITEM_LIST_LENGTH = 50
+POSITION_FIELD = position_id
+HEAD_ENTITY_ID_FIELD = head_id
+TAIL_ENTITY_ID_FIELD = tail_id
+RELATION_ID_FIELD = relation_id
+ENTITY_ID_FIELD = entity_id
+benchmark_filename = None
+
+Other Hyper Parameters: 
+worker = 0
+wandb_project = recbole
+shuffle = True
+require_pow = False
+enable_amp = False
+enable_scaler = False
+transform = None
+embedding_size = 64
+loss_function = inner_product
+margin = 1.0
+numerical_features = []
+discretization = None
+kg_reverse_r = False
+entity_kg_num_interval = [0,inf)
+relation_kg_num_interval = [0,inf)
+MODEL_TYPE = ModelType.KNOWLEDGE
+MODEL_INPUT_TYPE = InputType.PAIRWISE
+eval_type = EvaluatorType.RANKING
+single_spec = True
+local_rank = 0
+device = cuda
+eval_neg_sample_args = {'distribution': 'uniform', 'sample_num': 'none'}
+
+
+Sun 20 Apr 2025 01:42:00 INFO  Saving filtered dataset into [./saved/amazon/amazon-dataset.pth]
+Sun 20 Apr 2025 01:42:00 INFO  amazon
+The number of users: 20201
+Average actions of users: 17.4280198019802
+The number of items: 10879
+Average actions of items: 32.36311822026108
+The number of inters: 352046
+The sparsity of the dataset: 99.83980920055674%
+Remain Fields: ['entity_id', 'user_id', 'item_id', 'rating', 'head_id', 'tail_id', 'relation_id']
+The number of entities: 26316
+The number of relations: 18
+The number of triples: 96476
+The number of items that have been linked to KG: 10878
+Sun 20 Apr 2025 01:42:02 INFO  [Training]: train_batch_size = [2048] train_neg_sample_args: [{'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}]
+Sun 20 Apr 2025 01:42:02 INFO  [Evaluation]: eval_batch_size = [4096] eval_args: [{'split': {'RS': [0.8, 0.1, 0.1]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}]
+Sun 20 Apr 2025 01:42:02 INFO  CFKG(
+  (user_embedding): Embedding(20201, 64)
+  (entity_embedding): Embedding(26316, 64)
+  (relation_embedding): Embedding(19, 64)
+  (rec_loss): InnerProductLoss()
+)
+Trainable parameters: 2978304
+Sun 20 Apr 2025 01:42:10 INFO  epoch 0 training [time: 2.73s, train loss: 178.3397]
+Sun 20 Apr 2025 01:42:40 INFO  epoch 0 evaluating [time: 30.90s, valid_score: 0.010200]
+Sun 20 Apr 2025 01:42:40 INFO  valid result: 
+mrr@10 : 0.0102
+Sun 20 Apr 2025 01:42:40 INFO  Saving current: ./saved/amazon/CFKG-Apr-20-2025_01-42-02.pth
+Sun 20 Apr 2025 01:42:43 INFO  epoch 1 training [time: 2.71s, train loss: 152.8145]
+Sun 20 Apr 2025 01:43:14 INFO  epoch 1 evaluating [time: 30.56s, valid_score: 0.010900]
+Sun 20 Apr 2025 01:43:14 INFO  valid result: 
+mrr@10 : 0.0109
+Sun 20 Apr 2025 01:43:14 INFO  Saving current: ./saved/amazon/CFKG-Apr-20-2025_01-42-02.pth
+Sun 20 Apr 2025 01:43:17 INFO  epoch 2 training [time: 2.73s, train loss: 139.2074]
+Sun 20 Apr 2025 01:43:48 INFO  epoch 2 evaluating [time: 31.04s, valid_score: 0.009400]
+Sun 20 Apr 2025 01:43:48 INFO  valid result: 
+mrr@10 : 0.0094
+Sun 20 Apr 2025 01:43:50 INFO  epoch 3 training [time: 2.69s, train loss: 130.4773]
+Sun 20 Apr 2025 01:44:22 INFO  epoch 3 evaluating [time: 31.85s, valid_score: 0.011200]
+Sun 20 Apr 2025 01:44:22 INFO  valid result: 
+mrr@10 : 0.0112
+Sun 20 Apr 2025 01:44:22 INFO  Saving current: ./saved/amazon/CFKG-Apr-20-2025_01-42-02.pth
+Sun 20 Apr 2025 01:44:25 INFO  epoch 4 training [time: 2.71s, train loss: 123.5305]
+Sun 20 Apr 2025 01:44:56 INFO  epoch 4 evaluating [time: 31.58s, valid_score: 0.012300]
+Sun 20 Apr 2025 01:44:56 INFO  valid result: 
+mrr@10 : 0.0123
+Sun 20 Apr 2025 01:44:56 INFO  Saving current: ./saved/amazon/CFKG-Apr-20-2025_01-42-02.pth
+Sun 20 Apr 2025 01:44:59 INFO  epoch 5 training [time: 2.71s, train loss: 117.7253]
+Sun 20 Apr 2025 01:45:30 INFO  epoch 5 evaluating [time: 30.36s, valid_score: 0.011300]
+Sun 20 Apr 2025 01:45:30 INFO  valid result: 
+mrr@10 : 0.0113
+Sun 20 Apr 2025 01:45:32 INFO  epoch 6 training [time: 2.77s, train loss: 112.7612]
+Sun 20 Apr 2025 01:46:03 INFO  epoch 6 evaluating [time: 30.53s, valid_score: 0.011800]
+Sun 20 Apr 2025 01:46:03 INFO  valid result: 
+mrr@10 : 0.0118
+Sun 20 Apr 2025 01:46:06 INFO  epoch 7 training [time: 2.70s, train loss: 108.5633]
+Sun 20 Apr 2025 01:46:37 INFO  epoch 7 evaluating [time: 31.48s, valid_score: 0.012400]
+Sun 20 Apr 2025 01:46:37 INFO  valid result: 
+mrr@10 : 0.0124
+Sun 20 Apr 2025 01:46:37 INFO  Saving current: ./saved/amazon/CFKG-Apr-20-2025_01-42-02.pth
+Sun 20 Apr 2025 01:46:40 INFO  epoch 8 training [time: 2.80s, train loss: 105.0889]
+Sun 20 Apr 2025 01:47:11 INFO  epoch 8 evaluating [time: 31.07s, valid_score: 0.013800]
+Sun 20 Apr 2025 01:47:11 INFO  valid result: 
+mrr@10 : 0.0138
+Sun 20 Apr 2025 01:47:11 INFO  Saving current: ./saved/amazon/CFKG-Apr-20-2025_01-42-02.pth
+Sun 20 Apr 2025 01:47:14 INFO  epoch 9 training [time: 2.74s, train loss: 101.9011]
+Sun 20 Apr 2025 01:47:46 INFO  epoch 9 evaluating [time: 31.90s, valid_score: 0.014300]
+Sun 20 Apr 2025 01:47:46 INFO  valid result: 
+mrr@10 : 0.0143
+Sun 20 Apr 2025 01:47:46 INFO  Saving current: ./saved/amazon/CFKG-Apr-20-2025_01-42-02.pth
+Sun 20 Apr 2025 01:47:48 INFO  epoch 10 training [time: 2.77s, train loss: 98.9606]
+Sun 20 Apr 2025 01:48:20 INFO  epoch 10 evaluating [time: 32.03s, valid_score: 0.015100]
+Sun 20 Apr 2025 01:48:20 INFO  valid result: 
+mrr@10 : 0.0151
+Sun 20 Apr 2025 01:48:20 INFO  Saving current: ./saved/amazon/CFKG-Apr-20-2025_01-42-02.pth
+Sun 20 Apr 2025 01:48:23 INFO  epoch 11 training [time: 2.70s, train loss: 96.4512]
+Sun 20 Apr 2025 01:48:58 INFO  epoch 11 evaluating [time: 34.44s, valid_score: 0.015000]
+Sun 20 Apr 2025 01:48:58 INFO  valid result: 
+mrr@10 : 0.015
+Sun 20 Apr 2025 01:49:00 INFO  epoch 12 training [time: 2.75s, train loss: 93.9595]
+Sun 20 Apr 2025 01:49:31 INFO  epoch 12 evaluating [time: 30.75s, valid_score: 0.016000]
+Sun 20 Apr 2025 01:49:31 INFO  valid result: 
+mrr@10 : 0.016
+Sun 20 Apr 2025 01:49:31 INFO  Saving current: ./saved/amazon/CFKG-Apr-20-2025_01-42-02.pth
+Sun 20 Apr 2025 01:49:34 INFO  epoch 13 training [time: 2.74s, train loss: 91.5585]
+Sun 20 Apr 2025 01:50:04 INFO  epoch 13 evaluating [time: 30.22s, valid_score: 0.018300]
+Sun 20 Apr 2025 01:50:04 INFO  valid result: 
+mrr@10 : 0.0183
+Sun 20 Apr 2025 01:50:04 INFO  Saving current: ./saved/amazon/CFKG-Apr-20-2025_01-42-02.pth
+Sun 20 Apr 2025 01:50:07 INFO  epoch 14 training [time: 2.75s, train loss: 89.2187]
+Sun 20 Apr 2025 01:50:39 INFO  epoch 14 evaluating [time: 31.67s, valid_score: 0.019600]
+Sun 20 Apr 2025 01:50:39 INFO  valid result: 
+mrr@10 : 0.0196
+Sun 20 Apr 2025 01:50:39 INFO  Saving current: ./saved/amazon/CFKG-Apr-20-2025_01-42-02.pth
+Sun 20 Apr 2025 01:50:41 INFO  epoch 15 training [time: 2.72s, train loss: 87.1926]
+Sun 20 Apr 2025 01:51:13 INFO  epoch 15 evaluating [time: 31.57s, valid_score: 0.021000]
+Sun 20 Apr 2025 01:51:13 INFO  valid result: 
+mrr@10 : 0.021
+Sun 20 Apr 2025 01:51:13 INFO  Saving current: ./saved/amazon/CFKG-Apr-20-2025_01-42-02.pth
+Sun 20 Apr 2025 01:51:16 INFO  epoch 16 training [time: 2.70s, train loss: 85.1922]
+Sun 20 Apr 2025 01:51:47 INFO  epoch 16 evaluating [time: 31.24s, valid_score: 0.021300]
+Sun 20 Apr 2025 01:51:47 INFO  valid result: 
+mrr@10 : 0.0213
+Sun 20 Apr 2025 01:51:47 INFO  Saving current: ./saved/amazon/CFKG-Apr-20-2025_01-42-02.pth
+Sun 20 Apr 2025 01:51:50 INFO  epoch 17 training [time: 2.69s, train loss: 83.1039]
+Sun 20 Apr 2025 01:52:21 INFO  epoch 17 evaluating [time: 31.22s, valid_score: 0.022000]
+Sun 20 Apr 2025 01:52:21 INFO  valid result: 
+mrr@10 : 0.022
+Sun 20 Apr 2025 01:52:21 INFO  Saving current: ./saved/amazon/CFKG-Apr-20-2025_01-42-02.pth
+Sun 20 Apr 2025 01:52:24 INFO  epoch 18 training [time: 2.73s, train loss: 81.1916]
+Sun 20 Apr 2025 01:52:55 INFO  epoch 18 evaluating [time: 30.94s, valid_score: 0.022800]
+Sun 20 Apr 2025 01:52:55 INFO  valid result: 
+mrr@10 : 0.0228
+Sun 20 Apr 2025 01:52:55 INFO  Saving current: ./saved/amazon/CFKG-Apr-20-2025_01-42-02.pth
+Sun 20 Apr 2025 01:52:57 INFO  epoch 19 training [time: 2.70s, train loss: 79.2747]
+Sun 20 Apr 2025 01:53:28 INFO  epoch 19 evaluating [time: 30.83s, valid_score: 0.024000]
+Sun 20 Apr 2025 01:53:28 INFO  valid result: 
+mrr@10 : 0.024
+Sun 20 Apr 2025 01:53:28 INFO  Saving current: ./saved/amazon/CFKG-Apr-20-2025_01-42-02.pth
+Sun 20 Apr 2025 01:53:28 INFO  Loading model structure and parameters from ./saved/amazon/CFKG-Apr-20-2025_01-42-02.pth

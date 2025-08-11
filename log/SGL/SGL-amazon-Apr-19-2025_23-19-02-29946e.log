@@ -1,0 +1,223 @@
+Sat 19 Apr 2025 23:19:02 INFO  
+General Hyper Parameters:
+gpu_id = 0
+use_gpu = True
+seed = 2020
+state = INFO
+reproducibility = True
+data_path = dataset/amazon
+checkpoint_dir = ./saved/amazon/
+show_progress = True
+save_dataset = True
+dataset_save_path = None
+save_dataloaders = True
+dataloaders_save_path = None
+log_wandb = False
+
+Training Hyper Parameters:
+epochs = 20
+train_batch_size = 2048
+learner = adam
+learning_rate = 0.001
+train_neg_sample_args = {'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}
+eval_step = 1
+stopping_step = 50
+clip_grad_norm = None
+weight_decay = 0.0
+loss_decimal_place = 4
+
+Evaluation Hyper Parameters:
+eval_args = {'split': {'RS': [0.8, 0.1, 0.1]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}
+repeatable = False
+metrics = ['MRR']
+topk = [10]
+valid_metric = MRR@10
+valid_metric_bigger = True
+eval_batch_size = 4096
+metric_decimal_place = 4
+
+Dataset Hyper Parameters:
+field_separator = 	
+seq_separator =  
+USER_ID_FIELD = user_id
+ITEM_ID_FIELD = item_id
+RATING_FIELD = rating
+TIME_FIELD = timestamp
+seq_len = None
+LABEL_FIELD = label
+threshold = None
+NEG_PREFIX = neg_
+load_col = {'inter': ['user_id', 'item_id']}
+unload_col = None
+unused_col = None
+additional_feat_suffix = None
+rm_dup_inter = None
+val_interval = None
+filter_inter_by_user_or_item = True
+user_inter_num_interval = [0,inf)
+item_inter_num_interval = [0,inf)
+alias_of_user_id = None
+alias_of_item_id = None
+alias_of_entity_id = None
+alias_of_relation_id = None
+preload_weight = None
+normalize_field = None
+normalize_all = None
+ITEM_LIST_LENGTH_FIELD = item_length
+LIST_SUFFIX = _list
+MAX_ITEM_LIST_LENGTH = 50
+POSITION_FIELD = position_id
+HEAD_ENTITY_ID_FIELD = head_id
+TAIL_ENTITY_ID_FIELD = tail_id
+RELATION_ID_FIELD = relation_id
+ENTITY_ID_FIELD = entity_id
+benchmark_filename = None
+
+Other Hyper Parameters: 
+worker = 0
+wandb_project = recbole
+shuffle = True
+require_pow = False
+enable_amp = False
+enable_scaler = False
+transform = None
+type = ED
+n_layers = 3
+ssl_tau = 0.5
+reg_weight = 1e-05
+ssl_weight = 0.05
+drop_ratio = 0.1
+embedding_size = 64
+numerical_features = []
+discretization = None
+kg_reverse_r = False
+entity_kg_num_interval = [0,inf)
+relation_kg_num_interval = [0,inf)
+MODEL_TYPE = ModelType.GENERAL
+MODEL_INPUT_TYPE = InputType.PAIRWISE
+eval_type = EvaluatorType.RANKING
+single_spec = True
+local_rank = 0
+device = cuda
+eval_neg_sample_args = {'distribution': 'uniform', 'sample_num': 'none'}
+
+
+Sat 19 Apr 2025 23:19:03 INFO  Load filtered dataset from: [./saved/amazon/amazon-Dataset.pth]
+Sat 19 Apr 2025 23:19:03 INFO  amazon
+The number of users: 22156
+Average actions of users: 66.16434213495825
+The number of items: 54459
+Average actions of items: 26.917459326453415
+The number of inters: 1465871
+The sparsity of the dataset: 99.87851162187994%
+Remain Fields: ['user_id', 'item_id']
+Sat 19 Apr 2025 23:19:11 INFO  Load split dataloaders from: [./saved/amazon/amazon-for-SGL-dataloader.pth]
+Sat 19 Apr 2025 23:19:11 INFO  [Training]: train_batch_size = [2048] train_neg_sample_args: [{'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}]
+Sat 19 Apr 2025 23:19:11 INFO  [Evaluation]: eval_batch_size = [4096] eval_args: [{'split': {'RS': [0.8, 0.1, 0.1]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}]
+Sat 19 Apr 2025 23:19:11 INFO  SGL(
+  (user_embedding): Embedding(22156, 64)
+  (item_embedding): Embedding(54459, 64)
+  (reg_loss): EmbLoss()
+)
+Trainable parameters: 4903360
+Sat 19 Apr 2025 23:25:28 INFO  epoch 0 training [time: 372.57s, train loss: 1832767.5359]
+Sat 19 Apr 2025 23:25:54 INFO  epoch 0 evaluating [time: 25.66s, valid_score: 0.008300]
+Sat 19 Apr 2025 23:25:54 INFO  valid result: 
+mrr@10 : 0.0083
+Sat 19 Apr 2025 23:25:54 INFO  Saving current: ./saved/amazon/SGL-Apr-19-2025_23-19-11.pth
+Sat 19 Apr 2025 23:32:07 INFO  epoch 1 training [time: 372.78s, train loss: 1827185.6123]
+Sat 19 Apr 2025 23:32:33 INFO  epoch 1 evaluating [time: 25.68s, valid_score: 0.017600]
+Sat 19 Apr 2025 23:32:33 INFO  valid result: 
+mrr@10 : 0.0176
+Sat 19 Apr 2025 23:32:33 INFO  Saving current: ./saved/amazon/SGL-Apr-19-2025_23-19-11.pth
+Sat 19 Apr 2025 23:38:45 INFO  epoch 2 training [time: 372.58s, train loss: 1795698.7766]
+Sat 19 Apr 2025 23:39:10 INFO  epoch 2 evaluating [time: 25.11s, valid_score: 0.024400]
+Sat 19 Apr 2025 23:39:10 INFO  valid result: 
+mrr@10 : 0.0244
+Sat 19 Apr 2025 23:39:10 INFO  Saving current: ./saved/amazon/SGL-Apr-19-2025_23-19-11.pth
+Sat 19 Apr 2025 23:45:23 INFO  epoch 3 training [time: 372.57s, train loss: 1515304.0878]
+Sat 19 Apr 2025 23:45:48 INFO  epoch 3 evaluating [time: 24.87s, valid_score: 0.039000]
+Sat 19 Apr 2025 23:45:48 INFO  valid result: 
+mrr@10 : 0.039
+Sat 19 Apr 2025 23:45:48 INFO  Saving current: ./saved/amazon/SGL-Apr-19-2025_23-19-11.pth
+Sat 19 Apr 2025 23:52:01 INFO  epoch 4 training [time: 372.83s, train loss: 1290559.3628]
+Sat 19 Apr 2025 23:52:27 INFO  epoch 4 evaluating [time: 25.80s, valid_score: 0.045000]
+Sat 19 Apr 2025 23:52:27 INFO  valid result: 
+mrr@10 : 0.045
+Sat 19 Apr 2025 23:52:27 INFO  Saving current: ./saved/amazon/SGL-Apr-19-2025_23-19-11.pth
+Sat 19 Apr 2025 23:58:39 INFO  epoch 5 training [time: 372.87s, train loss: 1232231.8604]
+Sat 19 Apr 2025 23:59:05 INFO  epoch 5 evaluating [time: 25.57s, valid_score: 0.049000]
+Sat 19 Apr 2025 23:59:05 INFO  valid result: 
+mrr@10 : 0.049
+Sat 19 Apr 2025 23:59:05 INFO  Saving current: ./saved/amazon/SGL-Apr-19-2025_23-19-11.pth
+Sun 20 Apr 2025 00:05:18 INFO  epoch 6 training [time: 372.96s, train loss: 1204426.0519]
+Sun 20 Apr 2025 00:05:43 INFO  epoch 6 evaluating [time: 25.20s, valid_score: 0.052200]
+Sun 20 Apr 2025 00:05:43 INFO  valid result: 
+mrr@10 : 0.0522
+Sun 20 Apr 2025 00:05:43 INFO  Saving current: ./saved/amazon/SGL-Apr-19-2025_23-19-11.pth
+Sun 20 Apr 2025 00:11:56 INFO  epoch 7 training [time: 372.96s, train loss: 1185989.2144]
+Sun 20 Apr 2025 00:12:21 INFO  epoch 7 evaluating [time: 25.11s, valid_score: 0.054200]
+Sun 20 Apr 2025 00:12:21 INFO  valid result: 
+mrr@10 : 0.0542
+Sun 20 Apr 2025 00:12:22 INFO  Saving current: ./saved/amazon/SGL-Apr-19-2025_23-19-11.pth
+Sun 20 Apr 2025 00:18:34 INFO  epoch 8 training [time: 372.84s, train loss: 1171649.2531]
+Sun 20 Apr 2025 00:19:00 INFO  epoch 8 evaluating [time: 25.49s, valid_score: 0.056200]
+Sun 20 Apr 2025 00:19:00 INFO  valid result: 
+mrr@10 : 0.0562
+Sun 20 Apr 2025 00:19:00 INFO  Saving current: ./saved/amazon/SGL-Apr-19-2025_23-19-11.pth
+Sun 20 Apr 2025 00:25:13 INFO  epoch 9 training [time: 372.83s, train loss: 1160996.6413]
+Sun 20 Apr 2025 00:25:38 INFO  epoch 9 evaluating [time: 25.16s, valid_score: 0.058500]
+Sun 20 Apr 2025 00:25:38 INFO  valid result: 
+mrr@10 : 0.0585
+Sun 20 Apr 2025 00:25:38 INFO  Saving current: ./saved/amazon/SGL-Apr-19-2025_23-19-11.pth
+Sun 20 Apr 2025 00:31:51 INFO  epoch 10 training [time: 372.81s, train loss: 1151961.5218]
+Sun 20 Apr 2025 00:32:16 INFO  epoch 10 evaluating [time: 25.42s, valid_score: 0.059700]
+Sun 20 Apr 2025 00:32:16 INFO  valid result: 
+mrr@10 : 0.0597
+Sun 20 Apr 2025 00:32:16 INFO  Saving current: ./saved/amazon/SGL-Apr-19-2025_23-19-11.pth
+Sun 20 Apr 2025 00:38:29 INFO  epoch 11 training [time: 372.83s, train loss: 1143879.2770]
+Sun 20 Apr 2025 00:38:55 INFO  epoch 11 evaluating [time: 25.59s, valid_score: 0.061500]
+Sun 20 Apr 2025 00:38:55 INFO  valid result: 
+mrr@10 : 0.0615
+Sun 20 Apr 2025 00:38:55 INFO  Saving current: ./saved/amazon/SGL-Apr-19-2025_23-19-11.pth
+Sun 20 Apr 2025 00:45:07 INFO  epoch 12 training [time: 372.55s, train loss: 1136770.9186]
+Sun 20 Apr 2025 00:45:32 INFO  epoch 12 evaluating [time: 24.94s, valid_score: 0.063000]
+Sun 20 Apr 2025 00:45:32 INFO  valid result: 
+mrr@10 : 0.063
+Sun 20 Apr 2025 00:45:32 INFO  Saving current: ./saved/amazon/SGL-Apr-19-2025_23-19-11.pth
+Sun 20 Apr 2025 00:51:45 INFO  epoch 13 training [time: 372.78s, train loss: 1131326.8301]
+Sun 20 Apr 2025 00:52:11 INFO  epoch 13 evaluating [time: 25.38s, valid_score: 0.064200]
+Sun 20 Apr 2025 00:52:11 INFO  valid result: 
+mrr@10 : 0.0642
+Sun 20 Apr 2025 00:52:11 INFO  Saving current: ./saved/amazon/SGL-Apr-19-2025_23-19-11.pth
+Sun 20 Apr 2025 00:58:23 INFO  epoch 14 training [time: 372.83s, train loss: 1125570.8908]
+Sun 20 Apr 2025 00:58:48 INFO  epoch 14 evaluating [time: 24.95s, valid_score: 0.065000]
+Sun 20 Apr 2025 00:58:48 INFO  valid result: 
+mrr@10 : 0.065
+Sun 20 Apr 2025 00:58:48 INFO  Saving current: ./saved/amazon/SGL-Apr-19-2025_23-19-11.pth
+Sun 20 Apr 2025 01:05:01 INFO  epoch 15 training [time: 372.76s, train loss: 1120750.1372]
+Sun 20 Apr 2025 01:05:27 INFO  epoch 15 evaluating [time: 25.28s, valid_score: 0.065600]
+Sun 20 Apr 2025 01:05:27 INFO  valid result: 
+mrr@10 : 0.0656
+Sun 20 Apr 2025 01:05:27 INFO  Saving current: ./saved/amazon/SGL-Apr-19-2025_23-19-11.pth
+Sun 20 Apr 2025 01:11:39 INFO  epoch 16 training [time: 372.76s, train loss: 1116354.1239]
+Sun 20 Apr 2025 01:12:04 INFO  epoch 16 evaluating [time: 24.92s, valid_score: 0.066700]
+Sun 20 Apr 2025 01:12:04 INFO  valid result: 
+mrr@10 : 0.0667
+Sun 20 Apr 2025 01:12:04 INFO  Saving current: ./saved/amazon/SGL-Apr-19-2025_23-19-11.pth
+Sun 20 Apr 2025 01:18:17 INFO  epoch 17 training [time: 372.77s, train loss: 1112616.7582]
+Sun 20 Apr 2025 01:18:43 INFO  epoch 17 evaluating [time: 25.53s, valid_score: 0.067300]
+Sun 20 Apr 2025 01:18:43 INFO  valid result: 
+mrr@10 : 0.0673
+Sun 20 Apr 2025 01:18:43 INFO  Saving current: ./saved/amazon/SGL-Apr-19-2025_23-19-11.pth
+Sun 20 Apr 2025 01:24:56 INFO  epoch 18 training [time: 372.88s, train loss: 1109173.2985]
+Sun 20 Apr 2025 01:25:21 INFO  epoch 18 evaluating [time: 25.17s, valid_score: 0.068300]
+Sun 20 Apr 2025 01:25:21 INFO  valid result: 
+mrr@10 : 0.0683
+Sun 20 Apr 2025 01:25:21 INFO  Saving current: ./saved/amazon/SGL-Apr-19-2025_23-19-11.pth
+Sun 20 Apr 2025 01:31:34 INFO  epoch 19 training [time: 373.01s, train loss: 1105476.1857]
+Sun 20 Apr 2025 01:31:59 INFO  epoch 19 evaluating [time: 25.12s, valid_score: 0.069100]
+Sun 20 Apr 2025 01:31:59 INFO  valid result: 
+mrr@10 : 0.0691
+Sun 20 Apr 2025 01:31:59 INFO  Saving current: ./saved/amazon/SGL-Apr-19-2025_23-19-11.pth
+Sun 20 Apr 2025 01:31:59 INFO  Loading model structure and parameters from ./saved/amazon/SGL-Apr-19-2025_23-19-11.pth

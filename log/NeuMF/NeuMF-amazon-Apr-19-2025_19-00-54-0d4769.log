@@ -1,0 +1,228 @@
+Sat 19 Apr 2025 19:00:54 INFO  
+General Hyper Parameters:
+gpu_id = 0
+use_gpu = True
+seed = 2020
+state = INFO
+reproducibility = True
+data_path = dataset/amazon
+checkpoint_dir = ./saved/amazon/
+show_progress = True
+save_dataset = True
+dataset_save_path = None
+save_dataloaders = True
+dataloaders_save_path = None
+log_wandb = False
+
+Training Hyper Parameters:
+epochs = 20
+train_batch_size = 2048
+learner = adam
+learning_rate = 0.001
+train_neg_sample_args = {'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}
+eval_step = 1
+stopping_step = 50
+clip_grad_norm = None
+weight_decay = 0.0
+loss_decimal_place = 4
+
+Evaluation Hyper Parameters:
+eval_args = {'split': {'RS': [0.8, 0.1, 0.1]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}
+repeatable = False
+metrics = ['MRR']
+topk = [10]
+valid_metric = MRR@10
+valid_metric_bigger = True
+eval_batch_size = 4096
+metric_decimal_place = 4
+
+Dataset Hyper Parameters:
+field_separator = 	
+seq_separator =  
+USER_ID_FIELD = user_id
+ITEM_ID_FIELD = item_id
+RATING_FIELD = rating
+TIME_FIELD = timestamp
+seq_len = None
+LABEL_FIELD = label
+threshold = None
+NEG_PREFIX = neg_
+load_col = {'inter': ['user_id', 'item_id']}
+unload_col = None
+unused_col = None
+additional_feat_suffix = None
+rm_dup_inter = None
+val_interval = None
+filter_inter_by_user_or_item = True
+user_inter_num_interval = [0,inf)
+item_inter_num_interval = [0,inf)
+alias_of_user_id = None
+alias_of_item_id = None
+alias_of_entity_id = None
+alias_of_relation_id = None
+preload_weight = None
+normalize_field = None
+normalize_all = None
+ITEM_LIST_LENGTH_FIELD = item_length
+LIST_SUFFIX = _list
+MAX_ITEM_LIST_LENGTH = 50
+POSITION_FIELD = position_id
+HEAD_ENTITY_ID_FIELD = head_id
+TAIL_ENTITY_ID_FIELD = tail_id
+RELATION_ID_FIELD = relation_id
+ENTITY_ID_FIELD = entity_id
+benchmark_filename = None
+
+Other Hyper Parameters: 
+worker = 0
+wandb_project = recbole
+shuffle = True
+require_pow = False
+enable_amp = False
+enable_scaler = False
+transform = None
+mf_embedding_size = 64
+mlp_embedding_size = 64
+mlp_hidden_size = [128, 64]
+dropout_prob = 0.1
+mf_train = True
+mlp_train = True
+use_pretrain = False
+mf_pretrain_path = None
+mlp_pretrain_path = None
+numerical_features = []
+discretization = None
+kg_reverse_r = False
+entity_kg_num_interval = [0,inf)
+relation_kg_num_interval = [0,inf)
+MODEL_TYPE = ModelType.GENERAL
+MODEL_INPUT_TYPE = InputType.POINTWISE
+eval_type = EvaluatorType.RANKING
+single_spec = True
+local_rank = 0
+device = cuda
+eval_neg_sample_args = {'distribution': 'uniform', 'sample_num': 'none'}
+
+
+Sat 19 Apr 2025 19:00:54 INFO  Load filtered dataset from: [./saved/amazon/amazon-Dataset.pth]
+Sat 19 Apr 2025 19:00:54 INFO  amazon
+The number of users: 22156
+Average actions of users: 66.16434213495825
+The number of items: 54459
+Average actions of items: 26.917459326453415
+The number of inters: 1465871
+The sparsity of the dataset: 99.87851162187994%
+Remain Fields: ['user_id', 'item_id']
+Sat 19 Apr 2025 19:01:02 INFO  Load split dataloaders from: [./saved/amazon/amazon-for-NeuMF-dataloader.pth]
+Sat 19 Apr 2025 19:01:02 INFO  [Training]: train_batch_size = [2048] train_neg_sample_args: [{'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}]
+Sat 19 Apr 2025 19:01:02 INFO  [Evaluation]: eval_batch_size = [4096] eval_args: [{'split': {'RS': [0.8, 0.1, 0.1]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}]
+Sat 19 Apr 2025 19:01:04 INFO  NeuMF(
+  (user_mf_embedding): Embedding(22156, 64)
+  (item_mf_embedding): Embedding(54459, 64)
+  (user_mlp_embedding): Embedding(22156, 64)
+  (item_mlp_embedding): Embedding(54459, 64)
+  (mlp_layers): MLPLayers(
+    (mlp_layers): Sequential(
+      (0): Dropout(p=0.1, inplace=False)
+      (1): Linear(in_features=128, out_features=128, bias=True)
+      (2): ReLU()
+      (3): Dropout(p=0.1, inplace=False)
+      (4): Linear(in_features=128, out_features=64, bias=True)
+      (5): ReLU()
+    )
+  )
+  (predict_layer): Linear(in_features=128, out_features=1, bias=True)
+  (sigmoid): Sigmoid()
+  (loss): BCEWithLogitsLoss()
+)
+Trainable parameters: 9831617
+Sat 19 Apr 2025 19:01:20 INFO  epoch 0 training [time: 9.03s, train loss: 656.6253]
+Sat 19 Apr 2025 19:04:53 INFO  epoch 0 evaluating [time: 213.72s, valid_score: 0.023700]
+Sat 19 Apr 2025 19:04:53 INFO  valid result: 
+mrr@10 : 0.0237
+Sat 19 Apr 2025 19:04:53 INFO  Saving current: ./saved/amazon/NeuMF-Apr-19-2025_19-01-04.pth
+Sat 19 Apr 2025 19:05:01 INFO  epoch 1 training [time: 7.92s, train loss: 432.6376]
+Sat 19 Apr 2025 19:08:34 INFO  epoch 1 evaluating [time: 212.82s, valid_score: 0.032300]
+Sat 19 Apr 2025 19:08:34 INFO  valid result: 
+mrr@10 : 0.0323
+Sat 19 Apr 2025 19:08:34 INFO  Saving current: ./saved/amazon/NeuMF-Apr-19-2025_19-01-04.pth
+Sat 19 Apr 2025 19:08:42 INFO  epoch 2 training [time: 7.90s, train loss: 315.2844]
+Sat 19 Apr 2025 19:12:20 INFO  epoch 2 evaluating [time: 217.48s, valid_score: 0.037900]
+Sat 19 Apr 2025 19:12:20 INFO  valid result: 
+mrr@10 : 0.0379
+Sat 19 Apr 2025 19:12:20 INFO  Saving current: ./saved/amazon/NeuMF-Apr-19-2025_19-01-04.pth
+Sat 19 Apr 2025 19:12:28 INFO  epoch 3 training [time: 7.96s, train loss: 248.2003]
+Sat 19 Apr 2025 19:16:05 INFO  epoch 3 evaluating [time: 217.37s, valid_score: 0.039800]
+Sat 19 Apr 2025 19:16:05 INFO  valid result: 
+mrr@10 : 0.0398
+Sat 19 Apr 2025 19:16:05 INFO  Saving current: ./saved/amazon/NeuMF-Apr-19-2025_19-01-04.pth
+Sat 19 Apr 2025 19:16:13 INFO  epoch 4 training [time: 7.90s, train loss: 200.9314]
+Sat 19 Apr 2025 19:19:57 INFO  epoch 4 evaluating [time: 223.46s, valid_score: 0.043800]
+Sat 19 Apr 2025 19:19:57 INFO  valid result: 
+mrr@10 : 0.0438
+Sat 19 Apr 2025 19:19:57 INFO  Saving current: ./saved/amazon/NeuMF-Apr-19-2025_19-01-04.pth
+Sat 19 Apr 2025 19:20:05 INFO  epoch 5 training [time: 7.94s, train loss: 167.5718]
+Sat 19 Apr 2025 19:23:43 INFO  epoch 5 evaluating [time: 218.32s, valid_score: 0.045400]
+Sat 19 Apr 2025 19:23:43 INFO  valid result: 
+mrr@10 : 0.0454
+Sat 19 Apr 2025 19:23:43 INFO  Saving current: ./saved/amazon/NeuMF-Apr-19-2025_19-01-04.pth
+Sat 19 Apr 2025 19:23:51 INFO  epoch 6 training [time: 7.97s, train loss: 143.7743]
+Sat 19 Apr 2025 19:27:30 INFO  epoch 6 evaluating [time: 219.04s, valid_score: 0.044200]
+Sat 19 Apr 2025 19:27:30 INFO  valid result: 
+mrr@10 : 0.0442
+Sat 19 Apr 2025 19:27:38 INFO  epoch 7 training [time: 7.99s, train loss: 125.3724]
+Sat 19 Apr 2025 19:31:25 INFO  epoch 7 evaluating [time: 226.50s, valid_score: 0.044400]
+Sat 19 Apr 2025 19:31:25 INFO  valid result: 
+mrr@10 : 0.0444
+Sat 19 Apr 2025 19:31:33 INFO  epoch 8 training [time: 7.90s, train loss: 112.1102]
+Sat 19 Apr 2025 19:35:19 INFO  epoch 8 evaluating [time: 226.61s, valid_score: 0.044500]
+Sat 19 Apr 2025 19:35:19 INFO  valid result: 
+mrr@10 : 0.0445
+Sat 19 Apr 2025 19:35:27 INFO  epoch 9 training [time: 7.89s, train loss: 102.6390]
+Sat 19 Apr 2025 19:39:11 INFO  epoch 9 evaluating [time: 224.45s, valid_score: 0.045000]
+Sat 19 Apr 2025 19:39:11 INFO  valid result: 
+mrr@10 : 0.045
+Sat 19 Apr 2025 19:39:19 INFO  epoch 10 training [time: 7.92s, train loss: 94.3557]
+Sat 19 Apr 2025 19:42:59 INFO  epoch 10 evaluating [time: 219.48s, valid_score: 0.048100]
+Sat 19 Apr 2025 19:42:59 INFO  valid result: 
+mrr@10 : 0.0481
+Sat 19 Apr 2025 19:42:59 INFO  Saving current: ./saved/amazon/NeuMF-Apr-19-2025_19-01-04.pth
+Sat 19 Apr 2025 19:43:07 INFO  epoch 11 training [time: 7.91s, train loss: 88.2836]
+Sat 19 Apr 2025 19:46:49 INFO  epoch 11 evaluating [time: 221.70s, valid_score: 0.046100]
+Sat 19 Apr 2025 19:46:49 INFO  valid result: 
+mrr@10 : 0.0461
+Sat 19 Apr 2025 19:46:57 INFO  epoch 12 training [time: 7.93s, train loss: 83.0815]
+Sat 19 Apr 2025 19:50:38 INFO  epoch 12 evaluating [time: 221.88s, valid_score: 0.047000]
+Sat 19 Apr 2025 19:50:38 INFO  valid result: 
+mrr@10 : 0.047
+Sat 19 Apr 2025 19:50:46 INFO  epoch 13 training [time: 7.92s, train loss: 78.4788]
+Sat 19 Apr 2025 19:54:31 INFO  epoch 13 evaluating [time: 224.18s, valid_score: 0.047000]
+Sat 19 Apr 2025 19:54:31 INFO  valid result: 
+mrr@10 : 0.047
+Sat 19 Apr 2025 19:54:38 INFO  epoch 14 training [time: 7.90s, train loss: 74.3530]
+Sat 19 Apr 2025 19:58:18 INFO  epoch 14 evaluating [time: 219.93s, valid_score: 0.047800]
+Sat 19 Apr 2025 19:58:18 INFO  valid result: 
+mrr@10 : 0.0478
+Sat 19 Apr 2025 19:58:26 INFO  epoch 15 training [time: 7.89s, train loss: 71.1481]
+Sat 19 Apr 2025 20:02:10 INFO  epoch 15 evaluating [time: 223.89s, valid_score: 0.047800]
+Sat 19 Apr 2025 20:02:10 INFO  valid result: 
+mrr@10 : 0.0478
+Sat 19 Apr 2025 20:02:18 INFO  epoch 16 training [time: 7.92s, train loss: 68.6016]
+Sat 19 Apr 2025 20:06:00 INFO  epoch 16 evaluating [time: 221.94s, valid_score: 0.047800]
+Sat 19 Apr 2025 20:06:00 INFO  valid result: 
+mrr@10 : 0.0478
+Sat 19 Apr 2025 20:06:08 INFO  epoch 17 training [time: 7.90s, train loss: 66.4929]
+Sat 19 Apr 2025 20:09:48 INFO  epoch 17 evaluating [time: 219.88s, valid_score: 0.048800]
+Sat 19 Apr 2025 20:09:48 INFO  valid result: 
+mrr@10 : 0.0488
+Sat 19 Apr 2025 20:09:48 INFO  Saving current: ./saved/amazon/NeuMF-Apr-19-2025_19-01-04.pth
+Sat 19 Apr 2025 20:09:56 INFO  epoch 18 training [time: 7.91s, train loss: 64.2580]
+Sat 19 Apr 2025 20:13:37 INFO  epoch 18 evaluating [time: 220.96s, valid_score: 0.047900]
+Sat 19 Apr 2025 20:13:37 INFO  valid result: 
+mrr@10 : 0.0479
+Sat 19 Apr 2025 20:13:45 INFO  epoch 19 training [time: 7.91s, train loss: 62.2729]
+Sat 19 Apr 2025 20:17:27 INFO  epoch 19 evaluating [time: 221.90s, valid_score: 0.048800]
+Sat 19 Apr 2025 20:17:27 INFO  valid result: 
+mrr@10 : 0.0488
+Sat 19 Apr 2025 20:17:27 INFO  Saving current: ./saved/amazon/NeuMF-Apr-19-2025_19-01-04.pth
+Sat 19 Apr 2025 20:17:27 INFO  Loading model structure and parameters from ./saved/amazon/NeuMF-Apr-19-2025_19-01-04.pth

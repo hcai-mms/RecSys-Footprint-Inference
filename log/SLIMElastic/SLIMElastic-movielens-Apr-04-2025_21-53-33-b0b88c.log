@@ -1,0 +1,366 @@
+Fri 04 Apr 2025 21:53:33 INFO  
+General Hyper Parameters:
+gpu_id = 0
+use_gpu = True
+seed = 2020
+state = INFO
+reproducibility = True
+data_path = dataset/movielens
+checkpoint_dir = ./saved/movielens/
+show_progress = True
+save_dataset = True
+dataset_save_path = None
+save_dataloaders = True
+dataloaders_save_path = None
+log_wandb = False
+
+Training Hyper Parameters:
+epochs = 50
+train_batch_size = 2048
+learner = adam
+learning_rate = 0.001
+train_neg_sample_args = {'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}
+eval_step = 1
+stopping_step = 50
+clip_grad_norm = None
+weight_decay = 0.0
+loss_decimal_place = 4
+
+Evaluation Hyper Parameters:
+eval_args = {'split': {'RS': [0.8, 0.1, 0.1]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}
+repeatable = False
+metrics = ['Recall', 'MRR', 'NDCG', 'Hit', 'MAP', 'Precision', 'GAUC', 'ItemCoverage', 'AveragePopularity', 'GiniIndex', 'ShannonEntropy', 'TailPercentage']
+topk = [10]
+valid_metric = MRR@10
+valid_metric_bigger = True
+eval_batch_size = 4096
+metric_decimal_place = 4
+
+Dataset Hyper Parameters:
+field_separator = 	
+seq_separator =  
+USER_ID_FIELD = user_id
+ITEM_ID_FIELD = item_id
+RATING_FIELD = rating
+TIME_FIELD = timestamp
+seq_len = None
+LABEL_FIELD = label
+threshold = None
+NEG_PREFIX = neg_
+load_col = {'inter': ['user_id', 'item_id']}
+unload_col = None
+unused_col = None
+additional_feat_suffix = None
+rm_dup_inter = None
+val_interval = None
+filter_inter_by_user_or_item = True
+user_inter_num_interval = [0,inf)
+item_inter_num_interval = [0,inf)
+alias_of_user_id = None
+alias_of_item_id = None
+alias_of_entity_id = None
+alias_of_relation_id = None
+preload_weight = None
+normalize_field = None
+normalize_all = None
+ITEM_LIST_LENGTH_FIELD = item_length
+LIST_SUFFIX = _list
+MAX_ITEM_LIST_LENGTH = 50
+POSITION_FIELD = position_id
+HEAD_ENTITY_ID_FIELD = head_id
+TAIL_ENTITY_ID_FIELD = tail_id
+RELATION_ID_FIELD = relation_id
+ENTITY_ID_FIELD = entity_id
+benchmark_filename = None
+
+Other Hyper Parameters: 
+worker = 0
+wandb_project = recbole
+shuffle = True
+require_pow = False
+enable_amp = False
+enable_scaler = False
+transform = None
+alpha = 0.2
+l1_ratio = 0.02
+positive_only = True
+hide_item = True
+numerical_features = []
+discretization = None
+kg_reverse_r = False
+entity_kg_num_interval = [0,inf)
+relation_kg_num_interval = [0,inf)
+MODEL_TYPE = ModelType.TRADITIONAL
+MODEL_INPUT_TYPE = InputType.POINTWISE
+eval_type = EvaluatorType.RANKING
+single_spec = True
+local_rank = 0
+device = cuda
+eval_neg_sample_args = {'distribution': 'uniform', 'sample_num': 'none'}
+
+
+Fri 04 Apr 2025 21:53:33 INFO  Load filtered dataset from: [./saved/movielens/movielens-Dataset.pth]
+Fri 04 Apr 2025 21:53:33 INFO  movielens
+The number of users: 6037
+Average actions of users: 125.48889993373095
+The number of items: 3193
+Average actions of items: 237.296679197995
+The number of inters: 757451
+The sparsity of the dataset: 96.07052573437805%
+Remain Fields: ['user_id', 'item_id']
+Fri 04 Apr 2025 21:53:35 INFO  Saving split dataloaders into: [./saved/movielens/movielens-for-SLIMElastic-dataloader.pth]
+Fri 04 Apr 2025 21:53:38 INFO  [Training]: train_batch_size = [2048] train_neg_sample_args: [{'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}]
+Fri 04 Apr 2025 21:53:38 INFO  [Evaluation]: eval_batch_size = [4096] eval_args: [{'split': {'RS': [0.8, 0.1, 0.1]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}]
+Fri 04 Apr 2025 21:57:08 INFO  SLIMElastic()
+Trainable parameters: 1
+Fri 04 Apr 2025 21:57:14 INFO  epoch 0 training [time: 1.17s, train loss: 0.0000]
+Fri 04 Apr 2025 21:57:36 INFO  epoch 0 evaluating [time: 21.54s, valid_score: 0.259100]
+Fri 04 Apr 2025 21:57:36 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 21:57:36 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 21:57:37 INFO  epoch 1 training [time: 1.09s, train loss: 0.0000]
+Fri 04 Apr 2025 21:57:59 INFO  epoch 1 evaluating [time: 21.52s, valid_score: 0.259100]
+Fri 04 Apr 2025 21:57:59 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 21:57:59 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 21:58:00 INFO  epoch 2 training [time: 1.13s, train loss: 0.0000]
+Fri 04 Apr 2025 21:58:21 INFO  epoch 2 evaluating [time: 21.01s, valid_score: 0.259100]
+Fri 04 Apr 2025 21:58:21 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 21:58:22 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 21:58:23 INFO  epoch 3 training [time: 1.11s, train loss: 0.0000]
+Fri 04 Apr 2025 21:58:44 INFO  epoch 3 evaluating [time: 21.02s, valid_score: 0.259100]
+Fri 04 Apr 2025 21:58:44 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 21:58:44 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 21:58:45 INFO  epoch 4 training [time: 1.09s, train loss: 0.0000]
+Fri 04 Apr 2025 21:59:06 INFO  epoch 4 evaluating [time: 20.93s, valid_score: 0.259100]
+Fri 04 Apr 2025 21:59:06 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 21:59:07 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 21:59:08 INFO  epoch 5 training [time: 1.12s, train loss: 0.0000]
+Fri 04 Apr 2025 21:59:29 INFO  epoch 5 evaluating [time: 20.64s, valid_score: 0.259100]
+Fri 04 Apr 2025 21:59:29 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 21:59:29 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 21:59:30 INFO  epoch 6 training [time: 1.07s, train loss: 0.0000]
+Fri 04 Apr 2025 21:59:51 INFO  epoch 6 evaluating [time: 21.25s, valid_score: 0.259100]
+Fri 04 Apr 2025 21:59:51 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 21:59:52 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 21:59:53 INFO  epoch 7 training [time: 1.09s, train loss: 0.0000]
+Fri 04 Apr 2025 22:00:14 INFO  epoch 7 evaluating [time: 20.74s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:00:14 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:00:14 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:00:15 INFO  epoch 8 training [time: 1.19s, train loss: 0.0000]
+Fri 04 Apr 2025 22:00:36 INFO  epoch 8 evaluating [time: 20.68s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:00:36 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:00:37 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:00:38 INFO  epoch 9 training [time: 1.09s, train loss: 0.0000]
+Fri 04 Apr 2025 22:00:58 INFO  epoch 9 evaluating [time: 20.49s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:00:58 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:00:59 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:01:00 INFO  epoch 10 training [time: 1.13s, train loss: 0.0000]
+Fri 04 Apr 2025 22:01:21 INFO  epoch 10 evaluating [time: 20.69s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:01:21 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:01:21 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:01:22 INFO  epoch 11 training [time: 1.04s, train loss: 0.0000]
+Fri 04 Apr 2025 22:01:43 INFO  epoch 11 evaluating [time: 21.14s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:01:43 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:01:44 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:01:45 INFO  epoch 12 training [time: 1.18s, train loss: 0.0000]
+Fri 04 Apr 2025 22:02:06 INFO  epoch 12 evaluating [time: 20.76s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:02:06 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:02:06 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:02:07 INFO  epoch 13 training [time: 1.19s, train loss: 0.0000]
+Fri 04 Apr 2025 22:02:28 INFO  epoch 13 evaluating [time: 20.46s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:02:28 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:02:28 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:02:29 INFO  epoch 14 training [time: 1.17s, train loss: 0.0000]
+Fri 04 Apr 2025 22:02:50 INFO  epoch 14 evaluating [time: 20.46s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:02:50 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:02:50 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:02:52 INFO  epoch 15 training [time: 1.13s, train loss: 0.0000]
+Fri 04 Apr 2025 22:03:12 INFO  epoch 15 evaluating [time: 20.65s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:03:12 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:03:13 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:03:14 INFO  epoch 16 training [time: 1.14s, train loss: 0.0000]
+Fri 04 Apr 2025 22:03:34 INFO  epoch 16 evaluating [time: 20.63s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:03:34 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:03:35 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:03:36 INFO  epoch 17 training [time: 1.16s, train loss: 0.0000]
+Fri 04 Apr 2025 22:03:57 INFO  epoch 17 evaluating [time: 20.58s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:03:57 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:03:57 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:03:58 INFO  epoch 18 training [time: 1.15s, train loss: 0.0000]
+Fri 04 Apr 2025 22:04:19 INFO  epoch 18 evaluating [time: 20.61s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:04:19 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:04:20 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:04:21 INFO  epoch 19 training [time: 1.06s, train loss: 0.0000]
+Fri 04 Apr 2025 22:04:42 INFO  epoch 19 evaluating [time: 21.91s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:04:42 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:04:43 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:04:44 INFO  epoch 20 training [time: 1.11s, train loss: 0.0000]
+Fri 04 Apr 2025 22:05:05 INFO  epoch 20 evaluating [time: 21.13s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:05:05 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:05:06 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:05:07 INFO  epoch 21 training [time: 1.16s, train loss: 0.0000]
+Fri 04 Apr 2025 22:05:27 INFO  epoch 21 evaluating [time: 20.61s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:05:27 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:05:28 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:05:29 INFO  epoch 22 training [time: 1.12s, train loss: 0.0000]
+Fri 04 Apr 2025 22:05:50 INFO  epoch 22 evaluating [time: 20.53s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:05:50 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:05:50 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:05:51 INFO  epoch 23 training [time: 1.09s, train loss: 0.0000]
+Fri 04 Apr 2025 22:06:12 INFO  epoch 23 evaluating [time: 20.69s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:06:12 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:06:12 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:06:14 INFO  epoch 24 training [time: 1.18s, train loss: 0.0000]
+Fri 04 Apr 2025 22:06:34 INFO  epoch 24 evaluating [time: 20.38s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:06:34 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:06:34 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:06:36 INFO  epoch 25 training [time: 1.16s, train loss: 0.0000]
+Fri 04 Apr 2025 22:06:57 INFO  epoch 25 evaluating [time: 21.51s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:06:57 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:06:58 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:06:59 INFO  epoch 26 training [time: 1.16s, train loss: 0.0000]
+Fri 04 Apr 2025 22:07:19 INFO  epoch 26 evaluating [time: 20.40s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:07:19 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:07:20 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:07:21 INFO  epoch 27 training [time: 1.16s, train loss: 0.0000]
+Fri 04 Apr 2025 22:07:41 INFO  epoch 27 evaluating [time: 20.48s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:07:41 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:07:42 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:07:43 INFO  epoch 28 training [time: 1.13s, train loss: 0.0000]
+Fri 04 Apr 2025 22:08:04 INFO  epoch 28 evaluating [time: 21.10s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:08:04 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:08:05 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:08:06 INFO  epoch 29 training [time: 1.11s, train loss: 0.0000]
+Fri 04 Apr 2025 22:08:26 INFO  epoch 29 evaluating [time: 20.41s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:08:26 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:08:27 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:08:28 INFO  epoch 30 training [time: 1.13s, train loss: 0.0000]
+Fri 04 Apr 2025 22:08:48 INFO  epoch 30 evaluating [time: 20.79s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:08:48 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:08:49 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:08:50 INFO  epoch 31 training [time: 1.15s, train loss: 0.0000]
+Fri 04 Apr 2025 22:09:11 INFO  epoch 31 evaluating [time: 21.03s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:09:11 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:09:12 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:09:13 INFO  epoch 32 training [time: 1.13s, train loss: 0.0000]
+Fri 04 Apr 2025 22:09:34 INFO  epoch 32 evaluating [time: 20.89s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:09:34 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:09:34 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:09:35 INFO  epoch 33 training [time: 1.09s, train loss: 0.0000]
+Fri 04 Apr 2025 22:09:57 INFO  epoch 33 evaluating [time: 21.46s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:09:57 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:09:57 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:09:58 INFO  epoch 34 training [time: 1.14s, train loss: 0.0000]
+Fri 04 Apr 2025 22:10:19 INFO  epoch 34 evaluating [time: 20.47s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:10:19 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:10:19 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:10:20 INFO  epoch 35 training [time: 1.09s, train loss: 0.0000]
+Fri 04 Apr 2025 22:10:42 INFO  epoch 35 evaluating [time: 21.09s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:10:42 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:10:42 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:10:43 INFO  epoch 36 training [time: 1.09s, train loss: 0.0000]
+Fri 04 Apr 2025 22:11:05 INFO  epoch 36 evaluating [time: 22.15s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:11:05 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:11:06 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:11:07 INFO  epoch 37 training [time: 1.08s, train loss: 0.0000]
+Fri 04 Apr 2025 22:11:27 INFO  epoch 37 evaluating [time: 20.62s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:11:27 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:11:28 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:11:29 INFO  epoch 38 training [time: 1.18s, train loss: 0.0000]
+Fri 04 Apr 2025 22:11:50 INFO  epoch 38 evaluating [time: 20.73s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:11:50 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:11:50 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:11:51 INFO  epoch 39 training [time: 1.10s, train loss: 0.0000]
+Fri 04 Apr 2025 22:12:13 INFO  epoch 39 evaluating [time: 21.95s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:12:13 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:12:14 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:12:15 INFO  epoch 40 training [time: 1.08s, train loss: 0.0000]
+Fri 04 Apr 2025 22:12:36 INFO  epoch 40 evaluating [time: 21.54s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:12:36 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:12:37 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:12:38 INFO  epoch 41 training [time: 1.09s, train loss: 0.0000]
+Fri 04 Apr 2025 22:12:59 INFO  epoch 41 evaluating [time: 20.95s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:12:59 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:13:00 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:13:01 INFO  epoch 42 training [time: 1.07s, train loss: 0.0000]
+Fri 04 Apr 2025 22:13:22 INFO  epoch 42 evaluating [time: 21.06s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:13:22 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:13:22 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:13:23 INFO  epoch 43 training [time: 1.05s, train loss: 0.0000]
+Fri 04 Apr 2025 22:13:44 INFO  epoch 43 evaluating [time: 20.45s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:13:44 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:13:44 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:13:45 INFO  epoch 44 training [time: 1.09s, train loss: 0.0000]
+Fri 04 Apr 2025 22:14:07 INFO  epoch 44 evaluating [time: 21.38s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:14:07 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:14:07 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:14:08 INFO  epoch 45 training [time: 1.12s, train loss: 0.0000]
+Fri 04 Apr 2025 22:14:30 INFO  epoch 45 evaluating [time: 21.61s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:14:30 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:14:30 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:14:31 INFO  epoch 46 training [time: 1.11s, train loss: 0.0000]
+Fri 04 Apr 2025 22:14:52 INFO  epoch 46 evaluating [time: 20.49s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:14:52 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:14:52 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:14:53 INFO  epoch 47 training [time: 1.07s, train loss: 0.0000]
+Fri 04 Apr 2025 22:15:15 INFO  epoch 47 evaluating [time: 21.38s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:15:15 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:15:15 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:15:16 INFO  epoch 48 training [time: 1.11s, train loss: 0.0000]
+Fri 04 Apr 2025 22:15:38 INFO  epoch 48 evaluating [time: 21.50s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:15:38 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:15:38 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:15:40 INFO  epoch 49 training [time: 1.09s, train loss: 0.0000]
+Fri 04 Apr 2025 22:16:00 INFO  epoch 49 evaluating [time: 20.57s, valid_score: 0.259100]
+Fri 04 Apr 2025 22:16:00 INFO  valid result: 
+recall@10 : 0.1393    mrr@10 : 0.2591    ndcg@10 : 0.143    hit@10 : 0.6115    map@10 : 0.0701    precision@10 : 0.0989    gauc : 0.8745    itemcoverage@10 : 0.197    averagepopularity@10 : 1244.9458    giniindex@10 : 0.961    shannonentropy@10 : 0.0081    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 22:16:01 INFO  Saving current: ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth
+Fri 04 Apr 2025 22:16:01 INFO  Loading model structure and parameters from ./saved/movielens/SLIMElastic-Apr-04-2025_21-57-08.pth

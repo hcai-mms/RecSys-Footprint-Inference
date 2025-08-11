@@ -1,0 +1,226 @@
+Thu 10 Apr 2025 15:03:26 INFO  
+General Hyper Parameters:
+gpu_id = 0
+use_gpu = True
+seed = 2020
+state = INFO
+reproducibility = True
+data_path = dataset/amazon
+checkpoint_dir = ./saved/amazon/
+show_progress = True
+save_dataset = True
+dataset_save_path = None
+save_dataloaders = False
+dataloaders_save_path = None
+log_wandb = False
+
+Training Hyper Parameters:
+epochs = 20
+train_batch_size = 2048
+learner = adam
+learning_rate = 0.001
+train_neg_sample_args = {'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}
+eval_step = 1
+stopping_step = 50
+clip_grad_norm = None
+weight_decay = 0.0
+loss_decimal_place = 4
+
+Evaluation Hyper Parameters:
+eval_args = {'split': {'RS': [0.8, 0.1, 0.1]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}
+repeatable = False
+metrics = ['Recall', 'MRR', 'NDCG', 'Hit', 'MAP', 'Precision', 'GAUC', 'ItemCoverage', 'AveragePopularity', 'GiniIndex', 'ShannonEntropy', 'TailPercentage']
+topk = [10]
+valid_metric = MRR@10
+valid_metric_bigger = True
+eval_batch_size = 4096
+metric_decimal_place = 4
+
+Dataset Hyper Parameters:
+field_separator = 	
+seq_separator =  
+USER_ID_FIELD = user_id
+ITEM_ID_FIELD = item_id
+RATING_FIELD = rating
+TIME_FIELD = timestamp
+seq_len = None
+LABEL_FIELD = label
+threshold = None
+NEG_PREFIX = neg_
+load_col = {'inter': ['user_id', 'item_id', 'rating', 'timestamp'], 'kg': ['head_id', 'relation_id', 'tail_id'], 'link': ['item_id', 'entity_id']}
+unload_col = None
+unused_col = None
+additional_feat_suffix = None
+rm_dup_inter = None
+val_interval = None
+filter_inter_by_user_or_item = True
+user_inter_num_interval = [0,inf)
+item_inter_num_interval = [0,inf)
+alias_of_user_id = None
+alias_of_item_id = None
+alias_of_entity_id = None
+alias_of_relation_id = None
+preload_weight = None
+normalize_field = None
+normalize_all = None
+ITEM_LIST_LENGTH_FIELD = item_length
+LIST_SUFFIX = _list
+MAX_ITEM_LIST_LENGTH = 50
+POSITION_FIELD = position_id
+HEAD_ENTITY_ID_FIELD = head_id
+TAIL_ENTITY_ID_FIELD = tail_id
+RELATION_ID_FIELD = relation_id
+ENTITY_ID_FIELD = entity_id
+benchmark_filename = None
+
+Other Hyper Parameters: 
+worker = 0
+wandb_project = recbole
+shuffle = True
+require_pow = False
+enable_amp = False
+enable_scaler = False
+transform = None
+embedding_size = 64
+n_hop = 2
+n_memory = 16
+kg_weight = 0.01
+reg_weight = 1e-07
+numerical_features = []
+discretization = None
+kg_reverse_r = False
+entity_kg_num_interval = [0,inf)
+relation_kg_num_interval = [0,inf)
+MODEL_TYPE = ModelType.KNOWLEDGE
+MODEL_INPUT_TYPE = InputType.POINTWISE
+eval_type = EvaluatorType.RANKING
+single_spec = True
+local_rank = 0
+device = cuda
+eval_neg_sample_args = {'distribution': 'uniform', 'sample_num': 'none'}
+
+
+Thu 10 Apr 2025 15:03:32 INFO  Saving filtered dataset into [./saved/amazon/amazon-dataset.pth]
+Thu 10 Apr 2025 15:03:32 INFO  amazon
+The number of users: 20201
+Average actions of users: 17.4280198019802
+The number of items: 10879
+Average actions of items: 32.36311822026108
+The number of inters: 352046
+The sparsity of the dataset: 99.83980920055674%
+Remain Fields: ['entity_id', 'user_id', 'item_id', 'rating', 'head_id', 'tail_id', 'relation_id']
+The number of entities: 26316
+The number of relations: 18
+The number of triples: 96476
+The number of items that have been linked to KG: 10878
+Thu 10 Apr 2025 15:03:33 INFO  [Training]: train_batch_size = [2048] train_neg_sample_args: [{'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}]
+Thu 10 Apr 2025 15:03:33 INFO  [Evaluation]: eval_batch_size = [4096] eval_args: [{'split': {'RS': [0.8, 0.1, 0.1]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}]
+Thu 10 Apr 2025 15:03:38 INFO  0 among 20200 users are padded
+Thu 10 Apr 2025 15:03:38 INFO  RippleNet(
+  (entity_embedding): Embedding(26316, 64)
+  (relation_embedding): Embedding(18, 4096)
+  (transform_matrix): Linear(in_features=64, out_features=64, bias=False)
+  (softmax): Softmax(dim=1)
+  (sigmoid): Sigmoid()
+  (rec_loss): BPRLoss()
+  (l2_loss): EmbLoss()
+  (loss): BCEWithLogitsLoss()
+)
+Trainable parameters: 1762048
+Thu 10 Apr 2025 15:04:55 INFO  epoch 0 training [time: 71.90s, train loss: 158.2426]
+Thu 10 Apr 2025 15:06:03 INFO  epoch 0 evaluating [time: 67.22s, valid_score: 0.014400]
+Thu 10 Apr 2025 15:06:03 INFO  valid result: 
+recall@10 : 0.0253    mrr@10 : 0.0144    ndcg@10 : 0.0138    hit@10 : 0.0426    map@10 : 0.0082    precision@10 : 0.0045    gauc : 0.8006    itemcoverage@10 : 0.0244    averagepopularity@10 : 234.8799    giniindex@10 : 0.9959    shannonentropy@10 : 0.0155    tailpercentage@10 : 0.0083
+Thu 10 Apr 2025 15:06:08 INFO  Saving current: ./saved/amazon/RippleNet-Apr-10-2025_15-03-38.pth
+Thu 10 Apr 2025 15:07:20 INFO  epoch 1 training [time: 72.03s, train loss: 125.9215]
+Thu 10 Apr 2025 15:08:27 INFO  epoch 1 evaluating [time: 67.14s, valid_score: 0.016400]
+Thu 10 Apr 2025 15:08:27 INFO  valid result: 
+recall@10 : 0.032    mrr@10 : 0.0164    ndcg@10 : 0.0169    hit@10 : 0.0518    map@10 : 0.0101    precision@10 : 0.0055    gauc : 0.8449    itemcoverage@10 : 0.0345    averagepopularity@10 : 211.1857    giniindex@10 : 0.9925    shannonentropy@10 : 0.0125    tailpercentage@10 : 0.0026
+Thu 10 Apr 2025 15:08:33 INFO  Saving current: ./saved/amazon/RippleNet-Apr-10-2025_15-03-38.pth
+Thu 10 Apr 2025 15:09:44 INFO  epoch 2 training [time: 71.88s, train loss: 114.0480]
+Thu 10 Apr 2025 15:10:54 INFO  epoch 2 evaluating [time: 69.24s, valid_score: 0.019900]
+Thu 10 Apr 2025 15:10:54 INFO  valid result: 
+recall@10 : 0.0387    mrr@10 : 0.0199    ndcg@10 : 0.0209    hit@10 : 0.0599    map@10 : 0.013    precision@10 : 0.0062    gauc : 0.8631    itemcoverage@10 : 0.0488    averagepopularity@10 : 187.2399    giniindex@10 : 0.9889    shannonentropy@10 : 0.0096    tailpercentage@10 : 0.0031
+Thu 10 Apr 2025 15:10:59 INFO  Saving current: ./saved/amazon/RippleNet-Apr-10-2025_15-03-38.pth
+Thu 10 Apr 2025 15:12:11 INFO  epoch 3 training [time: 71.98s, train loss: 107.7344]
+Thu 10 Apr 2025 15:13:19 INFO  epoch 3 evaluating [time: 68.55s, valid_score: 0.022200]
+Thu 10 Apr 2025 15:13:19 INFO  valid result: 
+recall@10 : 0.0415    mrr@10 : 0.0222    ndcg@10 : 0.0229    hit@10 : 0.0647    map@10 : 0.0144    precision@10 : 0.0068    gauc : 0.871    itemcoverage@10 : 0.0643    averagepopularity@10 : 190.2741    giniindex@10 : 0.9875    shannonentropy@10 : 0.0074    tailpercentage@10 : 0.0017
+Thu 10 Apr 2025 15:13:25 INFO  Saving current: ./saved/amazon/RippleNet-Apr-10-2025_15-03-38.pth
+Thu 10 Apr 2025 15:14:37 INFO  epoch 4 training [time: 71.95s, train loss: 103.1812]
+Thu 10 Apr 2025 15:15:44 INFO  epoch 4 evaluating [time: 67.31s, valid_score: 0.022700]
+Thu 10 Apr 2025 15:15:44 INFO  valid result: 
+recall@10 : 0.0445    mrr@10 : 0.0227    ndcg@10 : 0.0238    hit@10 : 0.0696    map@10 : 0.0146    precision@10 : 0.0073    gauc : 0.8769    itemcoverage@10 : 0.0862    averagepopularity@10 : 182.4758    giniindex@10 : 0.9845    shannonentropy@10 : 0.0058    tailpercentage@10 : 0.0033
+Thu 10 Apr 2025 15:15:49 INFO  Saving current: ./saved/amazon/RippleNet-Apr-10-2025_15-03-38.pth
+Thu 10 Apr 2025 15:17:01 INFO  epoch 5 training [time: 71.99s, train loss: 98.9712]
+Thu 10 Apr 2025 15:18:08 INFO  epoch 5 evaluating [time: 66.41s, valid_score: 0.026200]
+Thu 10 Apr 2025 15:18:08 INFO  valid result: 
+recall@10 : 0.0489    mrr@10 : 0.0262    ndcg@10 : 0.0269    hit@10 : 0.0754    map@10 : 0.0169    precision@10 : 0.008    gauc : 0.8827    itemcoverage@10 : 0.1178    averagepopularity@10 : 181.7469    giniindex@10 : 0.9806    shannonentropy@10 : 0.0044    tailpercentage@10 : 0.004
+Thu 10 Apr 2025 15:18:13 INFO  Saving current: ./saved/amazon/RippleNet-Apr-10-2025_15-03-38.pth
+Thu 10 Apr 2025 15:19:25 INFO  epoch 6 training [time: 71.98s, train loss: 94.0352]
+Thu 10 Apr 2025 15:20:34 INFO  epoch 6 evaluating [time: 68.62s, valid_score: 0.029700]
+Thu 10 Apr 2025 15:20:34 INFO  valid result: 
+recall@10 : 0.0537    mrr@10 : 0.0297    ndcg@10 : 0.03    hit@10 : 0.0832    map@10 : 0.019    precision@10 : 0.0088    gauc : 0.8911    itemcoverage@10 : 0.1553    averagepopularity@10 : 164.4513    giniindex@10 : 0.9738    shannonentropy@10 : 0.0035    tailpercentage@10 : 0.0045
+Thu 10 Apr 2025 15:20:39 INFO  Saving current: ./saved/amazon/RippleNet-Apr-10-2025_15-03-38.pth
+Thu 10 Apr 2025 15:21:51 INFO  epoch 7 training [time: 72.02s, train loss: 88.8062]
+Thu 10 Apr 2025 15:22:58 INFO  epoch 7 evaluating [time: 67.52s, valid_score: 0.029800]
+Thu 10 Apr 2025 15:22:58 INFO  valid result: 
+recall@10 : 0.0541    mrr@10 : 0.0298    ndcg@10 : 0.0302    hit@10 : 0.0844    map@10 : 0.0191    precision@10 : 0.009    gauc : 0.8957    itemcoverage@10 : 0.1938    averagepopularity@10 : 153.5523    giniindex@10 : 0.966    shannonentropy@10 : 0.0029    tailpercentage@10 : 0.007
+Thu 10 Apr 2025 15:23:04 INFO  Saving current: ./saved/amazon/RippleNet-Apr-10-2025_15-03-38.pth
+Thu 10 Apr 2025 15:24:16 INFO  epoch 8 training [time: 71.83s, train loss: 84.1526]
+Thu 10 Apr 2025 15:25:24 INFO  epoch 8 evaluating [time: 68.51s, valid_score: 0.030500]
+Thu 10 Apr 2025 15:25:24 INFO  valid result: 
+recall@10 : 0.0588    mrr@10 : 0.0305    ndcg@10 : 0.0321    hit@10 : 0.0901    map@10 : 0.0201    precision@10 : 0.0095    gauc : 0.8991    itemcoverage@10 : 0.2304    averagepopularity@10 : 149.7497    giniindex@10 : 0.9592    shannonentropy@10 : 0.0025    tailpercentage@10 : 0.0045
+Thu 10 Apr 2025 15:25:30 INFO  Saving current: ./saved/amazon/RippleNet-Apr-10-2025_15-03-38.pth
+Thu 10 Apr 2025 15:26:41 INFO  epoch 9 training [time: 71.94s, train loss: 80.6155]
+Thu 10 Apr 2025 15:27:49 INFO  epoch 9 evaluating [time: 67.79s, valid_score: 0.033200]
+Thu 10 Apr 2025 15:27:49 INFO  valid result: 
+recall@10 : 0.0624    mrr@10 : 0.0332    ndcg@10 : 0.0344    hit@10 : 0.0946    map@10 : 0.022    precision@10 : 0.01    gauc : 0.9019    itemcoverage@10 : 0.2693    averagepopularity@10 : 138.3329    giniindex@10 : 0.95    shannonentropy@10 : 0.0022    tailpercentage@10 : 0.0049
+Thu 10 Apr 2025 15:27:55 INFO  Saving current: ./saved/amazon/RippleNet-Apr-10-2025_15-03-38.pth
+Thu 10 Apr 2025 15:29:07 INFO  epoch 10 training [time: 72.04s, train loss: 77.1439]
+Thu 10 Apr 2025 15:30:15 INFO  epoch 10 evaluating [time: 68.17s, valid_score: 0.036600]
+Thu 10 Apr 2025 15:30:15 INFO  valid result: 
+recall@10 : 0.0664    mrr@10 : 0.0366    ndcg@10 : 0.0378    hit@10 : 0.099    map@10 : 0.0249    precision@10 : 0.0105    gauc : 0.9034    itemcoverage@10 : 0.308    averagepopularity@10 : 133.1412    giniindex@10 : 0.9435    shannonentropy@10 : 0.002    tailpercentage@10 : 0.0038
+Thu 10 Apr 2025 15:30:20 INFO  Saving current: ./saved/amazon/RippleNet-Apr-10-2025_15-03-38.pth
+Thu 10 Apr 2025 15:31:32 INFO  epoch 11 training [time: 71.77s, train loss: 73.7237]
+Thu 10 Apr 2025 15:32:39 INFO  epoch 11 evaluating [time: 66.91s, valid_score: 0.038800]
+Thu 10 Apr 2025 15:32:39 INFO  valid result: 
+recall@10 : 0.0687    mrr@10 : 0.0388    ndcg@10 : 0.04    hit@10 : 0.1017    map@10 : 0.027    precision@10 : 0.0109    gauc : 0.9048    itemcoverage@10 : 0.3493    averagepopularity@10 : 129.2936    giniindex@10 : 0.9336    shannonentropy@10 : 0.0018    tailpercentage@10 : 0.0039
+Thu 10 Apr 2025 15:32:44 INFO  Saving current: ./saved/amazon/RippleNet-Apr-10-2025_15-03-38.pth
+Thu 10 Apr 2025 15:33:56 INFO  epoch 12 training [time: 71.82s, train loss: 71.2367]
+Thu 10 Apr 2025 15:35:06 INFO  epoch 12 evaluating [time: 70.31s, valid_score: 0.039200]
+Thu 10 Apr 2025 15:35:06 INFO  valid result: 
+recall@10 : 0.0727    mrr@10 : 0.0392    ndcg@10 : 0.041    hit@10 : 0.1063    map@10 : 0.027    precision@10 : 0.0112    gauc : 0.9061    itemcoverage@10 : 0.3851    averagepopularity@10 : 126.7485    giniindex@10 : 0.9234    shannonentropy@10 : 0.0016    tailpercentage@10 : 0.0053
+Thu 10 Apr 2025 15:35:11 INFO  Saving current: ./saved/amazon/RippleNet-Apr-10-2025_15-03-38.pth
+Thu 10 Apr 2025 15:36:24 INFO  epoch 13 training [time: 72.17s, train loss: 68.1904]
+Thu 10 Apr 2025 15:37:32 INFO  epoch 13 evaluating [time: 68.31s, valid_score: 0.039000]
+Thu 10 Apr 2025 15:37:32 INFO  valid result: 
+recall@10 : 0.0749    mrr@10 : 0.039    ndcg@10 : 0.0417    hit@10 : 0.1073    map@10 : 0.0276    precision@10 : 0.0114    gauc : 0.9073    itemcoverage@10 : 0.4288    averagepopularity@10 : 122.0029    giniindex@10 : 0.915    shannonentropy@10 : 0.0015    tailpercentage@10 : 0.0059
+Thu 10 Apr 2025 15:38:44 INFO  epoch 14 training [time: 71.99s, train loss: 65.6059]
+Thu 10 Apr 2025 15:39:54 INFO  epoch 14 evaluating [time: 69.73s, valid_score: 0.042700]
+Thu 10 Apr 2025 15:39:54 INFO  valid result: 
+recall@10 : 0.0804    mrr@10 : 0.0427    ndcg@10 : 0.0454    hit@10 : 0.1135    map@10 : 0.0306    precision@10 : 0.0119    gauc : 0.9083    itemcoverage@10 : 0.4681    averagepopularity@10 : 122.5971    giniindex@10 : 0.9034    shannonentropy@10 : 0.0014    tailpercentage@10 : 0.0055
+Thu 10 Apr 2025 15:39:59 INFO  Saving current: ./saved/amazon/RippleNet-Apr-10-2025_15-03-38.pth
+Thu 10 Apr 2025 15:41:11 INFO  epoch 15 training [time: 72.08s, train loss: 62.9346]
+Thu 10 Apr 2025 15:42:21 INFO  epoch 15 evaluating [time: 70.06s, valid_score: 0.041100]
+Thu 10 Apr 2025 15:42:21 INFO  valid result: 
+recall@10 : 0.0817    mrr@10 : 0.0411    ndcg@10 : 0.0449    hit@10 : 0.1156    map@10 : 0.0295    precision@10 : 0.0123    gauc : 0.909    itemcoverage@10 : 0.5052    averagepopularity@10 : 111.5117    giniindex@10 : 0.8894    shannonentropy@10 : 0.0013    tailpercentage@10 : 0.0052
+Thu 10 Apr 2025 15:43:33 INFO  epoch 16 training [time: 71.78s, train loss: 60.6338]
+Thu 10 Apr 2025 15:44:41 INFO  epoch 16 evaluating [time: 68.13s, valid_score: 0.045700]
+Thu 10 Apr 2025 15:44:41 INFO  valid result: 
+recall@10 : 0.0869    mrr@10 : 0.0457    ndcg@10 : 0.0493    hit@10 : 0.121    map@10 : 0.0334    precision@10 : 0.0129    gauc : 0.9102    itemcoverage@10 : 0.5339    averagepopularity@10 : 107.6385    giniindex@10 : 0.8793    shannonentropy@10 : 0.0013    tailpercentage@10 : 0.0057
+Thu 10 Apr 2025 15:44:46 INFO  Saving current: ./saved/amazon/RippleNet-Apr-10-2025_15-03-38.pth
+Thu 10 Apr 2025 15:45:58 INFO  epoch 17 training [time: 71.84s, train loss: 57.9247]
+Thu 10 Apr 2025 15:47:07 INFO  epoch 17 evaluating [time: 68.97s, valid_score: 0.045600]
+Thu 10 Apr 2025 15:47:07 INFO  valid result: 
+recall@10 : 0.0901    mrr@10 : 0.0456    ndcg@10 : 0.05    hit@10 : 0.1245    map@10 : 0.0334    precision@10 : 0.0131    gauc : 0.9102    itemcoverage@10 : 0.5525    averagepopularity@10 : 108.4928    giniindex@10 : 0.8729    shannonentropy@10 : 0.0012    tailpercentage@10 : 0.0051
+Thu 10 Apr 2025 15:48:19 INFO  epoch 18 training [time: 72.20s, train loss: 55.9105]
+Thu 10 Apr 2025 15:49:28 INFO  epoch 18 evaluating [time: 68.10s, valid_score: 0.049800]
+Thu 10 Apr 2025 15:49:28 INFO  valid result: 
+recall@10 : 0.0959    mrr@10 : 0.0498    ndcg@10 : 0.0543    hit@10 : 0.1321    map@10 : 0.0369    precision@10 : 0.014    gauc : 0.9112    itemcoverage@10 : 0.5763    averagepopularity@10 : 104.3943    giniindex@10 : 0.8625    shannonentropy@10 : 0.0012    tailpercentage@10 : 0.0053
+Thu 10 Apr 2025 15:49:33 INFO  Saving current: ./saved/amazon/RippleNet-Apr-10-2025_15-03-38.pth
+Thu 10 Apr 2025 15:50:45 INFO  epoch 19 training [time: 71.82s, train loss: 53.8916]
+Thu 10 Apr 2025 15:51:53 INFO  epoch 19 evaluating [time: 68.24s, valid_score: 0.049400]
+Thu 10 Apr 2025 15:51:53 INFO  valid result: 
+recall@10 : 0.0972    mrr@10 : 0.0494    ndcg@10 : 0.0545    hit@10 : 0.1333    map@10 : 0.0369    precision@10 : 0.0141    gauc : 0.9116    itemcoverage@10 : 0.6064    averagepopularity@10 : 99.3101    giniindex@10 : 0.8486    shannonentropy@10 : 0.0011    tailpercentage@10 : 0.006
+Thu 10 Apr 2025 15:52:01 INFO  Loading model structure and parameters from ./saved/amazon/RippleNet-Apr-10-2025_15-03-38.pth

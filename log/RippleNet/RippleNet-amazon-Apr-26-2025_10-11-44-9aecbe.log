@@ -1,0 +1,226 @@
+Sat 26 Apr 2025 10:11:44 INFO  
+General Hyper Parameters:
+gpu_id = 0
+use_gpu = True
+seed = 2020
+state = INFO
+reproducibility = True
+data_path = dataset/amazon
+checkpoint_dir = ./saved/amazon/
+show_progress = True
+save_dataset = True
+dataset_save_path = None
+save_dataloaders = False
+dataloaders_save_path = None
+log_wandb = False
+
+Training Hyper Parameters:
+epochs = 20
+train_batch_size = 2048
+learner = adam
+learning_rate = 0.001
+train_neg_sample_args = {'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}
+eval_step = 1
+stopping_step = 50
+clip_grad_norm = None
+weight_decay = 0.0
+loss_decimal_place = 4
+
+Evaluation Hyper Parameters:
+eval_args = {'split': {'RS': [0.8, 0.1, 0.1]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}
+repeatable = False
+metrics = ['MRR']
+topk = [10]
+valid_metric = MRR@10
+valid_metric_bigger = True
+eval_batch_size = 4096
+metric_decimal_place = 4
+
+Dataset Hyper Parameters:
+field_separator = 	
+seq_separator =  
+USER_ID_FIELD = user_id
+ITEM_ID_FIELD = item_id
+RATING_FIELD = rating
+TIME_FIELD = timestamp
+seq_len = None
+LABEL_FIELD = label
+threshold = None
+NEG_PREFIX = neg_
+load_col = {'inter': ['user_id', 'item_id', 'rating', 'timestamp'], 'kg': ['head_id', 'relation_id', 'tail_id'], 'link': ['item_id', 'entity_id']}
+unload_col = None
+unused_col = None
+additional_feat_suffix = None
+rm_dup_inter = None
+val_interval = None
+filter_inter_by_user_or_item = True
+user_inter_num_interval = [0,inf)
+item_inter_num_interval = [0,inf)
+alias_of_user_id = None
+alias_of_item_id = None
+alias_of_entity_id = None
+alias_of_relation_id = None
+preload_weight = None
+normalize_field = None
+normalize_all = None
+ITEM_LIST_LENGTH_FIELD = item_length
+LIST_SUFFIX = _list
+MAX_ITEM_LIST_LENGTH = 50
+POSITION_FIELD = position_id
+HEAD_ENTITY_ID_FIELD = head_id
+TAIL_ENTITY_ID_FIELD = tail_id
+RELATION_ID_FIELD = relation_id
+ENTITY_ID_FIELD = entity_id
+benchmark_filename = None
+
+Other Hyper Parameters: 
+worker = 0
+wandb_project = recbole
+shuffle = True
+require_pow = False
+enable_amp = False
+enable_scaler = False
+transform = None
+embedding_size = 64
+n_hop = 2
+n_memory = 16
+kg_weight = 0.01
+reg_weight = 1e-07
+numerical_features = []
+discretization = None
+kg_reverse_r = False
+entity_kg_num_interval = [0,inf)
+relation_kg_num_interval = [0,inf)
+MODEL_TYPE = ModelType.KNOWLEDGE
+MODEL_INPUT_TYPE = InputType.POINTWISE
+eval_type = EvaluatorType.RANKING
+single_spec = True
+local_rank = 0
+device = cuda
+eval_neg_sample_args = {'distribution': 'uniform', 'sample_num': 'none'}
+
+
+Sat 26 Apr 2025 10:11:49 INFO  Saving filtered dataset into [./saved/amazon/amazon-dataset.pth]
+Sat 26 Apr 2025 10:11:49 INFO  amazon
+The number of users: 20201
+Average actions of users: 17.4280198019802
+The number of items: 10879
+Average actions of items: 32.36311822026108
+The number of inters: 352046
+The sparsity of the dataset: 99.83980920055674%
+Remain Fields: ['entity_id', 'user_id', 'item_id', 'rating', 'head_id', 'tail_id', 'relation_id']
+The number of entities: 26316
+The number of relations: 18
+The number of triples: 96476
+The number of items that have been linked to KG: 10878
+Sat 26 Apr 2025 10:11:51 INFO  [Training]: train_batch_size = [2048] train_neg_sample_args: [{'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}]
+Sat 26 Apr 2025 10:11:51 INFO  [Evaluation]: eval_batch_size = [4096] eval_args: [{'split': {'RS': [0.8, 0.1, 0.1]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}]
+Sat 26 Apr 2025 10:11:57 INFO  0 among 20200 users are padded
+Sat 26 Apr 2025 10:11:57 INFO  RippleNet(
+  (entity_embedding): Embedding(26316, 64)
+  (relation_embedding): Embedding(18, 4096)
+  (transform_matrix): Linear(in_features=64, out_features=64, bias=False)
+  (softmax): Softmax(dim=1)
+  (sigmoid): Sigmoid()
+  (rec_loss): BPRLoss()
+  (l2_loss): EmbLoss()
+  (loss): BCEWithLogitsLoss()
+)
+Trainable parameters: 1762048
+Sat 26 Apr 2025 10:13:16 INFO  epoch 0 training [time: 72.11s, train loss: 158.2426]
+Sat 26 Apr 2025 10:13:53 INFO  epoch 0 evaluating [time: 37.81s, valid_score: 0.014400]
+Sat 26 Apr 2025 10:13:53 INFO  valid result: 
+mrr@10 : 0.0144
+Sat 26 Apr 2025 10:13:59 INFO  Saving current: ./saved/amazon/RippleNet-Apr-26-2025_10-11-57.pth
+Sat 26 Apr 2025 10:15:10 INFO  epoch 1 training [time: 71.10s, train loss: 125.9215]
+Sat 26 Apr 2025 10:15:47 INFO  epoch 1 evaluating [time: 37.18s, valid_score: 0.016400]
+Sat 26 Apr 2025 10:15:47 INFO  valid result: 
+mrr@10 : 0.0164
+Sat 26 Apr 2025 10:15:53 INFO  Saving current: ./saved/amazon/RippleNet-Apr-26-2025_10-11-57.pth
+Sat 26 Apr 2025 10:17:04 INFO  epoch 2 training [time: 71.22s, train loss: 114.0480]
+Sat 26 Apr 2025 10:17:40 INFO  epoch 2 evaluating [time: 35.33s, valid_score: 0.019900]
+Sat 26 Apr 2025 10:17:40 INFO  valid result: 
+mrr@10 : 0.0199
+Sat 26 Apr 2025 10:17:45 INFO  Saving current: ./saved/amazon/RippleNet-Apr-26-2025_10-11-57.pth
+Sat 26 Apr 2025 10:18:56 INFO  epoch 3 training [time: 71.10s, train loss: 107.7344]
+Sat 26 Apr 2025 10:19:33 INFO  epoch 3 evaluating [time: 36.63s, valid_score: 0.022200]
+Sat 26 Apr 2025 10:19:33 INFO  valid result: 
+mrr@10 : 0.0222
+Sat 26 Apr 2025 10:19:38 INFO  Saving current: ./saved/amazon/RippleNet-Apr-26-2025_10-11-57.pth
+Sat 26 Apr 2025 10:20:49 INFO  epoch 4 training [time: 71.16s, train loss: 103.1812]
+Sat 26 Apr 2025 10:21:26 INFO  epoch 4 evaluating [time: 37.11s, valid_score: 0.022700]
+Sat 26 Apr 2025 10:21:26 INFO  valid result: 
+mrr@10 : 0.0227
+Sat 26 Apr 2025 10:21:31 INFO  Saving current: ./saved/amazon/RippleNet-Apr-26-2025_10-11-57.pth
+Sat 26 Apr 2025 10:22:42 INFO  epoch 5 training [time: 71.09s, train loss: 98.9712]
+Sat 26 Apr 2025 10:23:19 INFO  epoch 5 evaluating [time: 36.57s, valid_score: 0.026200]
+Sat 26 Apr 2025 10:23:19 INFO  valid result: 
+mrr@10 : 0.0262
+Sat 26 Apr 2025 10:23:24 INFO  Saving current: ./saved/amazon/RippleNet-Apr-26-2025_10-11-57.pth
+Sat 26 Apr 2025 10:24:35 INFO  epoch 6 training [time: 71.11s, train loss: 94.0352]
+Sat 26 Apr 2025 10:25:12 INFO  epoch 6 evaluating [time: 37.18s, valid_score: 0.029700]
+Sat 26 Apr 2025 10:25:12 INFO  valid result: 
+mrr@10 : 0.0297
+Sat 26 Apr 2025 10:25:17 INFO  Saving current: ./saved/amazon/RippleNet-Apr-26-2025_10-11-57.pth
+Sat 26 Apr 2025 10:26:28 INFO  epoch 7 training [time: 71.14s, train loss: 88.8062]
+Sat 26 Apr 2025 10:27:05 INFO  epoch 7 evaluating [time: 36.45s, valid_score: 0.029800]
+Sat 26 Apr 2025 10:27:05 INFO  valid result: 
+mrr@10 : 0.0298
+Sat 26 Apr 2025 10:27:10 INFO  Saving current: ./saved/amazon/RippleNet-Apr-26-2025_10-11-57.pth
+Sat 26 Apr 2025 10:28:21 INFO  epoch 8 training [time: 71.32s, train loss: 84.1526]
+Sat 26 Apr 2025 10:28:58 INFO  epoch 8 evaluating [time: 36.50s, valid_score: 0.030500]
+Sat 26 Apr 2025 10:28:58 INFO  valid result: 
+mrr@10 : 0.0305
+Sat 26 Apr 2025 10:29:03 INFO  Saving current: ./saved/amazon/RippleNet-Apr-26-2025_10-11-57.pth
+Sat 26 Apr 2025 10:30:14 INFO  epoch 9 training [time: 71.36s, train loss: 80.6155]
+Sat 26 Apr 2025 10:30:51 INFO  epoch 9 evaluating [time: 36.67s, valid_score: 0.033200]
+Sat 26 Apr 2025 10:30:51 INFO  valid result: 
+mrr@10 : 0.0332
+Sat 26 Apr 2025 10:30:56 INFO  Saving current: ./saved/amazon/RippleNet-Apr-26-2025_10-11-57.pth
+Sat 26 Apr 2025 10:32:07 INFO  epoch 10 training [time: 71.25s, train loss: 77.1439]
+Sat 26 Apr 2025 10:32:44 INFO  epoch 10 evaluating [time: 36.68s, valid_score: 0.036600]
+Sat 26 Apr 2025 10:32:44 INFO  valid result: 
+mrr@10 : 0.0366
+Sat 26 Apr 2025 10:32:49 INFO  Saving current: ./saved/amazon/RippleNet-Apr-26-2025_10-11-57.pth
+Sat 26 Apr 2025 10:34:00 INFO  epoch 11 training [time: 71.26s, train loss: 73.7237]
+Sat 26 Apr 2025 10:34:40 INFO  epoch 11 evaluating [time: 39.84s, valid_score: 0.038800]
+Sat 26 Apr 2025 10:34:40 INFO  valid result: 
+mrr@10 : 0.0388
+Sat 26 Apr 2025 10:34:45 INFO  Saving current: ./saved/amazon/RippleNet-Apr-26-2025_10-11-57.pth
+Sat 26 Apr 2025 10:35:56 INFO  epoch 12 training [time: 71.33s, train loss: 71.2367]
+Sat 26 Apr 2025 10:36:34 INFO  epoch 12 evaluating [time: 37.49s, valid_score: 0.039200]
+Sat 26 Apr 2025 10:36:34 INFO  valid result: 
+mrr@10 : 0.0392
+Sat 26 Apr 2025 10:36:40 INFO  Saving current: ./saved/amazon/RippleNet-Apr-26-2025_10-11-57.pth
+Sat 26 Apr 2025 10:37:51 INFO  epoch 13 training [time: 71.21s, train loss: 68.1904]
+Sat 26 Apr 2025 10:38:28 INFO  epoch 13 evaluating [time: 37.41s, valid_score: 0.039000]
+Sat 26 Apr 2025 10:38:28 INFO  valid result: 
+mrr@10 : 0.039
+Sat 26 Apr 2025 10:39:39 INFO  epoch 14 training [time: 71.01s, train loss: 65.6059]
+Sat 26 Apr 2025 10:40:16 INFO  epoch 14 evaluating [time: 36.20s, valid_score: 0.042700]
+Sat 26 Apr 2025 10:40:16 INFO  valid result: 
+mrr@10 : 0.0427
+Sat 26 Apr 2025 10:40:21 INFO  Saving current: ./saved/amazon/RippleNet-Apr-26-2025_10-11-57.pth
+Sat 26 Apr 2025 10:41:32 INFO  epoch 15 training [time: 71.27s, train loss: 62.9346]
+Sat 26 Apr 2025 10:42:09 INFO  epoch 15 evaluating [time: 36.85s, valid_score: 0.041100]
+Sat 26 Apr 2025 10:42:09 INFO  valid result: 
+mrr@10 : 0.0411
+Sat 26 Apr 2025 10:43:20 INFO  epoch 16 training [time: 71.26s, train loss: 60.6338]
+Sat 26 Apr 2025 10:43:58 INFO  epoch 16 evaluating [time: 37.70s, valid_score: 0.045700]
+Sat 26 Apr 2025 10:43:58 INFO  valid result: 
+mrr@10 : 0.0457
+Sat 26 Apr 2025 10:44:03 INFO  Saving current: ./saved/amazon/RippleNet-Apr-26-2025_10-11-57.pth
+Sat 26 Apr 2025 10:45:15 INFO  epoch 17 training [time: 71.39s, train loss: 57.9247]
+Sat 26 Apr 2025 10:45:52 INFO  epoch 17 evaluating [time: 37.23s, valid_score: 0.045600]
+Sat 26 Apr 2025 10:45:52 INFO  valid result: 
+mrr@10 : 0.0456
+Sat 26 Apr 2025 10:47:03 INFO  epoch 18 training [time: 70.94s, train loss: 55.9105]
+Sat 26 Apr 2025 10:47:41 INFO  epoch 18 evaluating [time: 38.26s, valid_score: 0.049800]
+Sat 26 Apr 2025 10:47:41 INFO  valid result: 
+mrr@10 : 0.0498
+Sat 26 Apr 2025 10:47:46 INFO  Saving current: ./saved/amazon/RippleNet-Apr-26-2025_10-11-57.pth
+Sat 26 Apr 2025 10:48:58 INFO  epoch 19 training [time: 71.18s, train loss: 53.8916]
+Sat 26 Apr 2025 10:49:33 INFO  epoch 19 evaluating [time: 35.48s, valid_score: 0.049400]
+Sat 26 Apr 2025 10:49:33 INFO  valid result: 
+mrr@10 : 0.0494
+Sat 26 Apr 2025 10:49:41 INFO  Loading model structure and parameters from ./saved/amazon/RippleNet-Apr-26-2025_10-11-57.pth

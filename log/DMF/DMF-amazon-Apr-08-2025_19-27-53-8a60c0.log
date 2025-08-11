@@ -1,0 +1,232 @@
+Tue 08 Apr 2025 19:27:53 INFO  
+General Hyper Parameters:
+gpu_id = 0
+use_gpu = True
+seed = 2020
+state = INFO
+reproducibility = True
+data_path = dataset/amazon
+checkpoint_dir = ./saved/amazon/
+show_progress = True
+save_dataset = True
+dataset_save_path = None
+save_dataloaders = True
+dataloaders_save_path = None
+log_wandb = False
+
+Training Hyper Parameters:
+epochs = 20
+train_batch_size = 2048
+learner = adam
+learning_rate = 0.001
+train_neg_sample_args = {'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}
+eval_step = 1
+stopping_step = 50
+clip_grad_norm = None
+weight_decay = 0.0
+loss_decimal_place = 4
+
+Evaluation Hyper Parameters:
+eval_args = {'split': {'RS': [0.8, 0.1, 0.1]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}
+repeatable = False
+metrics = ['Recall', 'MRR', 'NDCG', 'Hit', 'MAP', 'Precision', 'GAUC', 'ItemCoverage', 'AveragePopularity', 'GiniIndex', 'ShannonEntropy', 'TailPercentage']
+topk = [10]
+valid_metric = MRR@10
+valid_metric_bigger = True
+eval_batch_size = 4096
+metric_decimal_place = 4
+
+Dataset Hyper Parameters:
+field_separator = 	
+seq_separator =  
+USER_ID_FIELD = user_id
+ITEM_ID_FIELD = item_id
+RATING_FIELD = rating
+TIME_FIELD = timestamp
+seq_len = None
+LABEL_FIELD = label
+threshold = None
+NEG_PREFIX = neg_
+load_col = {'inter': ['user_id', 'item_id']}
+unload_col = None
+unused_col = None
+additional_feat_suffix = None
+rm_dup_inter = None
+val_interval = None
+filter_inter_by_user_or_item = True
+user_inter_num_interval = [0,inf)
+item_inter_num_interval = [0,inf)
+alias_of_user_id = None
+alias_of_item_id = None
+alias_of_entity_id = None
+alias_of_relation_id = None
+preload_weight = None
+normalize_field = None
+normalize_all = None
+ITEM_LIST_LENGTH_FIELD = item_length
+LIST_SUFFIX = _list
+MAX_ITEM_LIST_LENGTH = 50
+POSITION_FIELD = position_id
+HEAD_ENTITY_ID_FIELD = head_id
+TAIL_ENTITY_ID_FIELD = tail_id
+RELATION_ID_FIELD = relation_id
+ENTITY_ID_FIELD = entity_id
+benchmark_filename = None
+
+Other Hyper Parameters: 
+worker = 0
+wandb_project = recbole
+shuffle = True
+require_pow = False
+enable_amp = False
+enable_scaler = False
+transform = None
+inter_matrix_type = 01
+user_embedding_size = 64
+item_embedding_size = 64
+user_hidden_size_list = [64, 64]
+item_hidden_size_list = [64, 64]
+embedding_size = 10
+numerical_features = []
+discretization = None
+kg_reverse_r = False
+entity_kg_num_interval = [0,inf)
+relation_kg_num_interval = [0,inf)
+MODEL_TYPE = ModelType.GENERAL
+MODEL_INPUT_TYPE = InputType.POINTWISE
+eval_type = EvaluatorType.RANKING
+single_spec = True
+local_rank = 0
+device = cuda
+eval_neg_sample_args = {'distribution': 'uniform', 'sample_num': 'none'}
+
+
+Tue 08 Apr 2025 19:27:53 INFO  Load filtered dataset from: [./saved/amazon/amazon-Dataset.pth]
+Tue 08 Apr 2025 19:27:53 INFO  amazon
+The number of users: 22156
+Average actions of users: 66.16434213495825
+The number of items: 54459
+Average actions of items: 26.917459326453415
+The number of inters: 1465871
+The sparsity of the dataset: 99.87851162187994%
+Remain Fields: ['user_id', 'item_id']
+Tue 08 Apr 2025 19:27:57 INFO  Saving split dataloaders into: [./saved/amazon/amazon-for-DMF-dataloader.pth]
+Tue 08 Apr 2025 19:28:06 INFO  [Training]: train_batch_size = [2048] train_neg_sample_args: [{'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}]
+Tue 08 Apr 2025 19:28:06 INFO  [Evaluation]: eval_batch_size = [4096] eval_args: [{'split': {'RS': [0.8, 0.1, 0.1]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}]
+Tue 08 Apr 2025 19:28:11 INFO  DMF(
+  (user_linear): Linear(in_features=54459, out_features=64, bias=False)
+  (item_linear): Linear(in_features=22156, out_features=64, bias=False)
+  (user_fc_layers): MLPLayers(
+    (mlp_layers): Sequential(
+      (0): Dropout(p=0.0, inplace=False)
+      (1): Linear(in_features=64, out_features=64, bias=True)
+      (2): ReLU()
+      (3): Dropout(p=0.0, inplace=False)
+      (4): Linear(in_features=64, out_features=64, bias=True)
+      (5): ReLU()
+    )
+  )
+  (item_fc_layers): MLPLayers(
+    (mlp_layers): Sequential(
+      (0): Dropout(p=0.0, inplace=False)
+      (1): Linear(in_features=64, out_features=64, bias=True)
+      (2): ReLU()
+      (3): Dropout(p=0.0, inplace=False)
+      (4): Linear(in_features=64, out_features=64, bias=True)
+      (5): ReLU()
+    )
+  )
+  (sigmoid): Sigmoid()
+  (bce_loss): BCEWithLogitsLoss()
+)
+Trainable parameters: 4920000
+Tue 08 Apr 2025 19:28:51 INFO  epoch 0 training [time: 34.82s, train loss: 689.8320]
+Tue 08 Apr 2025 19:30:25 INFO  epoch 0 evaluating [time: 94.46s, valid_score: 0.025700]
+Tue 08 Apr 2025 19:30:25 INFO  valid result: 
+recall@10 : 0.0112    mrr@10 : 0.0257    ndcg@10 : 0.0112    hit@10 : 0.0693    map@10 : 0.0046    precision@10 : 0.0078    gauc : 0.8785    itemcoverage@10 : 0.0045    averagepopularity@10 : 296.4049    giniindex@10 : -0.0829    shannonentropy@10 : 0.0193    tailpercentage@10 : 0.0
+Tue 08 Apr 2025 19:30:26 INFO  Saving current: ./saved/amazon/DMF-Apr-08-2025_19-28-11.pth
+Tue 08 Apr 2025 19:31:00 INFO  epoch 1 training [time: 34.67s, train loss: 627.0281]
+Tue 08 Apr 2025 19:32:34 INFO  epoch 1 evaluating [time: 93.30s, valid_score: 0.030700]
+Tue 08 Apr 2025 19:32:34 INFO  valid result: 
+recall@10 : 0.0136    mrr@10 : 0.0307    ndcg@10 : 0.0136    hit@10 : 0.0867    map@10 : 0.0055    precision@10 : 0.0099    gauc : 0.8975    itemcoverage@10 : 0.0106    averagepopularity@10 : 229.1842    giniindex@10 : -0.0846    shannonentropy@10 : 0.0094    tailpercentage@10 : 0.0
+Tue 08 Apr 2025 19:32:34 INFO  Saving current: ./saved/amazon/DMF-Apr-08-2025_19-28-11.pth
+Tue 08 Apr 2025 19:33:08 INFO  epoch 2 training [time: 34.71s, train loss: 607.7081]
+Tue 08 Apr 2025 19:34:44 INFO  epoch 2 evaluating [time: 95.07s, valid_score: 0.036000]
+Tue 08 Apr 2025 19:34:44 INFO  valid result: 
+recall@10 : 0.016    mrr@10 : 0.036    ndcg@10 : 0.0159    hit@10 : 0.0982    map@10 : 0.0065    precision@10 : 0.0113    gauc : 0.9012    itemcoverage@10 : 0.0164    averagepopularity@10 : 218.2106    giniindex@10 : -0.0859    shannonentropy@10 : 0.0065    tailpercentage@10 : 0.0
+Tue 08 Apr 2025 19:34:44 INFO  Saving current: ./saved/amazon/DMF-Apr-08-2025_19-28-11.pth
+Tue 08 Apr 2025 19:35:19 INFO  epoch 3 training [time: 34.73s, train loss: 597.9256]
+Tue 08 Apr 2025 19:36:53 INFO  epoch 3 evaluating [time: 93.82s, valid_score: 0.037700]
+Tue 08 Apr 2025 19:36:53 INFO  valid result: 
+recall@10 : 0.0168    mrr@10 : 0.0377    ndcg@10 : 0.0168    hit@10 : 0.1027    map@10 : 0.0069    precision@10 : 0.0119    gauc : 0.9046    itemcoverage@10 : 0.0204    averagepopularity@10 : 228.4367    giniindex@10 : -0.0867    shannonentropy@10 : 0.0053    tailpercentage@10 : 0.0
+Tue 08 Apr 2025 19:36:53 INFO  Saving current: ./saved/amazon/DMF-Apr-08-2025_19-28-11.pth
+Tue 08 Apr 2025 19:37:27 INFO  epoch 4 training [time: 34.65s, train loss: 591.7273]
+Tue 08 Apr 2025 19:39:01 INFO  epoch 4 evaluating [time: 94.11s, valid_score: 0.040800]
+Tue 08 Apr 2025 19:39:01 INFO  valid result: 
+recall@10 : 0.0179    mrr@10 : 0.0408    ndcg@10 : 0.018    hit@10 : 0.109    map@10 : 0.0075    precision@10 : 0.0126    gauc : 0.9069    itemcoverage@10 : 0.0239    averagepopularity@10 : 208.4559    giniindex@10 : -0.0874    shannonentropy@10 : 0.0046    tailpercentage@10 : 0.0
+Tue 08 Apr 2025 19:39:02 INFO  Saving current: ./saved/amazon/DMF-Apr-08-2025_19-28-11.pth
+Tue 08 Apr 2025 19:39:37 INFO  epoch 5 training [time: 34.79s, train loss: 587.1531]
+Tue 08 Apr 2025 19:41:11 INFO  epoch 5 evaluating [time: 94.79s, valid_score: 0.040100]
+Tue 08 Apr 2025 19:41:11 INFO  valid result: 
+recall@10 : 0.0186    mrr@10 : 0.0401    ndcg@10 : 0.0182    hit@10 : 0.1094    map@10 : 0.0076    precision@10 : 0.0128    gauc : 0.9096    itemcoverage@10 : 0.0278    averagepopularity@10 : 201.0818    giniindex@10 : -0.0884    shannonentropy@10 : 0.0041    tailpercentage@10 : 0.0
+Tue 08 Apr 2025 19:41:47 INFO  epoch 6 training [time: 35.20s, train loss: 583.9559]
+Tue 08 Apr 2025 19:43:19 INFO  epoch 6 evaluating [time: 92.16s, valid_score: 0.040200]
+Tue 08 Apr 2025 19:43:19 INFO  valid result: 
+recall@10 : 0.0195    mrr@10 : 0.0402    ndcg@10 : 0.0186    hit@10 : 0.1137    map@10 : 0.0077    precision@10 : 0.0131    gauc : 0.91    itemcoverage@10 : 0.0313    averagepopularity@10 : 197.5479    giniindex@10 : -0.0891    shannonentropy@10 : 0.0037    tailpercentage@10 : 0.0
+Tue 08 Apr 2025 19:43:53 INFO  epoch 7 training [time: 34.62s, train loss: 581.7640]
+Tue 08 Apr 2025 19:45:28 INFO  epoch 7 evaluating [time: 94.87s, valid_score: 0.041400]
+Tue 08 Apr 2025 19:45:28 INFO  valid result: 
+recall@10 : 0.0199    mrr@10 : 0.0414    ndcg@10 : 0.019    hit@10 : 0.1142    map@10 : 0.008    precision@10 : 0.0131    gauc : 0.91    itemcoverage@10 : 0.0348    averagepopularity@10 : 179.1485    giniindex@10 : -0.0903    shannonentropy@10 : 0.0034    tailpercentage@10 : 0.0
+Tue 08 Apr 2025 19:45:29 INFO  Saving current: ./saved/amazon/DMF-Apr-08-2025_19-28-11.pth
+Tue 08 Apr 2025 19:46:03 INFO  epoch 8 training [time: 34.76s, train loss: 578.9928]
+Tue 08 Apr 2025 19:47:38 INFO  epoch 8 evaluating [time: 94.46s, valid_score: 0.041200]
+Tue 08 Apr 2025 19:47:38 INFO  valid result: 
+recall@10 : 0.02    mrr@10 : 0.0412    ndcg@10 : 0.0192    hit@10 : 0.1155    map@10 : 0.0081    precision@10 : 0.0133    gauc : 0.9112    itemcoverage@10 : 0.0371    averagepopularity@10 : 176.0486    giniindex@10 : -0.0909    shannonentropy@10 : 0.0032    tailpercentage@10 : 0.0
+Tue 08 Apr 2025 19:48:13 INFO  epoch 9 training [time: 34.72s, train loss: 577.7538]
+Tue 08 Apr 2025 19:49:47 INFO  epoch 9 evaluating [time: 94.63s, valid_score: 0.040900]
+Tue 08 Apr 2025 19:49:47 INFO  valid result: 
+recall@10 : 0.0198    mrr@10 : 0.0409    ndcg@10 : 0.0191    hit@10 : 0.1141    map@10 : 0.0081    precision@10 : 0.0133    gauc : 0.9108    itemcoverage@10 : 0.0384    averagepopularity@10 : 188.1965    giniindex@10 : -0.091    shannonentropy@10 : 0.0031    tailpercentage@10 : 0.0
+Tue 08 Apr 2025 19:50:22 INFO  epoch 10 training [time: 35.13s, train loss: 576.6228]
+Tue 08 Apr 2025 19:51:57 INFO  epoch 10 evaluating [time: 94.90s, valid_score: 0.040900]
+Tue 08 Apr 2025 19:51:57 INFO  valid result: 
+recall@10 : 0.0199    mrr@10 : 0.0409    ndcg@10 : 0.019    hit@10 : 0.1127    map@10 : 0.008    precision@10 : 0.0131    gauc : 0.9113    itemcoverage@10 : 0.0403    averagepopularity@10 : 177.3318    giniindex@10 : -0.0916    shannonentropy@10 : 0.003    tailpercentage@10 : 0.0
+Tue 08 Apr 2025 19:52:33 INFO  epoch 11 training [time: 35.30s, train loss: 575.8114]
+Tue 08 Apr 2025 19:54:07 INFO  epoch 11 evaluating [time: 94.19s, valid_score: 0.041100]
+Tue 08 Apr 2025 19:54:07 INFO  valid result: 
+recall@10 : 0.0207    mrr@10 : 0.0411    ndcg@10 : 0.0195    hit@10 : 0.1181    map@10 : 0.0082    precision@10 : 0.0138    gauc : 0.9109    itemcoverage@10 : 0.0412    averagepopularity@10 : 169.5993    giniindex@10 : -0.0921    shannonentropy@10 : 0.003    tailpercentage@10 : 0.0
+Tue 08 Apr 2025 19:54:42 INFO  epoch 12 training [time: 34.79s, train loss: 574.2176]
+Tue 08 Apr 2025 19:56:20 INFO  epoch 12 evaluating [time: 98.50s, valid_score: 0.041600]
+Tue 08 Apr 2025 19:56:20 INFO  valid result: 
+recall@10 : 0.0204    mrr@10 : 0.0416    ndcg@10 : 0.0194    hit@10 : 0.117    map@10 : 0.0081    precision@10 : 0.0137    gauc : 0.9115    itemcoverage@10 : 0.043    averagepopularity@10 : 156.517    giniindex@10 : -0.0932    shannonentropy@10 : 0.0029    tailpercentage@10 : 0.0
+Tue 08 Apr 2025 19:56:20 INFO  Saving current: ./saved/amazon/DMF-Apr-08-2025_19-28-11.pth
+Tue 08 Apr 2025 19:56:55 INFO  epoch 13 training [time: 34.65s, train loss: 572.9398]
+Tue 08 Apr 2025 19:58:27 INFO  epoch 13 evaluating [time: 92.53s, valid_score: 0.043000]
+Tue 08 Apr 2025 19:58:27 INFO  valid result: 
+recall@10 : 0.0211    mrr@10 : 0.043    ndcg@10 : 0.0201    hit@10 : 0.1192    map@10 : 0.0085    precision@10 : 0.014    gauc : 0.9113    itemcoverage@10 : 0.0434    averagepopularity@10 : 165.0254    giniindex@10 : -0.0927    shannonentropy@10 : 0.0028    tailpercentage@10 : 0.0
+Tue 08 Apr 2025 19:58:28 INFO  Saving current: ./saved/amazon/DMF-Apr-08-2025_19-28-11.pth
+Tue 08 Apr 2025 19:59:02 INFO  epoch 14 training [time: 34.74s, train loss: 572.7128]
+Tue 08 Apr 2025 20:00:36 INFO  epoch 14 evaluating [time: 93.70s, valid_score: 0.043600]
+Tue 08 Apr 2025 20:00:36 INFO  valid result: 
+recall@10 : 0.0212    mrr@10 : 0.0436    ndcg@10 : 0.0203    hit@10 : 0.1194    map@10 : 0.0087    precision@10 : 0.0139    gauc : 0.9119    itemcoverage@10 : 0.045    averagepopularity@10 : 169.2576    giniindex@10 : -0.0928    shannonentropy@10 : 0.0027    tailpercentage@10 : 0.0
+Tue 08 Apr 2025 20:00:36 INFO  Saving current: ./saved/amazon/DMF-Apr-08-2025_19-28-11.pth
+Tue 08 Apr 2025 20:01:11 INFO  epoch 15 training [time: 34.64s, train loss: 572.1101]
+Tue 08 Apr 2025 20:02:45 INFO  epoch 15 evaluating [time: 93.86s, valid_score: 0.042000]
+Tue 08 Apr 2025 20:02:45 INFO  valid result: 
+recall@10 : 0.0201    mrr@10 : 0.042    ndcg@10 : 0.0193    hit@10 : 0.1155    map@10 : 0.008    precision@10 : 0.0136    gauc : 0.9111    itemcoverage@10 : 0.046    averagepopularity@10 : 173.3726    giniindex@10 : -0.0932    shannonentropy@10 : 0.0027    tailpercentage@10 : 0.0
+Tue 08 Apr 2025 20:03:20 INFO  epoch 16 training [time: 35.15s, train loss: 570.9194]
+Tue 08 Apr 2025 20:04:54 INFO  epoch 16 evaluating [time: 94.50s, valid_score: 0.042800]
+Tue 08 Apr 2025 20:04:54 INFO  valid result: 
+recall@10 : 0.0204    mrr@10 : 0.0428    ndcg@10 : 0.0198    hit@10 : 0.118    map@10 : 0.0083    precision@10 : 0.0138    gauc : 0.9116    itemcoverage@10 : 0.0462    averagepopularity@10 : 170.9014    giniindex@10 : -0.0932    shannonentropy@10 : 0.0027    tailpercentage@10 : 0.0
+Tue 08 Apr 2025 20:05:29 INFO  epoch 17 training [time: 34.59s, train loss: 570.8833]
+Tue 08 Apr 2025 20:07:03 INFO  epoch 17 evaluating [time: 94.02s, valid_score: 0.040700]
+Tue 08 Apr 2025 20:07:03 INFO  valid result: 
+recall@10 : 0.0206    mrr@10 : 0.0407    ndcg@10 : 0.019    hit@10 : 0.116    map@10 : 0.0079    precision@10 : 0.0133    gauc : 0.9113    itemcoverage@10 : 0.0472    averagepopularity@10 : 161.1228    giniindex@10 : -0.0936    shannonentropy@10 : 0.0026    tailpercentage@10 : 0.0
+Tue 08 Apr 2025 20:07:38 INFO  epoch 18 training [time: 35.21s, train loss: 570.2250]
+Tue 08 Apr 2025 20:09:12 INFO  epoch 18 evaluating [time: 94.16s, valid_score: 0.041900]
+Tue 08 Apr 2025 20:09:12 INFO  valid result: 
+recall@10 : 0.0207    mrr@10 : 0.0419    ndcg@10 : 0.0193    hit@10 : 0.1168    map@10 : 0.008    precision@10 : 0.0135    gauc : 0.9117    itemcoverage@10 : 0.0466    averagepopularity@10 : 157.0684    giniindex@10 : -0.0937    shannonentropy@10 : 0.0027    tailpercentage@10 : 0.0
+Tue 08 Apr 2025 20:09:48 INFO  epoch 19 training [time: 35.17s, train loss: 569.9071]
+Tue 08 Apr 2025 20:11:24 INFO  epoch 19 evaluating [time: 96.14s, valid_score: 0.039300]
+Tue 08 Apr 2025 20:11:24 INFO  valid result: 
+recall@10 : 0.0206    mrr@10 : 0.0393    ndcg@10 : 0.0187    hit@10 : 0.1147    map@10 : 0.0077    precision@10 : 0.0132    gauc : 0.9127    itemcoverage@10 : 0.0483    averagepopularity@10 : 163.0728    giniindex@10 : -0.094    shannonentropy@10 : 0.0026    tailpercentage@10 : 0.0
+Tue 08 Apr 2025 20:11:24 INFO  Loading model structure and parameters from ./saved/amazon/DMF-Apr-08-2025_19-28-11.pth

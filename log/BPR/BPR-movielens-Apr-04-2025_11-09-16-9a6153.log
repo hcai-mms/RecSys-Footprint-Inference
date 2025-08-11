@@ -1,0 +1,345 @@
+Fri 04 Apr 2025 11:09:16 INFO  
+General Hyper Parameters:
+gpu_id = 0
+use_gpu = True
+seed = 2020
+state = INFO
+reproducibility = True
+data_path = dataset/movielens
+checkpoint_dir = ./saved/movielens/
+show_progress = True
+save_dataset = True
+dataset_save_path = None
+save_dataloaders = True
+dataloaders_save_path = None
+log_wandb = False
+
+Training Hyper Parameters:
+epochs = 50
+train_batch_size = 2048
+learner = adam
+learning_rate = 0.001
+train_neg_sample_args = {'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}
+eval_step = 1
+stopping_step = 50
+clip_grad_norm = None
+weight_decay = 0.0
+loss_decimal_place = 4
+
+Evaluation Hyper Parameters:
+eval_args = {'split': {'RS': [0.8, 0.1, 0.1]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}
+repeatable = False
+metrics = ['Recall', 'MRR', 'NDCG', 'Hit', 'MAP', 'Precision', 'GAUC', 'ItemCoverage', 'AveragePopularity', 'GiniIndex', 'ShannonEntropy', 'TailPercentage']
+topk = [10]
+valid_metric = MRR@10
+valid_metric_bigger = True
+eval_batch_size = 4096
+metric_decimal_place = 4
+
+Dataset Hyper Parameters:
+field_separator = 	
+seq_separator =  
+USER_ID_FIELD = user_id
+ITEM_ID_FIELD = item_id
+RATING_FIELD = rating
+TIME_FIELD = timestamp
+seq_len = None
+LABEL_FIELD = label
+threshold = None
+NEG_PREFIX = neg_
+load_col = {'inter': ['user_id', 'item_id']}
+unload_col = None
+unused_col = None
+additional_feat_suffix = None
+rm_dup_inter = None
+val_interval = None
+filter_inter_by_user_or_item = True
+user_inter_num_interval = [0,inf)
+item_inter_num_interval = [0,inf)
+alias_of_user_id = None
+alias_of_item_id = None
+alias_of_entity_id = None
+alias_of_relation_id = None
+preload_weight = None
+normalize_field = None
+normalize_all = None
+ITEM_LIST_LENGTH_FIELD = item_length
+LIST_SUFFIX = _list
+MAX_ITEM_LIST_LENGTH = 50
+POSITION_FIELD = position_id
+HEAD_ENTITY_ID_FIELD = head_id
+TAIL_ENTITY_ID_FIELD = tail_id
+RELATION_ID_FIELD = relation_id
+ENTITY_ID_FIELD = entity_id
+benchmark_filename = None
+
+Other Hyper Parameters: 
+worker = 0
+wandb_project = recbole
+shuffle = True
+require_pow = False
+enable_amp = False
+enable_scaler = False
+transform = None
+embedding_size = 64
+numerical_features = []
+discretization = None
+kg_reverse_r = False
+entity_kg_num_interval = [0,inf)
+relation_kg_num_interval = [0,inf)
+MODEL_TYPE = ModelType.GENERAL
+MODEL_INPUT_TYPE = InputType.PAIRWISE
+eval_type = EvaluatorType.RANKING
+single_spec = True
+local_rank = 0
+device = cuda
+eval_neg_sample_args = {'distribution': 'uniform', 'sample_num': 'none'}
+
+
+Fri 04 Apr 2025 11:09:16 INFO  Load filtered dataset from: [./saved/movielens/movielens-Dataset.pth]
+Fri 04 Apr 2025 11:09:16 INFO  movielens
+The number of users: 6037
+Average actions of users: 125.48889993373095
+The number of items: 3193
+Average actions of items: 237.296679197995
+The number of inters: 757451
+The sparsity of the dataset: 96.07052573437805%
+Remain Fields: ['user_id', 'item_id']
+Fri 04 Apr 2025 11:09:18 INFO  Saving split dataloaders into: [./saved/movielens/movielens-for-BPR-dataloader.pth]
+Fri 04 Apr 2025 11:09:21 INFO  [Training]: train_batch_size = [2048] train_neg_sample_args: [{'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}]
+Fri 04 Apr 2025 11:09:21 INFO  [Evaluation]: eval_batch_size = [4096] eval_args: [{'split': {'RS': [0.8, 0.1, 0.1]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}]
+Fri 04 Apr 2025 11:09:21 INFO  BPR(
+  (user_embedding): Embedding(6037, 64)
+  (item_embedding): Embedding(3193, 64)
+  (loss): BPRLoss()
+)
+Trainable parameters: 590720
+Fri 04 Apr 2025 11:09:27 INFO  epoch 0 training [time: 1.38s, train loss: 196.5997]
+Fri 04 Apr 2025 11:09:44 INFO  epoch 0 evaluating [time: 16.90s, valid_score: 0.150200]
+Fri 04 Apr 2025 11:09:44 INFO  valid result: 
+recall@10 : 0.0653    mrr@10 : 0.1502    ndcg@10 : 0.0743    hit@10 : 0.385    map@10 : 0.0326    precision@10 : 0.0566    gauc : 0.8265    itemcoverage@10 : 0.1149    averagepopularity@10 : 1705.473    giniindex@10 : 0.9941    shannonentropy@10 : 0.0084    tailpercentage@10 : 0.0023
+Fri 04 Apr 2025 11:09:44 INFO  Saving current: ./saved/movielens/BPR-Apr-04-2025_11-09-21.pth
+Fri 04 Apr 2025 11:09:46 INFO  epoch 1 training [time: 1.39s, train loss: 122.8524]
+Fri 04 Apr 2025 11:10:00 INFO  epoch 1 evaluating [time: 14.55s, valid_score: 0.157800]
+Fri 04 Apr 2025 11:10:00 INFO  valid result: 
+recall@10 : 0.0656    mrr@10 : 0.1578    ndcg@10 : 0.0769    hit@10 : 0.3917    map@10 : 0.0347    precision@10 : 0.0572    gauc : 0.8335    itemcoverage@10 : 0.041    averagepopularity@10 : 1723.0084    giniindex@10 : 0.9949    shannonentropy@10 : 0.023    tailpercentage@10 : 0.0007
+Fri 04 Apr 2025 11:10:00 INFO  Saving current: ./saved/movielens/BPR-Apr-04-2025_11-09-21.pth
+Fri 04 Apr 2025 11:10:01 INFO  epoch 2 training [time: 1.36s, train loss: 107.9651]
+Fri 04 Apr 2025 11:10:15 INFO  epoch 2 evaluating [time: 13.91s, valid_score: 0.165900]
+Fri 04 Apr 2025 11:10:15 INFO  valid result: 
+recall@10 : 0.0695    mrr@10 : 0.1659    ndcg@10 : 0.0813    hit@10 : 0.4109    map@10 : 0.0367    precision@10 : 0.0608    gauc : 0.8475    itemcoverage@10 : 0.0498    averagepopularity@10 : 1702.7536    giniindex@10 : 0.9942    shannonentropy@10 : 0.0199    tailpercentage@10 : 0.0004
+Fri 04 Apr 2025 11:10:15 INFO  Saving current: ./saved/movielens/BPR-Apr-04-2025_11-09-21.pth
+Fri 04 Apr 2025 11:10:17 INFO  epoch 3 training [time: 1.23s, train loss: 99.6985]
+Fri 04 Apr 2025 11:10:30 INFO  epoch 3 evaluating [time: 13.58s, valid_score: 0.171500]
+Fri 04 Apr 2025 11:10:30 INFO  valid result: 
+recall@10 : 0.075    mrr@10 : 0.1715    ndcg@10 : 0.0864    hit@10 : 0.4382    map@10 : 0.0388    precision@10 : 0.0659    gauc : 0.8596    itemcoverage@10 : 0.0711    averagepopularity@10 : 1645.628    giniindex@10 : 0.9923    shannonentropy@10 : 0.0153    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 11:10:30 INFO  Saving current: ./saved/movielens/BPR-Apr-04-2025_11-09-21.pth
+Fri 04 Apr 2025 11:10:32 INFO  epoch 4 training [time: 1.27s, train loss: 93.5254]
+Fri 04 Apr 2025 11:10:46 INFO  epoch 4 evaluating [time: 14.28s, valid_score: 0.188000]
+Fri 04 Apr 2025 11:10:46 INFO  valid result: 
+recall@10 : 0.0823    mrr@10 : 0.188    ndcg@10 : 0.0943    hit@10 : 0.4578    map@10 : 0.0428    precision@10 : 0.0704    gauc : 0.8678    itemcoverage@10 : 0.0996    averagepopularity@10 : 1567.8696    giniindex@10 : 0.9893    shannonentropy@10 : 0.0119    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 11:10:46 INFO  Saving current: ./saved/movielens/BPR-Apr-04-2025_11-09-21.pth
+Fri 04 Apr 2025 11:10:47 INFO  epoch 5 training [time: 1.40s, train loss: 88.6525]
+Fri 04 Apr 2025 11:11:02 INFO  epoch 5 evaluating [time: 14.71s, valid_score: 0.193600]
+Fri 04 Apr 2025 11:11:02 INFO  valid result: 
+recall@10 : 0.0854    mrr@10 : 0.1936    ndcg@10 : 0.0977    hit@10 : 0.4715    map@10 : 0.0445    precision@10 : 0.0735    gauc : 0.8737    itemcoverage@10 : 0.129    averagepopularity@10 : 1517.8816    giniindex@10 : 0.9862    shannonentropy@10 : 0.0097    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 11:11:02 INFO  Saving current: ./saved/movielens/BPR-Apr-04-2025_11-09-21.pth
+Fri 04 Apr 2025 11:11:03 INFO  epoch 6 training [time: 1.30s, train loss: 84.8501]
+Fri 04 Apr 2025 11:11:17 INFO  epoch 6 evaluating [time: 13.60s, valid_score: 0.201600]
+Fri 04 Apr 2025 11:11:17 INFO  valid result: 
+recall@10 : 0.0886    mrr@10 : 0.2016    ndcg@10 : 0.1017    hit@10 : 0.4872    map@10 : 0.0466    precision@10 : 0.0758    gauc : 0.8785    itemcoverage@10 : 0.1541    averagepopularity@10 : 1459.8243    giniindex@10 : 0.9822    shannonentropy@10 : 0.0086    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 11:11:17 INFO  Saving current: ./saved/movielens/BPR-Apr-04-2025_11-09-21.pth
+Fri 04 Apr 2025 11:11:18 INFO  epoch 7 training [time: 1.23s, train loss: 81.6461]
+Fri 04 Apr 2025 11:11:32 INFO  epoch 7 evaluating [time: 13.77s, valid_score: 0.203800]
+Fri 04 Apr 2025 11:11:32 INFO  valid result: 
+recall@10 : 0.0929    mrr@10 : 0.2038    ndcg@10 : 0.1042    hit@10 : 0.4952    map@10 : 0.0479    precision@10 : 0.0771    gauc : 0.8823    itemcoverage@10 : 0.1785    averagepopularity@10 : 1422.0505    giniindex@10 : 0.9786    shannonentropy@10 : 0.0077    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 11:11:32 INFO  Saving current: ./saved/movielens/BPR-Apr-04-2025_11-09-21.pth
+Fri 04 Apr 2025 11:11:33 INFO  epoch 8 training [time: 1.23s, train loss: 78.5434]
+Fri 04 Apr 2025 11:11:48 INFO  epoch 8 evaluating [time: 14.68s, valid_score: 0.207200]
+Fri 04 Apr 2025 11:11:48 INFO  valid result: 
+recall@10 : 0.0964    mrr@10 : 0.2072    ndcg@10 : 0.1066    hit@10 : 0.5065    map@10 : 0.0487    precision@10 : 0.0793    gauc : 0.8853    itemcoverage@10 : 0.2036    averagepopularity@10 : 1377.9075    giniindex@10 : 0.974    shannonentropy@10 : 0.007    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 11:11:48 INFO  Saving current: ./saved/movielens/BPR-Apr-04-2025_11-09-21.pth
+Fri 04 Apr 2025 11:11:49 INFO  epoch 9 training [time: 1.25s, train loss: 76.4928]
+Fri 04 Apr 2025 11:12:03 INFO  epoch 9 evaluating [time: 13.64s, valid_score: 0.208100]
+Fri 04 Apr 2025 11:12:03 INFO  valid result: 
+recall@10 : 0.0992    mrr@10 : 0.2081    ndcg@10 : 0.1085    hit@10 : 0.5128    map@10 : 0.0496    precision@10 : 0.0812    gauc : 0.8877    itemcoverage@10 : 0.2211    averagepopularity@10 : 1350.1999    giniindex@10 : 0.9704    shannonentropy@10 : 0.0066    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 11:12:03 INFO  Saving current: ./saved/movielens/BPR-Apr-04-2025_11-09-21.pth
+Fri 04 Apr 2025 11:12:04 INFO  epoch 10 training [time: 1.24s, train loss: 74.2332]
+Fri 04 Apr 2025 11:12:19 INFO  epoch 10 evaluating [time: 15.02s, valid_score: 0.211400]
+Fri 04 Apr 2025 11:12:19 INFO  valid result: 
+recall@10 : 0.1016    mrr@10 : 0.2114    ndcg@10 : 0.1114    hit@10 : 0.5204    map@10 : 0.0517    precision@10 : 0.0826    gauc : 0.8896    itemcoverage@10 : 0.2402    averagepopularity@10 : 1318.3035    giniindex@10 : 0.9664    shannonentropy@10 : 0.0063    tailpercentage@10 : 0.0001
+Fri 04 Apr 2025 11:12:19 INFO  Saving current: ./saved/movielens/BPR-Apr-04-2025_11-09-21.pth
+Fri 04 Apr 2025 11:12:20 INFO  epoch 11 training [time: 1.39s, train loss: 72.9235]
+Fri 04 Apr 2025 11:12:36 INFO  epoch 11 evaluating [time: 15.50s, valid_score: 0.209500]
+Fri 04 Apr 2025 11:12:36 INFO  valid result: 
+recall@10 : 0.1054    mrr@10 : 0.2095    ndcg@10 : 0.1126    hit@10 : 0.5235    map@10 : 0.0518    precision@10 : 0.084    gauc : 0.8912    itemcoverage@10 : 0.2578    averagepopularity@10 : 1304.2999    giniindex@10 : 0.9634    shannonentropy@10 : 0.0059    tailpercentage@10 : 0.0001
+Fri 04 Apr 2025 11:12:37 INFO  epoch 12 training [time: 1.44s, train loss: 71.0733]
+Fri 04 Apr 2025 11:12:53 INFO  epoch 12 evaluating [time: 15.50s, valid_score: 0.215100]
+Fri 04 Apr 2025 11:12:53 INFO  valid result: 
+recall@10 : 0.1063    mrr@10 : 0.2151    ndcg@10 : 0.1143    hit@10 : 0.5308    map@10 : 0.0531    precision@10 : 0.084    gauc : 0.8927    itemcoverage@10 : 0.265    averagepopularity@10 : 1275.815    giniindex@10 : 0.9597    shannonentropy@10 : 0.0059    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 11:12:53 INFO  Saving current: ./saved/movielens/BPR-Apr-04-2025_11-09-21.pth
+Fri 04 Apr 2025 11:12:54 INFO  epoch 13 training [time: 1.42s, train loss: 69.6565]
+Fri 04 Apr 2025 11:13:11 INFO  epoch 13 evaluating [time: 16.78s, valid_score: 0.218200]
+Fri 04 Apr 2025 11:13:11 INFO  valid result: 
+recall@10 : 0.1082    mrr@10 : 0.2182    ndcg@10 : 0.1162    hit@10 : 0.5318    map@10 : 0.0543    precision@10 : 0.0853    gauc : 0.8939    itemcoverage@10 : 0.2769    averagepopularity@10 : 1246.72    giniindex@10 : 0.9561    shannonentropy@10 : 0.0057    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 11:13:11 INFO  Saving current: ./saved/movielens/BPR-Apr-04-2025_11-09-21.pth
+Fri 04 Apr 2025 11:13:13 INFO  epoch 14 training [time: 1.57s, train loss: 68.1030]
+Fri 04 Apr 2025 11:13:27 INFO  epoch 14 evaluating [time: 14.63s, valid_score: 0.220600]
+Fri 04 Apr 2025 11:13:27 INFO  valid result: 
+recall@10 : 0.1121    mrr@10 : 0.2206    ndcg@10 : 0.1186    hit@10 : 0.5398    map@10 : 0.0554    precision@10 : 0.0867    gauc : 0.8949    itemcoverage@10 : 0.2922    averagepopularity@10 : 1222.6049    giniindex@10 : 0.9518    shannonentropy@10 : 0.0055    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 11:13:27 INFO  Saving current: ./saved/movielens/BPR-Apr-04-2025_11-09-21.pth
+Fri 04 Apr 2025 11:13:28 INFO  epoch 15 training [time: 1.30s, train loss: 66.9639]
+Fri 04 Apr 2025 11:13:44 INFO  epoch 15 evaluating [time: 15.32s, valid_score: 0.221700]
+Fri 04 Apr 2025 11:13:44 INFO  valid result: 
+recall@10 : 0.1119    mrr@10 : 0.2217    ndcg@10 : 0.1193    hit@10 : 0.5457    map@10 : 0.056    precision@10 : 0.0876    gauc : 0.8959    itemcoverage@10 : 0.3088    averagepopularity@10 : 1206.004    giniindex@10 : 0.9483    shannonentropy@10 : 0.0053    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 11:13:44 INFO  Saving current: ./saved/movielens/BPR-Apr-04-2025_11-09-21.pth
+Fri 04 Apr 2025 11:13:45 INFO  epoch 16 training [time: 1.40s, train loss: 65.4632]
+Fri 04 Apr 2025 11:14:01 INFO  epoch 16 evaluating [time: 15.55s, valid_score: 0.224400]
+Fri 04 Apr 2025 11:14:01 INFO  valid result: 
+recall@10 : 0.114    mrr@10 : 0.2244    ndcg@10 : 0.1211    hit@10 : 0.5542    map@10 : 0.0566    precision@10 : 0.0888    gauc : 0.8967    itemcoverage@10 : 0.3179    averagepopularity@10 : 1196.2237    giniindex@10 : 0.9464    shannonentropy@10 : 0.0052    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 11:14:01 INFO  Saving current: ./saved/movielens/BPR-Apr-04-2025_11-09-21.pth
+Fri 04 Apr 2025 11:14:02 INFO  epoch 17 training [time: 1.45s, train loss: 64.0482]
+Fri 04 Apr 2025 11:14:18 INFO  epoch 17 evaluating [time: 15.90s, valid_score: 0.224200]
+Fri 04 Apr 2025 11:14:18 INFO  valid result: 
+recall@10 : 0.1154    mrr@10 : 0.2242    ndcg@10 : 0.1213    hit@10 : 0.5562    map@10 : 0.0568    precision@10 : 0.0886    gauc : 0.8974    itemcoverage@10 : 0.3273    averagepopularity@10 : 1170.9611    giniindex@10 : 0.9419    shannonentropy@10 : 0.0051    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 11:14:20 INFO  epoch 18 training [time: 1.38s, train loss: 62.9813]
+Fri 04 Apr 2025 11:14:34 INFO  epoch 18 evaluating [time: 14.26s, valid_score: 0.222800]
+Fri 04 Apr 2025 11:14:34 INFO  valid result: 
+recall@10 : 0.1167    mrr@10 : 0.2228    ndcg@10 : 0.1218    hit@10 : 0.5616    map@10 : 0.0567    precision@10 : 0.0897    gauc : 0.8981    itemcoverage@10 : 0.3382    averagepopularity@10 : 1156.3518    giniindex@10 : 0.9389    shannonentropy@10 : 0.005    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 11:14:35 INFO  epoch 19 training [time: 1.39s, train loss: 61.9176]
+Fri 04 Apr 2025 11:14:50 INFO  epoch 19 evaluating [time: 15.10s, valid_score: 0.225500]
+Fri 04 Apr 2025 11:14:50 INFO  valid result: 
+recall@10 : 0.1178    mrr@10 : 0.2255    ndcg@10 : 0.1229    hit@10 : 0.5616    map@10 : 0.0577    precision@10 : 0.0895    gauc : 0.8987    itemcoverage@10 : 0.3461    averagepopularity@10 : 1140.6558    giniindex@10 : 0.9353    shannonentropy@10 : 0.0049    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 11:14:50 INFO  Saving current: ./saved/movielens/BPR-Apr-04-2025_11-09-21.pth
+Fri 04 Apr 2025 11:14:52 INFO  epoch 20 training [time: 1.32s, train loss: 60.9992]
+Fri 04 Apr 2025 11:15:07 INFO  epoch 20 evaluating [time: 15.03s, valid_score: 0.225900]
+Fri 04 Apr 2025 11:15:07 INFO  valid result: 
+recall@10 : 0.1172    mrr@10 : 0.2259    ndcg@10 : 0.1228    hit@10 : 0.5606    map@10 : 0.0576    precision@10 : 0.0897    gauc : 0.8993    itemcoverage@10 : 0.3592    averagepopularity@10 : 1130.1929    giniindex@10 : 0.9325    shannonentropy@10 : 0.0048    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 11:15:07 INFO  Saving current: ./saved/movielens/BPR-Apr-04-2025_11-09-21.pth
+Fri 04 Apr 2025 11:15:08 INFO  epoch 21 training [time: 1.41s, train loss: 59.9819]
+Fri 04 Apr 2025 11:15:22 INFO  epoch 21 evaluating [time: 13.55s, valid_score: 0.228800]
+Fri 04 Apr 2025 11:15:22 INFO  valid result: 
+recall@10 : 0.1182    mrr@10 : 0.2288    ndcg@10 : 0.1243    hit@10 : 0.5656    map@10 : 0.0585    precision@10 : 0.0903    gauc : 0.8998    itemcoverage@10 : 0.3705    averagepopularity@10 : 1103.9938    giniindex@10 : 0.9286    shannonentropy@10 : 0.0047    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 11:15:22 INFO  Saving current: ./saved/movielens/BPR-Apr-04-2025_11-09-21.pth
+Fri 04 Apr 2025 11:15:23 INFO  epoch 22 training [time: 1.33s, train loss: 58.7216]
+Fri 04 Apr 2025 11:15:38 INFO  epoch 22 evaluating [time: 14.67s, valid_score: 0.230700]
+Fri 04 Apr 2025 11:15:38 INFO  valid result: 
+recall@10 : 0.1177    mrr@10 : 0.2307    ndcg@10 : 0.1244    hit@10 : 0.5638    map@10 : 0.0587    precision@10 : 0.0901    gauc : 0.9002    itemcoverage@10 : 0.3837    averagepopularity@10 : 1103.8578    giniindex@10 : 0.927    shannonentropy@10 : 0.0046    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 11:15:38 INFO  Saving current: ./saved/movielens/BPR-Apr-04-2025_11-09-21.pth
+Fri 04 Apr 2025 11:15:39 INFO  epoch 23 training [time: 1.29s, train loss: 57.8518]
+Fri 04 Apr 2025 11:15:53 INFO  epoch 23 evaluating [time: 14.44s, valid_score: 0.229100]
+Fri 04 Apr 2025 11:15:53 INFO  valid result: 
+recall@10 : 0.1189    mrr@10 : 0.2291    ndcg@10 : 0.1249    hit@10 : 0.5608    map@10 : 0.0592    precision@10 : 0.0903    gauc : 0.9006    itemcoverage@10 : 0.393    averagepopularity@10 : 1082.3204    giniindex@10 : 0.9235    shannonentropy@10 : 0.0045    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 11:15:55 INFO  epoch 24 training [time: 1.44s, train loss: 56.8550]
+Fri 04 Apr 2025 11:16:09 INFO  epoch 24 evaluating [time: 13.83s, valid_score: 0.231100]
+Fri 04 Apr 2025 11:16:09 INFO  valid result: 
+recall@10 : 0.1196    mrr@10 : 0.2311    ndcg@10 : 0.1261    hit@10 : 0.5654    map@10 : 0.0602    precision@10 : 0.0906    gauc : 0.9008    itemcoverage@10 : 0.4053    averagepopularity@10 : 1064.4909    giniindex@10 : 0.9207    shannonentropy@10 : 0.0044    tailpercentage@10 : 0.0001
+Fri 04 Apr 2025 11:16:09 INFO  Saving current: ./saved/movielens/BPR-Apr-04-2025_11-09-21.pth
+Fri 04 Apr 2025 11:16:10 INFO  epoch 25 training [time: 1.36s, train loss: 55.9471]
+Fri 04 Apr 2025 11:16:25 INFO  epoch 25 evaluating [time: 14.81s, valid_score: 0.231900]
+Fri 04 Apr 2025 11:16:25 INFO  valid result: 
+recall@10 : 0.1203    mrr@10 : 0.2319    ndcg@10 : 0.1264    hit@10 : 0.5689    map@10 : 0.0598    precision@10 : 0.0916    gauc : 0.9009    itemcoverage@10 : 0.4103    averagepopularity@10 : 1056.2328    giniindex@10 : 0.9176    shannonentropy@10 : 0.0044    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 11:16:25 INFO  Saving current: ./saved/movielens/BPR-Apr-04-2025_11-09-21.pth
+Fri 04 Apr 2025 11:16:26 INFO  epoch 26 training [time: 1.59s, train loss: 54.9390]
+Fri 04 Apr 2025 11:16:40 INFO  epoch 26 evaluating [time: 13.76s, valid_score: 0.234200]
+Fri 04 Apr 2025 11:16:40 INFO  valid result: 
+recall@10 : 0.1218    mrr@10 : 0.2342    ndcg@10 : 0.127    hit@10 : 0.5734    map@10 : 0.0602    precision@10 : 0.0914    gauc : 0.9011    itemcoverage@10 : 0.4225    averagepopularity@10 : 1046.662    giniindex@10 : 0.9147    shannonentropy@10 : 0.0043    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 11:16:40 INFO  Saving current: ./saved/movielens/BPR-Apr-04-2025_11-09-21.pth
+Fri 04 Apr 2025 11:16:42 INFO  epoch 27 training [time: 1.42s, train loss: 53.9627]
+Fri 04 Apr 2025 11:16:56 INFO  epoch 27 evaluating [time: 13.92s, valid_score: 0.235800]
+Fri 04 Apr 2025 11:16:56 INFO  valid result: 
+recall@10 : 0.121    mrr@10 : 0.2358    ndcg@10 : 0.1273    hit@10 : 0.5726    map@10 : 0.0604    precision@10 : 0.0912    gauc : 0.9013    itemcoverage@10 : 0.4347    averagepopularity@10 : 1040.1122    giniindex@10 : 0.9118    shannonentropy@10 : 0.0042    tailpercentage@10 : 0.0001
+Fri 04 Apr 2025 11:16:56 INFO  Saving current: ./saved/movielens/BPR-Apr-04-2025_11-09-21.pth
+Fri 04 Apr 2025 11:16:57 INFO  epoch 28 training [time: 1.33s, train loss: 53.1453]
+Fri 04 Apr 2025 11:17:11 INFO  epoch 28 evaluating [time: 13.97s, valid_score: 0.236100]
+Fri 04 Apr 2025 11:17:11 INFO  valid result: 
+recall@10 : 0.1226    mrr@10 : 0.2361    ndcg@10 : 0.1279    hit@10 : 0.5765    map@10 : 0.0607    precision@10 : 0.0916    gauc : 0.9014    itemcoverage@10 : 0.4407    averagepopularity@10 : 1040.0354    giniindex@10 : 0.9102    shannonentropy@10 : 0.0041    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 11:17:11 INFO  Saving current: ./saved/movielens/BPR-Apr-04-2025_11-09-21.pth
+Fri 04 Apr 2025 11:17:12 INFO  epoch 29 training [time: 1.34s, train loss: 51.9645]
+Fri 04 Apr 2025 11:17:26 INFO  epoch 29 evaluating [time: 13.63s, valid_score: 0.234900]
+Fri 04 Apr 2025 11:17:26 INFO  valid result: 
+recall@10 : 0.123    mrr@10 : 0.2349    ndcg@10 : 0.1279    hit@10 : 0.576    map@10 : 0.0607    precision@10 : 0.0917    gauc : 0.9014    itemcoverage@10 : 0.4479    averagepopularity@10 : 1034.8882    giniindex@10 : 0.9084    shannonentropy@10 : 0.0041    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 11:17:27 INFO  epoch 30 training [time: 1.29s, train loss: 51.0982]
+Fri 04 Apr 2025 11:17:41 INFO  epoch 30 evaluating [time: 13.56s, valid_score: 0.236600]
+Fri 04 Apr 2025 11:17:41 INFO  valid result: 
+recall@10 : 0.1217    mrr@10 : 0.2366    ndcg@10 : 0.1275    hit@10 : 0.5759    map@10 : 0.0607    precision@10 : 0.0908    gauc : 0.9015    itemcoverage@10 : 0.4522    averagepopularity@10 : 1020.8625    giniindex@10 : 0.9053    shannonentropy@10 : 0.0041    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 11:17:41 INFO  Saving current: ./saved/movielens/BPR-Apr-04-2025_11-09-21.pth
+Fri 04 Apr 2025 11:17:42 INFO  epoch 31 training [time: 1.36s, train loss: 50.5980]
+Fri 04 Apr 2025 11:17:56 INFO  epoch 31 evaluating [time: 13.71s, valid_score: 0.237000]
+Fri 04 Apr 2025 11:17:56 INFO  valid result: 
+recall@10 : 0.1223    mrr@10 : 0.237    ndcg@10 : 0.1283    hit@10 : 0.5689    map@10 : 0.0616    precision@10 : 0.0909    gauc : 0.9015    itemcoverage@10 : 0.4591    averagepopularity@10 : 1001.1675    giniindex@10 : 0.9013    shannonentropy@10 : 0.004    tailpercentage@10 : 0.0001
+Fri 04 Apr 2025 11:17:56 INFO  Saving current: ./saved/movielens/BPR-Apr-04-2025_11-09-21.pth
+Fri 04 Apr 2025 11:17:57 INFO  epoch 32 training [time: 1.28s, train loss: 49.9606]
+Fri 04 Apr 2025 11:18:11 INFO  epoch 32 evaluating [time: 14.11s, valid_score: 0.235100]
+Fri 04 Apr 2025 11:18:11 INFO  valid result: 
+recall@10 : 0.1231    mrr@10 : 0.2351    ndcg@10 : 0.1277    hit@10 : 0.5732    map@10 : 0.0607    precision@10 : 0.0909    gauc : 0.9015    itemcoverage@10 : 0.4707    averagepopularity@10 : 996.9151    giniindex@10 : 0.8987    shannonentropy@10 : 0.0039    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 11:18:13 INFO  epoch 33 training [time: 1.39s, train loss: 49.2320]
+Fri 04 Apr 2025 11:18:27 INFO  epoch 33 evaluating [time: 14.15s, valid_score: 0.235700]
+Fri 04 Apr 2025 11:18:27 INFO  valid result: 
+recall@10 : 0.1241    mrr@10 : 0.2357    ndcg@10 : 0.1279    hit@10 : 0.5714    map@10 : 0.0609    precision@10 : 0.0906    gauc : 0.9015    itemcoverage@10 : 0.4738    averagepopularity@10 : 987.5116    giniindex@10 : 0.897    shannonentropy@10 : 0.0039    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 11:18:28 INFO  epoch 34 training [time: 1.32s, train loss: 48.3349]
+Fri 04 Apr 2025 11:18:42 INFO  epoch 34 evaluating [time: 13.65s, valid_score: 0.238300]
+Fri 04 Apr 2025 11:18:42 INFO  valid result: 
+recall@10 : 0.1242    mrr@10 : 0.2383    ndcg@10 : 0.1287    hit@10 : 0.5765    map@10 : 0.0616    precision@10 : 0.0907    gauc : 0.9014    itemcoverage@10 : 0.4839    averagepopularity@10 : 978.536    giniindex@10 : 0.894    shannonentropy@10 : 0.0039    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 11:18:42 INFO  Saving current: ./saved/movielens/BPR-Apr-04-2025_11-09-21.pth
+Fri 04 Apr 2025 11:18:43 INFO  epoch 35 training [time: 1.28s, train loss: 47.7230]
+Fri 04 Apr 2025 11:18:57 INFO  epoch 35 evaluating [time: 13.91s, valid_score: 0.236500]
+Fri 04 Apr 2025 11:18:57 INFO  valid result: 
+recall@10 : 0.1236    mrr@10 : 0.2365    ndcg@10 : 0.1281    hit@10 : 0.5724    map@10 : 0.0613    precision@10 : 0.0905    gauc : 0.9012    itemcoverage@10 : 0.4873    averagepopularity@10 : 978.3454    giniindex@10 : 0.8926    shannonentropy@10 : 0.0039    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 11:18:58 INFO  epoch 36 training [time: 1.30s, train loss: 47.2197]
+Fri 04 Apr 2025 11:19:12 INFO  epoch 36 evaluating [time: 13.67s, valid_score: 0.235500]
+Fri 04 Apr 2025 11:19:12 INFO  valid result: 
+recall@10 : 0.1234    mrr@10 : 0.2355    ndcg@10 : 0.1276    hit@10 : 0.5734    map@10 : 0.0608    precision@10 : 0.0903    gauc : 0.901    itemcoverage@10 : 0.4964    averagepopularity@10 : 970.8222    giniindex@10 : 0.8889    shannonentropy@10 : 0.0038    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 11:19:13 INFO  epoch 37 training [time: 1.31s, train loss: 46.2799]
+Fri 04 Apr 2025 11:19:28 INFO  epoch 37 evaluating [time: 14.75s, valid_score: 0.238100]
+Fri 04 Apr 2025 11:19:28 INFO  valid result: 
+recall@10 : 0.1237    mrr@10 : 0.2381    ndcg@10 : 0.1283    hit@10 : 0.5729    map@10 : 0.0612    precision@10 : 0.0906    gauc : 0.9009    itemcoverage@10 : 0.5039    averagepopularity@10 : 961.8494    giniindex@10 : 0.8861    shannonentropy@10 : 0.0038    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 11:19:29 INFO  epoch 38 training [time: 1.41s, train loss: 45.7787]
+Fri 04 Apr 2025 11:19:44 INFO  epoch 38 evaluating [time: 15.14s, valid_score: 0.237600]
+Fri 04 Apr 2025 11:19:44 INFO  valid result: 
+recall@10 : 0.1228    mrr@10 : 0.2376    ndcg@10 : 0.1278    hit@10 : 0.5731    map@10 : 0.0611    precision@10 : 0.0902    gauc : 0.9007    itemcoverage@10 : 0.5089    averagepopularity@10 : 960.9344    giniindex@10 : 0.8843    shannonentropy@10 : 0.0037    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 11:19:46 INFO  epoch 39 training [time: 1.48s, train loss: 45.0601]
+Fri 04 Apr 2025 11:20:00 INFO  epoch 39 evaluating [time: 14.08s, valid_score: 0.235600]
+Fri 04 Apr 2025 11:20:00 INFO  valid result: 
+recall@10 : 0.1222    mrr@10 : 0.2356    ndcg@10 : 0.1268    hit@10 : 0.5717    map@10 : 0.0605    precision@10 : 0.0894    gauc : 0.9006    itemcoverage@10 : 0.5127    averagepopularity@10 : 959.8685    giniindex@10 : 0.8832    shannonentropy@10 : 0.0037    tailpercentage@10 : 0.0001
+Fri 04 Apr 2025 11:20:01 INFO  epoch 40 training [time: 1.44s, train loss: 44.4799]
+Fri 04 Apr 2025 11:20:16 INFO  epoch 40 evaluating [time: 14.19s, valid_score: 0.234800]
+Fri 04 Apr 2025 11:20:16 INFO  valid result: 
+recall@10 : 0.1227    mrr@10 : 0.2348    ndcg@10 : 0.1268    hit@10 : 0.5716    map@10 : 0.0605    precision@10 : 0.0894    gauc : 0.9004    itemcoverage@10 : 0.5202    averagepopularity@10 : 959.948    giniindex@10 : 0.8817    shannonentropy@10 : 0.0037    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 11:20:17 INFO  epoch 41 training [time: 1.33s, train loss: 44.1194]
+Fri 04 Apr 2025 11:20:31 INFO  epoch 41 evaluating [time: 14.17s, valid_score: 0.236500]
+Fri 04 Apr 2025 11:20:31 INFO  valid result: 
+recall@10 : 0.1227    mrr@10 : 0.2365    ndcg@10 : 0.1271    hit@10 : 0.5688    map@10 : 0.0607    precision@10 : 0.0895    gauc : 0.9002    itemcoverage@10 : 0.5246    averagepopularity@10 : 949.7659    giniindex@10 : 0.8799    shannonentropy@10 : 0.0036    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 11:20:32 INFO  epoch 42 training [time: 1.37s, train loss: 43.5559]
+Fri 04 Apr 2025 11:20:47 INFO  epoch 42 evaluating [time: 14.24s, valid_score: 0.235400]
+Fri 04 Apr 2025 11:20:47 INFO  valid result: 
+recall@10 : 0.1224    mrr@10 : 0.2354    ndcg@10 : 0.1264    hit@10 : 0.5684    map@10 : 0.0603    precision@10 : 0.0888    gauc : 0.9    itemcoverage@10 : 0.5324    averagepopularity@10 : 938.9535    giniindex@10 : 0.8768    shannonentropy@10 : 0.0036    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 11:20:48 INFO  epoch 43 training [time: 1.34s, train loss: 43.0383]
+Fri 04 Apr 2025 11:21:02 INFO  epoch 43 evaluating [time: 13.43s, valid_score: 0.234800]
+Fri 04 Apr 2025 11:21:02 INFO  valid result: 
+recall@10 : 0.1239    mrr@10 : 0.2348    ndcg@10 : 0.1271    hit@10 : 0.5716    map@10 : 0.0607    precision@10 : 0.0894    gauc : 0.8998    itemcoverage@10 : 0.5352    averagepopularity@10 : 950.9968    giniindex@10 : 0.8769    shannonentropy@10 : 0.0036    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 11:21:03 INFO  epoch 44 training [time: 1.29s, train loss: 42.7210]
+Fri 04 Apr 2025 11:21:17 INFO  epoch 44 evaluating [time: 13.77s, valid_score: 0.234800]
+Fri 04 Apr 2025 11:21:17 INFO  valid result: 
+recall@10 : 0.1235    mrr@10 : 0.2348    ndcg@10 : 0.127    hit@10 : 0.5722    map@10 : 0.0608    precision@10 : 0.089    gauc : 0.8995    itemcoverage@10 : 0.5431    averagepopularity@10 : 931.946    giniindex@10 : 0.8737    shannonentropy@10 : 0.0036    tailpercentage@10 : 0.0001
+Fri 04 Apr 2025 11:21:18 INFO  epoch 45 training [time: 1.38s, train loss: 42.2901]
+Fri 04 Apr 2025 11:21:32 INFO  epoch 45 evaluating [time: 14.47s, valid_score: 0.236700]
+Fri 04 Apr 2025 11:21:32 INFO  valid result: 
+recall@10 : 0.1226    mrr@10 : 0.2367    ndcg@10 : 0.1272    hit@10 : 0.5684    map@10 : 0.0612    precision@10 : 0.0888    gauc : 0.8993    itemcoverage@10 : 0.5484    averagepopularity@10 : 924.8548    giniindex@10 : 0.8722    shannonentropy@10 : 0.0035    tailpercentage@10 : 0.0001
+Fri 04 Apr 2025 11:21:34 INFO  epoch 46 training [time: 1.30s, train loss: 41.8090]
+Fri 04 Apr 2025 11:21:47 INFO  epoch 46 evaluating [time: 13.56s, valid_score: 0.237300]
+Fri 04 Apr 2025 11:21:47 INFO  valid result: 
+recall@10 : 0.1238    mrr@10 : 0.2373    ndcg@10 : 0.1276    hit@10 : 0.5734    map@10 : 0.061    precision@10 : 0.0896    gauc : 0.8991    itemcoverage@10 : 0.555    averagepopularity@10 : 922.9468    giniindex@10 : 0.8697    shannonentropy@10 : 0.0035    tailpercentage@10 : 0.0001
+Fri 04 Apr 2025 11:21:49 INFO  epoch 47 training [time: 1.27s, train loss: 41.4058]
+Fri 04 Apr 2025 11:22:02 INFO  epoch 47 evaluating [time: 13.48s, valid_score: 0.235900]
+Fri 04 Apr 2025 11:22:02 INFO  valid result: 
+recall@10 : 0.1239    mrr@10 : 0.2359    ndcg@10 : 0.1274    hit@10 : 0.5742    map@10 : 0.0608    precision@10 : 0.0896    gauc : 0.8988    itemcoverage@10 : 0.5593    averagepopularity@10 : 905.8431    giniindex@10 : 0.8657    shannonentropy@10 : 0.0035    tailpercentage@10 : 0.0001
+Fri 04 Apr 2025 11:22:03 INFO  epoch 48 training [time: 1.32s, train loss: 40.6998]
+Fri 04 Apr 2025 11:22:18 INFO  epoch 48 evaluating [time: 14.26s, valid_score: 0.233200]
+Fri 04 Apr 2025 11:22:18 INFO  valid result: 
+recall@10 : 0.1238    mrr@10 : 0.2332    ndcg@10 : 0.1265    hit@10 : 0.5721    map@10 : 0.0603    precision@10 : 0.0891    gauc : 0.8986    itemcoverage@10 : 0.5681    averagepopularity@10 : 901.2508    giniindex@10 : 0.8642    shannonentropy@10 : 0.0034    tailpercentage@10 : 0.0001
+Fri 04 Apr 2025 11:22:19 INFO  epoch 49 training [time: 1.25s, train loss: 40.9293]
+Fri 04 Apr 2025 11:22:33 INFO  epoch 49 evaluating [time: 13.80s, valid_score: 0.232300]
+Fri 04 Apr 2025 11:22:33 INFO  valid result: 
+recall@10 : 0.1237    mrr@10 : 0.2323    ndcg@10 : 0.1262    hit@10 : 0.5716    map@10 : 0.0601    precision@10 : 0.0888    gauc : 0.8983    itemcoverage@10 : 0.5684    averagepopularity@10 : 896.0139    giniindex@10 : 0.8616    shannonentropy@10 : 0.0035    tailpercentage@10 : 0.0
+Fri 04 Apr 2025 11:22:33 INFO  Loading model structure and parameters from ./saved/movielens/BPR-Apr-04-2025_11-09-21.pth

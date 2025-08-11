@@ -1,0 +1,367 @@
+Sat 26 Apr 2025 16:32:35 INFO  
+General Hyper Parameters:
+gpu_id = 0
+use_gpu = True
+seed = 2020
+state = INFO
+reproducibility = True
+data_path = dataset/mind
+checkpoint_dir = ./saved/mind/
+show_progress = True
+save_dataset = True
+dataset_save_path = None
+save_dataloaders = True
+dataloaders_save_path = None
+log_wandb = False
+
+Training Hyper Parameters:
+epochs = 50
+train_batch_size = 2048
+learner = adam
+learning_rate = 0.001
+train_neg_sample_args = {'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}
+eval_step = 1
+stopping_step = 50
+clip_grad_norm = None
+weight_decay = 0.0
+loss_decimal_place = 4
+
+Evaluation Hyper Parameters:
+eval_args = {'split': {'RS': [0.8, 0.1, 0.1]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}
+repeatable = False
+metrics = ['MRR']
+topk = [10]
+valid_metric = MRR@10
+valid_metric_bigger = True
+eval_batch_size = 4096
+metric_decimal_place = 4
+
+Dataset Hyper Parameters:
+field_separator = 	
+seq_separator =  
+USER_ID_FIELD = user_id
+ITEM_ID_FIELD = item_id
+RATING_FIELD = rating
+TIME_FIELD = timestamp
+seq_len = None
+LABEL_FIELD = label
+threshold = None
+NEG_PREFIX = neg_
+load_col = {'inter': ['user_id', 'item_id']}
+unload_col = None
+unused_col = None
+additional_feat_suffix = None
+rm_dup_inter = None
+val_interval = None
+filter_inter_by_user_or_item = True
+user_inter_num_interval = [0,inf)
+item_inter_num_interval = [0,inf)
+alias_of_user_id = None
+alias_of_item_id = None
+alias_of_entity_id = None
+alias_of_relation_id = None
+preload_weight = None
+normalize_field = None
+normalize_all = None
+ITEM_LIST_LENGTH_FIELD = item_length
+LIST_SUFFIX = _list
+MAX_ITEM_LIST_LENGTH = 50
+POSITION_FIELD = position_id
+HEAD_ENTITY_ID_FIELD = head_id
+TAIL_ENTITY_ID_FIELD = tail_id
+RELATION_ID_FIELD = relation_id
+ENTITY_ID_FIELD = entity_id
+benchmark_filename = None
+
+Other Hyper Parameters: 
+worker = 0
+wandb_project = recbole
+shuffle = True
+require_pow = False
+enable_amp = False
+enable_scaler = False
+transform = None
+embedding_size = 64
+n_factors = 4
+n_iterations = 2
+n_layers = 1
+reg_weight = 0.001
+cor_weight = 0.01
+numerical_features = []
+discretization = None
+kg_reverse_r = False
+entity_kg_num_interval = [0,inf)
+relation_kg_num_interval = [0,inf)
+MODEL_TYPE = ModelType.GENERAL
+MODEL_INPUT_TYPE = InputType.PAIRWISE
+eval_type = EvaluatorType.RANKING
+single_spec = True
+local_rank = 0
+device = cuda
+eval_neg_sample_args = {'distribution': 'uniform', 'sample_num': 'none'}
+
+
+Sat 26 Apr 2025 16:32:35 INFO  Load filtered dataset from: [./saved/mind/mind-Dataset.pth]
+Sat 26 Apr 2025 16:32:35 INFO  mind
+The number of users: 23680
+Average actions of users: 44.282908906626126
+The number of items: 4415
+Average actions of items: 237.55663797009515
+The number of inters: 1048575
+The sparsity of the dataset: 98.9970319625968%
+Remain Fields: ['user_id', 'item_id']
+Sat 26 Apr 2025 16:32:43 INFO  Load split dataloaders from: [./saved/mind/mind-for-DGCF-dataloader.pth]
+Sat 26 Apr 2025 16:32:43 INFO  [Training]: train_batch_size = [2048] train_neg_sample_args: [{'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}]
+Sat 26 Apr 2025 16:32:43 INFO  [Evaluation]: eval_batch_size = [4096] eval_args: [{'split': {'RS': [0.8, 0.1, 0.1]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}]
+Sat 26 Apr 2025 16:32:47 INFO  DGCF(
+  (user_embedding): Embedding(23680, 64)
+  (item_embedding): Embedding(4415, 64)
+  (softmax): Softmax(dim=1)
+  (mf_loss): BPRLoss()
+  (reg_loss): EmbLoss()
+)
+Trainable parameters: 1798080
+Sat 26 Apr 2025 17:16:27 INFO  epoch 0 training [time: 2613.84s, train loss: 120.8083]
+Sat 26 Apr 2025 17:16:50 INFO  epoch 0 evaluating [time: 22.47s, valid_score: 0.305500]
+Sat 26 Apr 2025 17:16:50 INFO  valid result: 
+mrr@10 : 0.3055
+Sat 26 Apr 2025 17:16:50 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sat 26 Apr 2025 18:00:19 INFO  epoch 1 training [time: 2609.40s, train loss: 46.3353]
+Sat 26 Apr 2025 18:00:41 INFO  epoch 1 evaluating [time: 21.85s, valid_score: 0.366200]
+Sat 26 Apr 2025 18:00:41 INFO  valid result: 
+mrr@10 : 0.3662
+Sat 26 Apr 2025 18:00:41 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sat 26 Apr 2025 18:44:14 INFO  epoch 2 training [time: 2612.66s, train loss: 40.2444]
+Sat 26 Apr 2025 18:44:36 INFO  epoch 2 evaluating [time: 22.23s, valid_score: 0.426800]
+Sat 26 Apr 2025 18:44:36 INFO  valid result: 
+mrr@10 : 0.4268
+Sat 26 Apr 2025 18:44:36 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sat 26 Apr 2025 19:28:02 INFO  epoch 3 training [time: 2606.03s, train loss: 35.8702]
+Sat 26 Apr 2025 19:28:25 INFO  epoch 3 evaluating [time: 22.74s, valid_score: 0.461700]
+Sat 26 Apr 2025 19:28:25 INFO  valid result: 
+mrr@10 : 0.4617
+Sat 26 Apr 2025 19:28:25 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sat 26 Apr 2025 20:11:52 INFO  epoch 4 training [time: 2607.01s, train loss: 32.6377]
+Sat 26 Apr 2025 20:12:14 INFO  epoch 4 evaluating [time: 21.72s, valid_score: 0.475300]
+Sat 26 Apr 2025 20:12:14 INFO  valid result: 
+mrr@10 : 0.4753
+Sat 26 Apr 2025 20:12:14 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sat 26 Apr 2025 20:55:42 INFO  epoch 5 training [time: 2607.85s, train loss: 30.3603]
+Sat 26 Apr 2025 20:56:04 INFO  epoch 5 evaluating [time: 21.98s, valid_score: 0.486400]
+Sat 26 Apr 2025 20:56:04 INFO  valid result: 
+mrr@10 : 0.4864
+Sat 26 Apr 2025 20:56:04 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sat 26 Apr 2025 21:39:31 INFO  epoch 6 training [time: 2607.35s, train loss: 28.5971]
+Sat 26 Apr 2025 21:39:53 INFO  epoch 6 evaluating [time: 22.25s, valid_score: 0.495300]
+Sat 26 Apr 2025 21:39:53 INFO  valid result: 
+mrr@10 : 0.4953
+Sat 26 Apr 2025 21:39:53 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sat 26 Apr 2025 22:23:21 INFO  epoch 7 training [time: 2607.89s, train loss: 27.5304]
+Sat 26 Apr 2025 22:23:43 INFO  epoch 7 evaluating [time: 22.02s, valid_score: 0.505200]
+Sat 26 Apr 2025 22:23:43 INFO  valid result: 
+mrr@10 : 0.5052
+Sat 26 Apr 2025 22:23:43 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sat 26 Apr 2025 23:07:12 INFO  epoch 8 training [time: 2608.46s, train loss: 26.0658]
+Sat 26 Apr 2025 23:07:34 INFO  epoch 8 evaluating [time: 22.38s, valid_score: 0.512800]
+Sat 26 Apr 2025 23:07:34 INFO  valid result: 
+mrr@10 : 0.5128
+Sat 26 Apr 2025 23:07:34 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sat 26 Apr 2025 23:50:59 INFO  epoch 9 training [time: 2605.24s, train loss: 24.6154]
+Sat 26 Apr 2025 23:51:21 INFO  epoch 9 evaluating [time: 22.11s, valid_score: 0.521300]
+Sat 26 Apr 2025 23:51:21 INFO  valid result: 
+mrr@10 : 0.5213
+Sat 26 Apr 2025 23:51:21 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sun 27 Apr 2025 00:34:42 INFO  epoch 10 training [time: 2600.81s, train loss: 23.7799]
+Sun 27 Apr 2025 00:35:04 INFO  epoch 10 evaluating [time: 21.98s, valid_score: 0.528200]
+Sun 27 Apr 2025 00:35:04 INFO  valid result: 
+mrr@10 : 0.5282
+Sun 27 Apr 2025 00:35:04 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sun 27 Apr 2025 01:18:27 INFO  epoch 11 training [time: 2603.07s, train loss: 22.5818]
+Sun 27 Apr 2025 01:18:49 INFO  epoch 11 evaluating [time: 22.11s, valid_score: 0.532100]
+Sun 27 Apr 2025 01:18:49 INFO  valid result: 
+mrr@10 : 0.5321
+Sun 27 Apr 2025 01:18:49 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sun 27 Apr 2025 02:02:13 INFO  epoch 12 training [time: 2603.90s, train loss: 21.7420]
+Sun 27 Apr 2025 02:02:35 INFO  epoch 12 evaluating [time: 22.15s, valid_score: 0.535200]
+Sun 27 Apr 2025 02:02:35 INFO  valid result: 
+mrr@10 : 0.5352
+Sun 27 Apr 2025 02:02:35 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sun 27 Apr 2025 02:46:05 INFO  epoch 13 training [time: 2610.01s, train loss: 21.2686]
+Sun 27 Apr 2025 02:46:27 INFO  epoch 13 evaluating [time: 21.77s, valid_score: 0.536100]
+Sun 27 Apr 2025 02:46:27 INFO  valid result: 
+mrr@10 : 0.5361
+Sun 27 Apr 2025 02:46:27 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sun 27 Apr 2025 03:29:51 INFO  epoch 14 training [time: 2603.31s, train loss: 20.3737]
+Sun 27 Apr 2025 03:30:12 INFO  epoch 14 evaluating [time: 21.86s, valid_score: 0.535800]
+Sun 27 Apr 2025 03:30:12 INFO  valid result: 
+mrr@10 : 0.5358
+Sun 27 Apr 2025 04:13:39 INFO  epoch 15 training [time: 2606.75s, train loss: 19.7746]
+Sun 27 Apr 2025 04:14:01 INFO  epoch 15 evaluating [time: 21.77s, valid_score: 0.538300]
+Sun 27 Apr 2025 04:14:01 INFO  valid result: 
+mrr@10 : 0.5383
+Sun 27 Apr 2025 04:14:01 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sun 27 Apr 2025 04:57:24 INFO  epoch 16 training [time: 2603.43s, train loss: 19.0381]
+Sun 27 Apr 2025 04:57:47 INFO  epoch 16 evaluating [time: 22.74s, valid_score: 0.539900]
+Sun 27 Apr 2025 04:57:47 INFO  valid result: 
+mrr@10 : 0.5399
+Sun 27 Apr 2025 04:57:47 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sun 27 Apr 2025 05:41:13 INFO  epoch 17 training [time: 2605.49s, train loss: 18.5978]
+Sun 27 Apr 2025 05:41:34 INFO  epoch 17 evaluating [time: 21.74s, valid_score: 0.540800]
+Sun 27 Apr 2025 05:41:34 INFO  valid result: 
+mrr@10 : 0.5408
+Sun 27 Apr 2025 05:41:34 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sun 27 Apr 2025 06:25:01 INFO  epoch 18 training [time: 2606.94s, train loss: 18.2092]
+Sun 27 Apr 2025 06:25:23 INFO  epoch 18 evaluating [time: 21.71s, valid_score: 0.543400]
+Sun 27 Apr 2025 06:25:23 INFO  valid result: 
+mrr@10 : 0.5434
+Sun 27 Apr 2025 06:25:23 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sun 27 Apr 2025 07:08:50 INFO  epoch 19 training [time: 2607.17s, train loss: 17.8268]
+Sun 27 Apr 2025 07:09:12 INFO  epoch 19 evaluating [time: 21.84s, valid_score: 0.545000]
+Sun 27 Apr 2025 07:09:12 INFO  valid result: 
+mrr@10 : 0.545
+Sun 27 Apr 2025 07:09:12 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sun 27 Apr 2025 07:52:48 INFO  epoch 20 training [time: 2616.22s, train loss: 17.4163]
+Sun 27 Apr 2025 07:53:11 INFO  epoch 20 evaluating [time: 22.04s, valid_score: 0.547200]
+Sun 27 Apr 2025 07:53:11 INFO  valid result: 
+mrr@10 : 0.5472
+Sun 27 Apr 2025 07:53:11 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sun 27 Apr 2025 08:36:36 INFO  epoch 21 training [time: 2605.84s, train loss: 16.9685]
+Sun 27 Apr 2025 08:36:58 INFO  epoch 21 evaluating [time: 21.80s, valid_score: 0.548600]
+Sun 27 Apr 2025 08:36:58 INFO  valid result: 
+mrr@10 : 0.5486
+Sun 27 Apr 2025 08:36:58 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sun 27 Apr 2025 09:20:25 INFO  epoch 22 training [time: 2606.47s, train loss: 16.7213]
+Sun 27 Apr 2025 09:20:47 INFO  epoch 22 evaluating [time: 21.86s, valid_score: 0.549200]
+Sun 27 Apr 2025 09:20:47 INFO  valid result: 
+mrr@10 : 0.5492
+Sun 27 Apr 2025 09:20:47 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sun 27 Apr 2025 10:04:07 INFO  epoch 23 training [time: 2600.46s, train loss: 16.3606]
+Sun 27 Apr 2025 10:04:29 INFO  epoch 23 evaluating [time: 21.91s, valid_score: 0.552000]
+Sun 27 Apr 2025 10:04:29 INFO  valid result: 
+mrr@10 : 0.552
+Sun 27 Apr 2025 10:04:29 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sun 27 Apr 2025 10:47:52 INFO  epoch 24 training [time: 2603.06s, train loss: 15.8513]
+Sun 27 Apr 2025 10:48:14 INFO  epoch 24 evaluating [time: 22.48s, valid_score: 0.554600]
+Sun 27 Apr 2025 10:48:14 INFO  valid result: 
+mrr@10 : 0.5546
+Sun 27 Apr 2025 10:48:15 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sun 27 Apr 2025 11:31:34 INFO  epoch 25 training [time: 2599.65s, train loss: 15.6863]
+Sun 27 Apr 2025 11:31:56 INFO  epoch 25 evaluating [time: 22.23s, valid_score: 0.554800]
+Sun 27 Apr 2025 11:31:56 INFO  valid result: 
+mrr@10 : 0.5548
+Sun 27 Apr 2025 11:31:56 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sun 27 Apr 2025 12:15:27 INFO  epoch 26 training [time: 2610.87s, train loss: 15.5113]
+Sun 27 Apr 2025 12:15:49 INFO  epoch 26 evaluating [time: 22.11s, valid_score: 0.556400]
+Sun 27 Apr 2025 12:15:49 INFO  valid result: 
+mrr@10 : 0.5564
+Sun 27 Apr 2025 12:15:49 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sun 27 Apr 2025 12:59:12 INFO  epoch 27 training [time: 2602.30s, train loss: 14.8517]
+Sun 27 Apr 2025 12:59:33 INFO  epoch 27 evaluating [time: 21.65s, valid_score: 0.557900]
+Sun 27 Apr 2025 12:59:33 INFO  valid result: 
+mrr@10 : 0.5579
+Sun 27 Apr 2025 12:59:33 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sun 27 Apr 2025 13:43:01 INFO  epoch 28 training [time: 2607.73s, train loss: 14.8615]
+Sun 27 Apr 2025 13:43:24 INFO  epoch 28 evaluating [time: 22.81s, valid_score: 0.558300]
+Sun 27 Apr 2025 13:43:24 INFO  valid result: 
+mrr@10 : 0.5583
+Sun 27 Apr 2025 13:43:24 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sun 27 Apr 2025 14:26:50 INFO  epoch 29 training [time: 2605.72s, train loss: 14.6463]
+Sun 27 Apr 2025 14:27:11 INFO  epoch 29 evaluating [time: 21.75s, valid_score: 0.556800]
+Sun 27 Apr 2025 14:27:11 INFO  valid result: 
+mrr@10 : 0.5568
+Sun 27 Apr 2025 15:10:38 INFO  epoch 30 training [time: 2606.96s, train loss: 14.2799]
+Sun 27 Apr 2025 15:11:01 INFO  epoch 30 evaluating [time: 22.59s, valid_score: 0.561000]
+Sun 27 Apr 2025 15:11:01 INFO  valid result: 
+mrr@10 : 0.561
+Sun 27 Apr 2025 15:11:01 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sun 27 Apr 2025 15:54:25 INFO  epoch 31 training [time: 2604.22s, train loss: 13.8728]
+Sun 27 Apr 2025 15:54:48 INFO  epoch 31 evaluating [time: 22.35s, valid_score: 0.561500]
+Sun 27 Apr 2025 15:54:48 INFO  valid result: 
+mrr@10 : 0.5615
+Sun 27 Apr 2025 15:54:48 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sun 27 Apr 2025 16:38:12 INFO  epoch 32 training [time: 2604.21s, train loss: 13.6727]
+Sun 27 Apr 2025 16:38:34 INFO  epoch 32 evaluating [time: 22.07s, valid_score: 0.562200]
+Sun 27 Apr 2025 16:38:34 INFO  valid result: 
+mrr@10 : 0.5622
+Sun 27 Apr 2025 16:38:34 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sun 27 Apr 2025 17:22:05 INFO  epoch 33 training [time: 2611.42s, train loss: 13.3941]
+Sun 27 Apr 2025 17:22:27 INFO  epoch 33 evaluating [time: 21.81s, valid_score: 0.563700]
+Sun 27 Apr 2025 17:22:27 INFO  valid result: 
+mrr@10 : 0.5637
+Sun 27 Apr 2025 17:22:27 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sun 27 Apr 2025 18:05:54 INFO  epoch 34 training [time: 2606.90s, train loss: 13.1344]
+Sun 27 Apr 2025 18:06:16 INFO  epoch 34 evaluating [time: 22.33s, valid_score: 0.565500]
+Sun 27 Apr 2025 18:06:16 INFO  valid result: 
+mrr@10 : 0.5655
+Sun 27 Apr 2025 18:06:17 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sun 27 Apr 2025 18:49:40 INFO  epoch 35 training [time: 2603.01s, train loss: 12.9635]
+Sun 27 Apr 2025 18:50:01 INFO  epoch 35 evaluating [time: 21.78s, valid_score: 0.566500]
+Sun 27 Apr 2025 18:50:01 INFO  valid result: 
+mrr@10 : 0.5665
+Sun 27 Apr 2025 18:50:01 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sun 27 Apr 2025 19:33:24 INFO  epoch 36 training [time: 2602.69s, train loss: 12.5421]
+Sun 27 Apr 2025 19:33:46 INFO  epoch 36 evaluating [time: 21.75s, valid_score: 0.568600]
+Sun 27 Apr 2025 19:33:46 INFO  valid result: 
+mrr@10 : 0.5686
+Sun 27 Apr 2025 19:33:46 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sun 27 Apr 2025 20:17:09 INFO  epoch 37 training [time: 2603.23s, train loss: 12.3722]
+Sun 27 Apr 2025 20:17:31 INFO  epoch 37 evaluating [time: 22.00s, valid_score: 0.569500]
+Sun 27 Apr 2025 20:17:31 INFO  valid result: 
+mrr@10 : 0.5695
+Sun 27 Apr 2025 20:17:31 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sun 27 Apr 2025 21:00:55 INFO  epoch 38 training [time: 2603.53s, train loss: 12.1999]
+Sun 27 Apr 2025 21:01:17 INFO  epoch 38 evaluating [time: 22.11s, valid_score: 0.569300]
+Sun 27 Apr 2025 21:01:17 INFO  valid result: 
+mrr@10 : 0.5693
+Sun 27 Apr 2025 21:44:41 INFO  epoch 39 training [time: 2603.89s, train loss: 11.9417]
+Sun 27 Apr 2025 21:45:04 INFO  epoch 39 evaluating [time: 23.50s, valid_score: 0.568800]
+Sun 27 Apr 2025 21:45:04 INFO  valid result: 
+mrr@10 : 0.5688
+Sun 27 Apr 2025 22:28:30 INFO  epoch 40 training [time: 2605.57s, train loss: 11.9731]
+Sun 27 Apr 2025 22:28:51 INFO  epoch 40 evaluating [time: 21.73s, valid_score: 0.567800]
+Sun 27 Apr 2025 22:28:51 INFO  valid result: 
+mrr@10 : 0.5678
+Sun 27 Apr 2025 23:12:14 INFO  epoch 41 training [time: 2602.95s, train loss: 11.5139]
+Sun 27 Apr 2025 23:12:36 INFO  epoch 41 evaluating [time: 21.53s, valid_score: 0.571200]
+Sun 27 Apr 2025 23:12:36 INFO  valid result: 
+mrr@10 : 0.5712
+Sun 27 Apr 2025 23:12:36 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Sun 27 Apr 2025 23:55:59 INFO  epoch 42 training [time: 2603.41s, train loss: 11.2068]
+Sun 27 Apr 2025 23:56:21 INFO  epoch 42 evaluating [time: 21.78s, valid_score: 0.573000]
+Sun 27 Apr 2025 23:56:21 INFO  valid result: 
+mrr@10 : 0.573
+Sun 27 Apr 2025 23:56:21 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Mon 28 Apr 2025 00:39:47 INFO  epoch 43 training [time: 2605.43s, train loss: 11.1184]
+Mon 28 Apr 2025 00:40:09 INFO  epoch 43 evaluating [time: 22.50s, valid_score: 0.574300]
+Mon 28 Apr 2025 00:40:09 INFO  valid result: 
+mrr@10 : 0.5743
+Mon 28 Apr 2025 00:40:09 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Mon 28 Apr 2025 01:23:35 INFO  epoch 44 training [time: 2606.27s, train loss: 11.0134]
+Mon 28 Apr 2025 01:23:58 INFO  epoch 44 evaluating [time: 22.26s, valid_score: 0.575000]
+Mon 28 Apr 2025 01:23:58 INFO  valid result: 
+mrr@10 : 0.575
+Mon 28 Apr 2025 01:23:58 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Mon 28 Apr 2025 02:07:19 INFO  epoch 45 training [time: 2600.87s, train loss: 10.9483]
+Mon 28 Apr 2025 02:07:40 INFO  epoch 45 evaluating [time: 21.87s, valid_score: 0.575700]
+Mon 28 Apr 2025 02:07:40 INFO  valid result: 
+mrr@10 : 0.5757
+Mon 28 Apr 2025 02:07:40 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Mon 28 Apr 2025 02:51:01 INFO  epoch 46 training [time: 2600.93s, train loss: 10.6695]
+Mon 28 Apr 2025 02:51:23 INFO  epoch 46 evaluating [time: 22.14s, valid_score: 0.576100]
+Mon 28 Apr 2025 02:51:23 INFO  valid result: 
+mrr@10 : 0.5761
+Mon 28 Apr 2025 02:51:24 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Mon 28 Apr 2025 03:34:46 INFO  epoch 47 training [time: 2602.39s, train loss: 10.4033]
+Mon 28 Apr 2025 03:35:08 INFO  epoch 47 evaluating [time: 22.20s, valid_score: 0.577000]
+Mon 28 Apr 2025 03:35:08 INFO  valid result: 
+mrr@10 : 0.577
+Mon 28 Apr 2025 03:35:08 INFO  Saving current: ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth
+Mon 28 Apr 2025 04:18:32 INFO  epoch 48 training [time: 2604.37s, train loss: 10.3505]
+Mon 28 Apr 2025 04:18:54 INFO  epoch 48 evaluating [time: 21.99s, valid_score: 0.575500]
+Mon 28 Apr 2025 04:18:54 INFO  valid result: 
+mrr@10 : 0.5755
+Mon 28 Apr 2025 05:02:21 INFO  epoch 49 training [time: 2606.31s, train loss: 10.2315]
+Mon 28 Apr 2025 05:02:43 INFO  epoch 49 evaluating [time: 21.92s, valid_score: 0.576600]
+Mon 28 Apr 2025 05:02:43 INFO  valid result: 
+mrr@10 : 0.5766
+Mon 28 Apr 2025 05:02:43 INFO  Loading model structure and parameters from ./saved/mind/DGCF-Apr-26-2025_16-32-47.pth

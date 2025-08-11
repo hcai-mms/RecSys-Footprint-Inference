@@ -1,0 +1,356 @@
+Thu 17 Apr 2025 06:26:34 INFO  
+General Hyper Parameters:
+gpu_id = 0
+use_gpu = True
+seed = 2020
+state = INFO
+reproducibility = True
+data_path = dataset/movielens
+checkpoint_dir = ./saved/movielens/
+show_progress = True
+save_dataset = True
+dataset_save_path = None
+save_dataloaders = False
+dataloaders_save_path = None
+log_wandb = False
+
+Training Hyper Parameters:
+epochs = 50
+train_batch_size = 2048
+learner = adam
+learning_rate = 0.001
+train_neg_sample_args = {'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}
+eval_step = 1
+stopping_step = 50
+clip_grad_norm = None
+weight_decay = 0.0
+loss_decimal_place = 4
+
+Evaluation Hyper Parameters:
+eval_args = {'split': {'RS': [0.8, 0.1, 0.1]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}
+repeatable = False
+metrics = ['MRR']
+topk = [10]
+valid_metric = MRR@10
+valid_metric_bigger = True
+eval_batch_size = 4096
+metric_decimal_place = 4
+
+Dataset Hyper Parameters:
+field_separator = 	
+seq_separator =  
+USER_ID_FIELD = user_id
+ITEM_ID_FIELD = item_id
+RATING_FIELD = rating
+TIME_FIELD = timestamp
+seq_len = None
+LABEL_FIELD = label
+threshold = None
+NEG_PREFIX = neg_
+load_col = {'inter': ['user_id', 'item_id', 'rating', 'timestamp'], 'kg': ['head_id', 'relation_id', 'tail_id'], 'link': ['item_id', 'entity_id']}
+unload_col = None
+unused_col = None
+additional_feat_suffix = None
+rm_dup_inter = None
+val_interval = None
+filter_inter_by_user_or_item = True
+user_inter_num_interval = [0,inf)
+item_inter_num_interval = [0,inf)
+alias_of_user_id = None
+alias_of_item_id = None
+alias_of_entity_id = None
+alias_of_relation_id = None
+preload_weight = None
+normalize_field = None
+normalize_all = None
+ITEM_LIST_LENGTH_FIELD = item_length
+LIST_SUFFIX = _list
+MAX_ITEM_LIST_LENGTH = 50
+POSITION_FIELD = position_id
+HEAD_ENTITY_ID_FIELD = head_id
+TAIL_ENTITY_ID_FIELD = tail_id
+RELATION_ID_FIELD = relation_id
+ENTITY_ID_FIELD = entity_id
+benchmark_filename = None
+
+Other Hyper Parameters: 
+worker = 0
+wandb_project = recbole
+shuffle = True
+require_pow = False
+enable_amp = False
+enable_scaler = False
+transform = None
+train_rec_step = 5
+train_kg_step = 5
+embedding_size = 64
+use_st_gumbel = True
+L1_flag = False
+margin = 1.0
+kg_weight = 1.0
+align_weight = 1.0
+numerical_features = []
+discretization = None
+kg_reverse_r = False
+entity_kg_num_interval = [0,inf)
+relation_kg_num_interval = [0,inf)
+MODEL_TYPE = ModelType.KNOWLEDGE
+MODEL_INPUT_TYPE = InputType.PAIRWISE
+eval_type = EvaluatorType.RANKING
+single_spec = True
+local_rank = 0
+device = cuda
+eval_neg_sample_args = {'distribution': 'uniform', 'sample_num': 'none'}
+
+
+Thu 17 Apr 2025 06:26:37 INFO  Saving filtered dataset into [./saved/movielens/movielens-dataset.pth]
+Thu 17 Apr 2025 06:26:37 INFO  movielens
+The number of users: 6037
+Average actions of users: 114.7589463220676
+The number of items: 2824
+Average actions of items: 245.37194473963868
+The number of inters: 692685
+The sparsity of the dataset: 95.93697106746357%
+Remain Fields: ['entity_id', 'user_id', 'item_id', 'head_id', 'tail_id', 'relation_id']
+The number of entities: 20454
+The number of relations: 13
+The number of triples: 70668
+The number of items that have been linked to KG: 2823
+Thu 17 Apr 2025 06:26:38 INFO  [Training]: train_batch_size = [2048] train_neg_sample_args: [{'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}]
+Thu 17 Apr 2025 06:26:38 INFO  [Evaluation]: eval_batch_size = [4096] eval_args: [{'split': {'RS': [0.8, 0.1, 0.1]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}]
+Thu 17 Apr 2025 06:26:38 INFO  KTUP(
+  (user_embedding): Embedding(6037, 64)
+  (item_embedding): Embedding(2824, 64)
+  (pref_embedding): Embedding(13, 64)
+  (pref_norm_embedding): Embedding(13, 64)
+  (entity_embedding): Embedding(20454, 64)
+  (relation_embedding): Embedding(13, 64)
+  (relation_norm_embedding): Embedding(13, 64)
+  (rec_loss): BPRLoss()
+  (kg_loss): MarginRankingLoss()
+  (reg_loss): EmbMarginLoss()
+)
+Trainable parameters: 1879488
+Thu 17 Apr 2025 06:26:58 INFO  epoch 0 training [time: 15.55s, train_loss1: 140.0866, train_loss2: 3.1040, train_loss3: 66.0091]
+Thu 17 Apr 2025 06:27:12 INFO  epoch 0 evaluating [time: 13.48s, valid_score: 0.083700]
+Thu 17 Apr 2025 06:27:12 INFO  valid result: 
+mrr@10 : 0.0837
+Thu 17 Apr 2025 06:27:12 INFO  Saving current: ./saved/movielens/KTUP-Apr-17-2025_06-26-38.pth
+Thu 17 Apr 2025 06:27:28 INFO  epoch 1 training [time: 15.52s, train_loss1: 111.6372, train_loss2: 0.0001, train_loss3: 0.6987]
+Thu 17 Apr 2025 06:27:41 INFO  epoch 1 evaluating [time: 13.06s, valid_score: 0.102000]
+Thu 17 Apr 2025 06:27:41 INFO  valid result: 
+mrr@10 : 0.102
+Thu 17 Apr 2025 06:27:41 INFO  Saving current: ./saved/movielens/KTUP-Apr-17-2025_06-26-38.pth
+Thu 17 Apr 2025 06:27:56 INFO  epoch 2 training [time: 15.57s, train_loss1: 107.2245, train_loss2: 0.0001, train_loss3: 0.0170]
+Thu 17 Apr 2025 06:28:09 INFO  epoch 2 evaluating [time: 13.28s, valid_score: 0.108600]
+Thu 17 Apr 2025 06:28:09 INFO  valid result: 
+mrr@10 : 0.1086
+Thu 17 Apr 2025 06:28:09 INFO  Saving current: ./saved/movielens/KTUP-Apr-17-2025_06-26-38.pth
+Thu 17 Apr 2025 06:28:25 INFO  epoch 3 training [time: 15.50s, train_loss1: 103.6922, train_loss2: 0.0001, train_loss3: 0.0049]
+Thu 17 Apr 2025 06:28:38 INFO  epoch 3 evaluating [time: 13.48s, valid_score: 0.111000]
+Thu 17 Apr 2025 06:28:38 INFO  valid result: 
+mrr@10 : 0.111
+Thu 17 Apr 2025 06:28:39 INFO  Saving current: ./saved/movielens/KTUP-Apr-17-2025_06-26-38.pth
+Thu 17 Apr 2025 06:28:54 INFO  epoch 4 training [time: 15.57s, train_loss1: 99.7275, train_loss2: 0.0002, train_loss3: 0.0032]
+Thu 17 Apr 2025 06:29:07 INFO  epoch 4 evaluating [time: 13.26s, valid_score: 0.126700]
+Thu 17 Apr 2025 06:29:07 INFO  valid result: 
+mrr@10 : 0.1267
+Thu 17 Apr 2025 06:29:07 INFO  Saving current: ./saved/movielens/KTUP-Apr-17-2025_06-26-38.pth
+Thu 17 Apr 2025 06:29:23 INFO  epoch 5 training [time: 15.63s, train_loss1: 94.2321, train_loss2: 0.0002, train_loss3: 0.0022]
+Thu 17 Apr 2025 06:29:37 INFO  epoch 5 evaluating [time: 13.73s, valid_score: 0.141900]
+Thu 17 Apr 2025 06:29:37 INFO  valid result: 
+mrr@10 : 0.1419
+Thu 17 Apr 2025 06:29:37 INFO  Saving current: ./saved/movielens/KTUP-Apr-17-2025_06-26-38.pth
+Thu 17 Apr 2025 06:29:52 INFO  epoch 6 training [time: 15.05s, train_loss1: 87.3618, train_loss2: 0.0002, train_loss3: 0.0016]
+Thu 17 Apr 2025 06:30:05 INFO  epoch 6 evaluating [time: 13.44s, valid_score: 0.160400]
+Thu 17 Apr 2025 06:30:05 INFO  valid result: 
+mrr@10 : 0.1604
+Thu 17 Apr 2025 06:30:05 INFO  Saving current: ./saved/movielens/KTUP-Apr-17-2025_06-26-38.pth
+Thu 17 Apr 2025 06:30:21 INFO  epoch 7 training [time: 15.84s, train_loss1: 80.2872, train_loss2: 0.0002, train_loss3: 0.0011]
+Thu 17 Apr 2025 06:30:34 INFO  epoch 7 evaluating [time: 13.21s, valid_score: 0.168900]
+Thu 17 Apr 2025 06:30:34 INFO  valid result: 
+mrr@10 : 0.1689
+Thu 17 Apr 2025 06:30:34 INFO  Saving current: ./saved/movielens/KTUP-Apr-17-2025_06-26-38.pth
+Thu 17 Apr 2025 06:30:50 INFO  epoch 8 training [time: 15.40s, train_loss1: 74.5122, train_loss2: 0.0002, train_loss3: 0.0007]
+Thu 17 Apr 2025 06:31:03 INFO  epoch 8 evaluating [time: 13.30s, valid_score: 0.177500]
+Thu 17 Apr 2025 06:31:03 INFO  valid result: 
+mrr@10 : 0.1775
+Thu 17 Apr 2025 06:31:03 INFO  Saving current: ./saved/movielens/KTUP-Apr-17-2025_06-26-38.pth
+Thu 17 Apr 2025 06:31:18 INFO  epoch 9 training [time: 15.31s, train_loss1: 69.7867, train_loss2: 0.0002, train_loss3: 0.0004]
+Thu 17 Apr 2025 06:31:32 INFO  epoch 9 evaluating [time: 13.60s, valid_score: 0.184800]
+Thu 17 Apr 2025 06:31:32 INFO  valid result: 
+mrr@10 : 0.1848
+Thu 17 Apr 2025 06:31:32 INFO  Saving current: ./saved/movielens/KTUP-Apr-17-2025_06-26-38.pth
+Thu 17 Apr 2025 06:31:48 INFO  epoch 10 training [time: 15.58s, train_loss1: 65.9191, train_loss2: 0.0002, train_loss3: 0.0003]
+Thu 17 Apr 2025 06:32:05 INFO  epoch 10 evaluating [time: 17.35s, valid_score: 0.189500]
+Thu 17 Apr 2025 06:32:05 INFO  valid result: 
+mrr@10 : 0.1895
+Thu 17 Apr 2025 06:32:05 INFO  Saving current: ./saved/movielens/KTUP-Apr-17-2025_06-26-38.pth
+Thu 17 Apr 2025 06:32:21 INFO  epoch 11 training [time: 15.59s, train_loss1: 62.8185, train_loss2: 0.0002, train_loss3: 0.0002]
+Thu 17 Apr 2025 06:32:34 INFO  epoch 11 evaluating [time: 13.19s, valid_score: 0.198600]
+Thu 17 Apr 2025 06:32:34 INFO  valid result: 
+mrr@10 : 0.1986
+Thu 17 Apr 2025 06:32:34 INFO  Saving current: ./saved/movielens/KTUP-Apr-17-2025_06-26-38.pth
+Thu 17 Apr 2025 06:32:49 INFO  epoch 12 training [time: 15.24s, train_loss1: 60.3023, train_loss2: 0.0002, train_loss3: 0.0001]
+Thu 17 Apr 2025 06:33:03 INFO  epoch 12 evaluating [time: 13.44s, valid_score: 0.202400]
+Thu 17 Apr 2025 06:33:03 INFO  valid result: 
+mrr@10 : 0.2024
+Thu 17 Apr 2025 06:33:03 INFO  Saving current: ./saved/movielens/KTUP-Apr-17-2025_06-26-38.pth
+Thu 17 Apr 2025 06:33:18 INFO  epoch 13 training [time: 15.67s, train_loss1: 58.0499, train_loss2: 0.0003, train_loss3: 0.0001]
+Thu 17 Apr 2025 06:33:33 INFO  epoch 13 evaluating [time: 14.46s, valid_score: 0.199200]
+Thu 17 Apr 2025 06:33:33 INFO  valid result: 
+mrr@10 : 0.1992
+Thu 17 Apr 2025 06:33:48 INFO  epoch 14 training [time: 15.71s, train_loss1: 56.0058, train_loss2: 0.0002, train_loss3: 0.0000]
+Thu 17 Apr 2025 06:34:02 INFO  epoch 14 evaluating [time: 13.20s, valid_score: 0.200700]
+Thu 17 Apr 2025 06:34:02 INFO  valid result: 
+mrr@10 : 0.2007
+Thu 17 Apr 2025 06:34:17 INFO  epoch 15 training [time: 15.17s, train_loss1: 54.3078, train_loss2: 0.0003, train_loss3: 0.0000]
+Thu 17 Apr 2025 06:34:30 INFO  epoch 15 evaluating [time: 13.48s, valid_score: 0.206800]
+Thu 17 Apr 2025 06:34:30 INFO  valid result: 
+mrr@10 : 0.2068
+Thu 17 Apr 2025 06:34:30 INFO  Saving current: ./saved/movielens/KTUP-Apr-17-2025_06-26-38.pth
+Thu 17 Apr 2025 06:34:46 INFO  epoch 16 training [time: 15.43s, train_loss1: 52.7947, train_loss2: 0.0003, train_loss3: 0.0000]
+Thu 17 Apr 2025 06:34:59 INFO  epoch 16 evaluating [time: 13.21s, valid_score: 0.209500]
+Thu 17 Apr 2025 06:34:59 INFO  valid result: 
+mrr@10 : 0.2095
+Thu 17 Apr 2025 06:34:59 INFO  Saving current: ./saved/movielens/KTUP-Apr-17-2025_06-26-38.pth
+Thu 17 Apr 2025 06:35:15 INFO  epoch 17 training [time: 15.74s, train_loss1: 51.5778, train_loss2: 0.0003, train_loss3: 0.0000]
+Thu 17 Apr 2025 06:35:29 INFO  epoch 17 evaluating [time: 14.10s, valid_score: 0.209400]
+Thu 17 Apr 2025 06:35:29 INFO  valid result: 
+mrr@10 : 0.2094
+Thu 17 Apr 2025 06:35:43 INFO  epoch 18 training [time: 14.69s, train_loss1: 50.0383, train_loss2: 0.0003, train_loss3: 0.0000]
+Thu 17 Apr 2025 06:35:57 INFO  epoch 18 evaluating [time: 13.12s, valid_score: 0.210300]
+Thu 17 Apr 2025 06:35:57 INFO  valid result: 
+mrr@10 : 0.2103
+Thu 17 Apr 2025 06:35:57 INFO  Saving current: ./saved/movielens/KTUP-Apr-17-2025_06-26-38.pth
+Thu 17 Apr 2025 06:36:12 INFO  epoch 19 training [time: 15.35s, train_loss1: 48.8413, train_loss2: 0.0003, train_loss3: 0.0000]
+Thu 17 Apr 2025 06:36:25 INFO  epoch 19 evaluating [time: 13.10s, valid_score: 0.213100]
+Thu 17 Apr 2025 06:36:25 INFO  valid result: 
+mrr@10 : 0.2131
+Thu 17 Apr 2025 06:36:25 INFO  Saving current: ./saved/movielens/KTUP-Apr-17-2025_06-26-38.pth
+Thu 17 Apr 2025 06:36:40 INFO  epoch 20 training [time: 15.36s, train_loss1: 48.3113, train_loss2: 0.0003, train_loss3: 0.0000]
+Thu 17 Apr 2025 06:36:55 INFO  epoch 20 evaluating [time: 14.40s, valid_score: 0.213200]
+Thu 17 Apr 2025 06:36:55 INFO  valid result: 
+mrr@10 : 0.2132
+Thu 17 Apr 2025 06:36:55 INFO  Saving current: ./saved/movielens/KTUP-Apr-17-2025_06-26-38.pth
+Thu 17 Apr 2025 06:37:11 INFO  epoch 21 training [time: 15.79s, train_loss1: 47.0689, train_loss2: 0.0003, train_loss3: 0.0000]
+Thu 17 Apr 2025 06:37:24 INFO  epoch 21 evaluating [time: 13.31s, valid_score: 0.212000]
+Thu 17 Apr 2025 06:37:24 INFO  valid result: 
+mrr@10 : 0.212
+Thu 17 Apr 2025 06:37:40 INFO  epoch 22 training [time: 15.54s, train_loss1: 46.2905, train_loss2: 0.0003, train_loss3: 0.0000]
+Thu 17 Apr 2025 06:37:53 INFO  epoch 22 evaluating [time: 13.33s, valid_score: 0.213200]
+Thu 17 Apr 2025 06:37:53 INFO  valid result: 
+mrr@10 : 0.2132
+Thu 17 Apr 2025 06:37:53 INFO  Saving current: ./saved/movielens/KTUP-Apr-17-2025_06-26-38.pth
+Thu 17 Apr 2025 06:38:09 INFO  epoch 23 training [time: 15.66s, train_loss1: 45.3228, train_loss2: 0.0003, train_loss3: 0.0000]
+Thu 17 Apr 2025 06:38:22 INFO  epoch 23 evaluating [time: 13.42s, valid_score: 0.213500]
+Thu 17 Apr 2025 06:38:22 INFO  valid result: 
+mrr@10 : 0.2135
+Thu 17 Apr 2025 06:38:22 INFO  Saving current: ./saved/movielens/KTUP-Apr-17-2025_06-26-38.pth
+Thu 17 Apr 2025 06:38:38 INFO  epoch 24 training [time: 15.66s, train_loss1: 44.6584, train_loss2: 0.0003, train_loss3: 0.0000]
+Thu 17 Apr 2025 06:38:50 INFO  epoch 24 evaluating [time: 12.67s, valid_score: 0.214400]
+Thu 17 Apr 2025 06:38:50 INFO  valid result: 
+mrr@10 : 0.2144
+Thu 17 Apr 2025 06:38:50 INFO  Saving current: ./saved/movielens/KTUP-Apr-17-2025_06-26-38.pth
+Thu 17 Apr 2025 06:39:05 INFO  epoch 25 training [time: 14.79s, train_loss1: 44.0273, train_loss2: 0.0003, train_loss3: 0.0000]
+Thu 17 Apr 2025 06:39:18 INFO  epoch 25 evaluating [time: 13.19s, valid_score: 0.209700]
+Thu 17 Apr 2025 06:39:18 INFO  valid result: 
+mrr@10 : 0.2097
+Thu 17 Apr 2025 06:39:34 INFO  epoch 26 training [time: 15.37s, train_loss1: 43.3260, train_loss2: 0.0003, train_loss3: 0.0000]
+Thu 17 Apr 2025 06:39:47 INFO  epoch 26 evaluating [time: 13.27s, valid_score: 0.208800]
+Thu 17 Apr 2025 06:39:47 INFO  valid result: 
+mrr@10 : 0.2088
+Thu 17 Apr 2025 06:40:03 INFO  epoch 27 training [time: 15.68s, train_loss1: 42.6274, train_loss2: 0.0003, train_loss3: 0.0000]
+Thu 17 Apr 2025 06:40:18 INFO  epoch 27 evaluating [time: 15.04s, valid_score: 0.208400]
+Thu 17 Apr 2025 06:40:18 INFO  valid result: 
+mrr@10 : 0.2084
+Thu 17 Apr 2025 06:40:33 INFO  epoch 28 training [time: 15.70s, train_loss1: 42.2946, train_loss2: 0.0003, train_loss3: 0.0000]
+Thu 17 Apr 2025 06:40:47 INFO  epoch 28 evaluating [time: 13.40s, valid_score: 0.213600]
+Thu 17 Apr 2025 06:40:47 INFO  valid result: 
+mrr@10 : 0.2136
+Thu 17 Apr 2025 06:41:02 INFO  epoch 29 training [time: 15.61s, train_loss1: 41.8866, train_loss2: 0.0003, train_loss3: 0.0000]
+Thu 17 Apr 2025 06:41:16 INFO  epoch 29 evaluating [time: 13.14s, valid_score: 0.211200]
+Thu 17 Apr 2025 06:41:16 INFO  valid result: 
+mrr@10 : 0.2112
+Thu 17 Apr 2025 06:41:31 INFO  epoch 30 training [time: 15.35s, train_loss1: 40.9246, train_loss2: 0.0004, train_loss3: 0.0000]
+Thu 17 Apr 2025 06:41:44 INFO  epoch 30 evaluating [time: 12.68s, valid_score: 0.211600]
+Thu 17 Apr 2025 06:41:44 INFO  valid result: 
+mrr@10 : 0.2116
+Thu 17 Apr 2025 06:41:59 INFO  epoch 31 training [time: 15.03s, train_loss1: 40.6194, train_loss2: 0.0003, train_loss3: 0.0000]
+Thu 17 Apr 2025 06:42:12 INFO  epoch 31 evaluating [time: 13.11s, valid_score: 0.213200]
+Thu 17 Apr 2025 06:42:12 INFO  valid result: 
+mrr@10 : 0.2132
+Thu 17 Apr 2025 06:42:27 INFO  epoch 32 training [time: 14.96s, train_loss1: 40.2137, train_loss2: 0.0003, train_loss3: 0.0000]
+Thu 17 Apr 2025 06:42:40 INFO  epoch 32 evaluating [time: 13.03s, valid_score: 0.217400]
+Thu 17 Apr 2025 06:42:40 INFO  valid result: 
+mrr@10 : 0.2174
+Thu 17 Apr 2025 06:42:40 INFO  Saving current: ./saved/movielens/KTUP-Apr-17-2025_06-26-38.pth
+Thu 17 Apr 2025 06:42:55 INFO  epoch 33 training [time: 15.45s, train_loss1: 39.7515, train_loss2: 0.0003, train_loss3: 0.0000]
+Thu 17 Apr 2025 06:43:09 INFO  epoch 33 evaluating [time: 13.58s, valid_score: 0.215800]
+Thu 17 Apr 2025 06:43:09 INFO  valid result: 
+mrr@10 : 0.2158
+Thu 17 Apr 2025 06:43:24 INFO  epoch 34 training [time: 15.30s, train_loss1: 39.3027, train_loss2: 0.0003, train_loss3: 0.0000]
+Thu 17 Apr 2025 06:43:38 INFO  epoch 34 evaluating [time: 13.93s, valid_score: 0.216400]
+Thu 17 Apr 2025 06:43:38 INFO  valid result: 
+mrr@10 : 0.2164
+Thu 17 Apr 2025 06:43:54 INFO  epoch 35 training [time: 15.59s, train_loss1: 39.0860, train_loss2: 0.0004, train_loss3: 0.0000]
+Thu 17 Apr 2025 06:44:09 INFO  epoch 35 evaluating [time: 15.45s, valid_score: 0.212900]
+Thu 17 Apr 2025 06:44:09 INFO  valid result: 
+mrr@10 : 0.2129
+Thu 17 Apr 2025 06:44:25 INFO  epoch 36 training [time: 15.53s, train_loss1: 38.8704, train_loss2: 0.0003, train_loss3: 0.0000]
+Thu 17 Apr 2025 06:44:38 INFO  epoch 36 evaluating [time: 13.37s, valid_score: 0.214700]
+Thu 17 Apr 2025 06:44:38 INFO  valid result: 
+mrr@10 : 0.2147
+Thu 17 Apr 2025 06:44:53 INFO  epoch 37 training [time: 15.35s, train_loss1: 38.1895, train_loss2: 0.0003, train_loss3: 0.0000]
+Thu 17 Apr 2025 06:45:07 INFO  epoch 37 evaluating [time: 13.78s, valid_score: 0.212900]
+Thu 17 Apr 2025 06:45:07 INFO  valid result: 
+mrr@10 : 0.2129
+Thu 17 Apr 2025 06:45:23 INFO  epoch 38 training [time: 15.49s, train_loss1: 37.9841, train_loss2: 0.0003, train_loss3: 0.0000]
+Thu 17 Apr 2025 06:45:36 INFO  epoch 38 evaluating [time: 12.97s, valid_score: 0.210900]
+Thu 17 Apr 2025 06:45:36 INFO  valid result: 
+mrr@10 : 0.2109
+Thu 17 Apr 2025 06:45:51 INFO  epoch 39 training [time: 15.76s, train_loss1: 37.7827, train_loss2: 0.0003, train_loss3: 0.0000]
+Thu 17 Apr 2025 06:46:04 INFO  epoch 39 evaluating [time: 12.90s, valid_score: 0.213200]
+Thu 17 Apr 2025 06:46:04 INFO  valid result: 
+mrr@10 : 0.2132
+Thu 17 Apr 2025 06:46:19 INFO  epoch 40 training [time: 15.14s, train_loss1: 37.4478, train_loss2: 0.0004, train_loss3: 0.0000]
+Thu 17 Apr 2025 06:46:32 INFO  epoch 40 evaluating [time: 12.93s, valid_score: 0.210800]
+Thu 17 Apr 2025 06:46:32 INFO  valid result: 
+mrr@10 : 0.2108
+Thu 17 Apr 2025 06:46:48 INFO  epoch 41 training [time: 15.45s, train_loss1: 37.3690, train_loss2: 0.0003, train_loss3: 0.0000]
+Thu 17 Apr 2025 06:47:02 INFO  epoch 41 evaluating [time: 13.74s, valid_score: 0.207200]
+Thu 17 Apr 2025 06:47:02 INFO  valid result: 
+mrr@10 : 0.2072
+Thu 17 Apr 2025 06:47:17 INFO  epoch 42 training [time: 15.28s, train_loss1: 37.0015, train_loss2: 0.0003, train_loss3: 0.0000]
+Thu 17 Apr 2025 06:47:30 INFO  epoch 42 evaluating [time: 13.36s, valid_score: 0.210300]
+Thu 17 Apr 2025 06:47:30 INFO  valid result: 
+mrr@10 : 0.2103
+Thu 17 Apr 2025 06:47:46 INFO  epoch 43 training [time: 15.46s, train_loss1: 36.7916, train_loss2: 0.0003, train_loss3: 0.0000]
+Thu 17 Apr 2025 06:47:59 INFO  epoch 43 evaluating [time: 13.06s, valid_score: 0.210800]
+Thu 17 Apr 2025 06:47:59 INFO  valid result: 
+mrr@10 : 0.2108
+Thu 17 Apr 2025 06:48:14 INFO  epoch 44 training [time: 15.61s, train_loss1: 36.2772, train_loss2: 0.0003, train_loss3: 0.0000]
+Thu 17 Apr 2025 06:48:27 INFO  epoch 44 evaluating [time: 13.14s, valid_score: 0.208700]
+Thu 17 Apr 2025 06:48:27 INFO  valid result: 
+mrr@10 : 0.2087
+Thu 17 Apr 2025 06:48:42 INFO  epoch 45 training [time: 14.91s, train_loss1: 36.1927, train_loss2: 0.0003, train_loss3: 0.0000]
+Thu 17 Apr 2025 06:48:55 INFO  epoch 45 evaluating [time: 12.91s, valid_score: 0.209100]
+Thu 17 Apr 2025 06:48:55 INFO  valid result: 
+mrr@10 : 0.2091
+Thu 17 Apr 2025 06:49:11 INFO  epoch 46 training [time: 15.65s, train_loss1: 35.9427, train_loss2: 0.0004, train_loss3: 0.0000]
+Thu 17 Apr 2025 06:49:24 INFO  epoch 46 evaluating [time: 13.40s, valid_score: 0.208700]
+Thu 17 Apr 2025 06:49:24 INFO  valid result: 
+mrr@10 : 0.2087
+Thu 17 Apr 2025 06:49:39 INFO  epoch 47 training [time: 14.96s, train_loss1: 35.6701, train_loss2: 0.0003, train_loss3: 0.0001]
+Thu 17 Apr 2025 06:49:53 INFO  epoch 47 evaluating [time: 13.35s, valid_score: 0.205000]
+Thu 17 Apr 2025 06:49:53 INFO  valid result: 
+mrr@10 : 0.205
+Thu 17 Apr 2025 06:50:08 INFO  epoch 48 training [time: 15.45s, train_loss1: 35.6797, train_loss2: 0.0003, train_loss3: 0.0001]
+Thu 17 Apr 2025 06:50:22 INFO  epoch 48 evaluating [time: 13.41s, valid_score: 0.208200]
+Thu 17 Apr 2025 06:50:22 INFO  valid result: 
+mrr@10 : 0.2082
+Thu 17 Apr 2025 06:50:37 INFO  epoch 49 training [time: 15.52s, train_loss1: 35.4963, train_loss2: 0.0004, train_loss3: 0.0001]
+Thu 17 Apr 2025 06:50:51 INFO  epoch 49 evaluating [time: 13.84s, valid_score: 0.207400]
+Thu 17 Apr 2025 06:50:51 INFO  valid result: 
+mrr@10 : 0.2074
+Thu 17 Apr 2025 06:50:51 INFO  Loading model structure and parameters from ./saved/movielens/KTUP-Apr-17-2025_06-26-38.pth
