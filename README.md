@@ -1,5 +1,8 @@
-# RecSys-2025-Investigating-Carbon-Footprint-of-Recommender-Systems-Beyond-Training-Time
 ### Investigating Carbon Footprint of Recommender Systems Beyond Training Time  
+Companion repository for the paper "Investigating Carbon Footprint of Recommender Systems Beyond Training Time" by <br>
+*Josef Schodl*, *Oleg Lesota*, *Antonela Tommasel*, and *Markus Schedl*
+
+accepted for the LBR track at RecSys 2025.
 
 The environmental footprint of recommender systems has received growing attention in the research community. While recent work has examined the trade-off between model accuracy and the estimated carbon emissions during training, we argue that a comprehensive evaluation should also account for the emissions produced during inference time, especially in applications where models are deployed for extended periods with frequent inference cycles. In this study, we extend previous carbon footprint analyses from the literature by incorporating the inference phase into the carbon footprint assessment and exploring how variations in training configurations affect emissions. Our findings reveal that models with higher training emissions can, in some cases, offer lower environmental costs at inference time. Moreover, we show that minimizing the number of validation metrics computed during training can lead to significant reductions in overall carbon footprint, highlighting the importance of thoughtful experimental design in sustainable machine learning.
 
